@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <section class="page-header">
+            <div class="page-header__bg"></div>
+            <!-- /.page-header__bg -->
+            <!-- <div class="page-header__shape"></div> -->
+            <!-- /.page-header__shape -->
+            <div class="container">
+                <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;"><div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">O</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">u</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">r</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">T</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">e</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">m</div></div></h2>
+                <ul class="procounsel-breadcrumb list-unstyled">
+                    <li><a href="https://bracketweb.com/procounsel-html/index.html">Home</a></li>
+                    <li><span>Team</span></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+        <section class="team-one">
+            <div class="container">
+                <div class="row gutter-y-30">
+                    {% for i in staffs %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="team-card wow fadeInUp animated" data-wow-duration="1500ms" data-wow-delay="000ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
+
+                            <div class="team-card__image bw-img-anim-left" style="clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0% 100%);">
+                                <div class="team-card__content">
+                                    <h3 class="team-card__title">
+                                        <a href="">{{i.user.first_name}} {{ i.user.last_name}}</a>
+                                    </h3><!-- /.team-card__title -->
+                                    <p class="team-card__designation">{{i.role}}</p><!-- /.team-card__designation -->
+
+                                </div><!-- /.team-card__content -->
+                                <div class="team-card__hover">
+                                    <span class="team-card__hover__btn"><i class="icon-plus"></i></span>
+                                    <div class="team-card__hover__social">
+                                        <a href="{{i.phone}}">
+                                            <i class="icon-facebook"></i>
+                                            <span class="sr-only">Phone</span>
+                                        </a>
+
+                                    </div><!-- /.team-card__social -->
+                                </div><!-- /.team-card__hover -->
+                                <img src="{{i.image.url}}" alt="">
+                            </div><!-- /.team-card__image -->
+                        </div><!-- /.team-card -->
+                    </div>
+                    {% endfor %}
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.team-two -->
+        {% endblock %}
