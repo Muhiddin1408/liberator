@@ -100,19 +100,58 @@
 
 
                                 <li class="dropdown megamenu">
-                                    <a href="{% url 'index' %}">Home</a>
+                                    <a href="{% url 'index' %}">
+                                        {% if current_lang == "uz" %}
+                                            Asosiy
+                                        {% elif current_lang == "ru" %}
+                                            Главная
+                                        {% elif current_lang == "en" %}
+                                            Home
+                                        {% else %}
+                                            Home
+                                        {% endif %}
+                                        </a>
 
                                 </li>
 
                                 <li>
-                                    <a href="{% url 'about'%}">About</a>
+                                    <a href="{% url 'about'%}">{% if current_lang == "uz" %}
+                                        Biz haqimizda
+                                    {% elif current_lang == "ru" %}
+                                        О нас
+                                    {% elif current_lang == "en" %}
+                                        About
+                                    {% else %}
+                                        About
+                                    {% endif %}
+                                    </a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="{% url 'terms' %}">Teams</a>
+                                    <a href="{% url 'terms' %}">
+                                        {% if current_lang == "uz" %}
+                                            Bizning jamoa
+                                        {% elif current_lang == "ru" %}
+                                            Наша команда
+                                        {% elif current_lang == "en" %}
+                                            Our team
+                                        {% else %}
+                                            Our team
+                                        {% endif %}
+                                        </a>
 
                                 </li>
                                 <li class="dropdown">
-                                    <a href="">Services</a>
+                                    <a href="">
+                                        {% if current_lang == "uz" %}
+                                            Xizmatlar
+                                        {% elif current_lang == "ru" %}
+                                            Услуги
+                                        {% elif current_lang == "en" %}
+                                            Services
+                                        {% else %}
+                                            Services
+                                        {% endif %}
+                                        </a>
                                     <ul>
                                         {% for i in services %}
                                         <li><a href="{% url 'service' i.pk%}">{{i.name}}</a></li>
@@ -125,10 +164,20 @@
 
 
                                 <li>
-                                    <a href="{% url 'contact' %}">Contact</a>
+                                    <a href="{% url 'contact' %}">
+                                        {% if current_lang == "uz" %}
+                                            Aloqa
+                                        {% elif current_lang == "ru" %}
+                                            Контакты
+                                        {% elif current_lang == "en" %}
+                                            Contact
+                                        {% else %}
+                                            Contact
+                                        {% endif %}
+                                    </a>
                                 </li>
                                 <li class="nav-item dropdown">
-    {% load i18n %}
+
 
     <button class="btn btn-danger btn-sm dropdown-toggle"
             type="button"
