@@ -288,12 +288,59 @@
 
                         <div class="col-md-6 col-xl-2 wow fadeInUp" data-wow-delay="200ms" style="visibility: hidden; animation-delay: 200ms; animation-name: none;">
                             <div class="footer-widget footer-widget--links">
-                                <h2 class="footer-widget__title">Explore</h2><!-- /.footer-widget__title -->
+                                <h2 class="footer-widget__title">
+                                    {% if current_lang == "uz" %}
+                                        Bizda
+                                    {% elif current_lang == "ru" %}
+                                        У нас
+                                    {% elif current_lang == "en" %}
+                                        Explore
+                                    {% else %}
+                                        Explore
+                                    {% endif %}
+                                    </h2><!-- /.footer-widget__title -->
                                 <ul class="list-unstyled footer-widget__links">
-                                    <li><a href="https://bracketweb.com/procounsel-html/packages.html">What We Offer</a></li>
-                                    <li><a href="https://bracketweb.com/procounsel-html/about.html">Our Story</a></li>
-                                    <li><a href="https://bracketweb.com/procounsel-html/blog-list-right.html">Latest News</a></li>
-                                    <li><a href="https://bracketweb.com/procounsel-html/contact.html">Help Center</a></li>
+                                    <li><a href="">{% if current_lang == "uz" %}
+                                            Biz haqimizda
+                                        {% elif current_lang == "ru" %}
+                                            О нас
+                                        {% elif current_lang == "en" %}
+                                            About us
+                                        {% else %}
+                                            About us
+                                        {% endif %}
+                                        </a></li>
+                                    <li><a href="">{% if current_lang == "uz" %}
+                                            Bizning xizmatlar
+                                        {% elif current_lang == "ru" %}
+                                            Наши услуги
+                                        {% elif current_lang == "en" %}
+                                            Our services
+                                        {% else %}
+                                            Our services
+                                        {% endif %}
+                                        </a></li>
+                                    <li><a href="">
+                                        {% if current_lang == "uz" %}
+                                            Yangiliklar
+                                        {% elif current_lang == "ru" %}
+                                            Новости
+                                        {% elif current_lang == "en" %}
+                                            News
+                                        {% else %}
+                                            News
+                                        {% endif %}
+                                        </a></li>
+                                    <li><a href="">{% if current_lang == "uz" %}
+                                            Aloqa
+                                        {% elif current_lang == "ru" %}
+                                            Контакты
+                                        {% elif current_lang == "en" %}
+                                            Contact
+                                        {% else %}
+                                            Contact
+                                        {% endif %}
+                                        </a></li>
                                 </ul><!-- /.list-unstyled footer-widget__links -->
                             </div><!-- /.footer-widget -->
                         </div><!-- /.col-md-6 -->
