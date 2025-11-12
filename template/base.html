@@ -269,7 +269,7 @@
                         <div class="col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="00ms" style="visibility: hidden; animation-delay: 0ms; animation-name: none;">
                             <div class="footer-widget footer-widget--about">
                                 <a href="" class="footer-widget__logo">
-                                    <img src="/static/index_files/logo-light.png" width="160" alt="Procounsel HTML Template">
+                                    <img src="/static/index_files/logo4.png" width="160" alt="Procounsel HTML Template">
                                 </a>
                                 <p class="footer-widget__text">
 
@@ -347,7 +347,16 @@
                         <div class="col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="300ms" style="visibility: hidden; animation-delay: 300ms; animation-name: none;">
                             <div class="footer-widget footer-widget--mail">
                                 <h2 class="footer-widget__title">
-                                    Signup for our latest news<br> &amp; articles
+                                    {% if current_lang == "uz" %}
+                                        So‘nggi yangiliklar va maqolalarimizga<br> obuna bo‘ling
+                                    {% elif current_lang == "ru" %}
+                                        Подпишитесь на наши последние новости<br> и статьи
+                                    {% elif current_lang == "en" %}
+                                        Signup for our latest news<br> &amp; articles
+                                    {% else %}
+                                        Signup for our latest news<br> &amp; articles
+                                    {% endif %}
+
                                 </h2><!-- /.footer-widget__title -->
                                 <form action="https://bracketweb.com/procounsel-html/index-2.html#" data-url="MAILCHIMP_FORM_URL" class="footer-widget__newsletter mc-form" novalidate="true">
                                     <input type="text" name="EMAIL" placeholder="Email Address">
