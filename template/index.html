@@ -61,8 +61,26 @@
                                     </h2><!-- slider-title -->
                                     <div class="main-slider-two__btn">
                                         <a href="" class="procounsel-btn">
-                                            <i>Discover More</i>
-                                            <span>Discover More</span>
+                                            <i>{% if current_lang == "uz" %}
+                                                    Batafsil
+                                                {% elif current_lang == "ru" %}
+                                                    Узнать больше
+                                                {% elif current_lang == "en" %}
+                                                    Discover More
+                                                {% else %}
+                                                    Discover More
+                                                {% endif %}
+                                                </i>
+                                            <span>
+                                                {% if current_lang == "uz" %}
+                                                    Batafsil
+                                                {% elif current_lang == "ru" %}
+                                                    Узнать больше
+                                                {% elif current_lang == "en" %}
+                                                    Discover More
+                                                {% else %}
+                                                    Discover More
+                                                {% endif %}</span>
                                         </a><!-- slider-btn -->
                                     </div>
                                 </div>
