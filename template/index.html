@@ -107,17 +107,16 @@
 
 <!-- Service Start -->
 <section class="service-two" id="services">
-    <div class="service-two__bg" style="background-image: url(assets/images/backgrounds/service-2-bg.jpg);"></div>
-    <div class="service-two__overlay"></div>
-    <div class="service-two__shape"></div>
     <div class="container">
         <div class="row tabs-box">
             <div class="col-xl-3 wow fadeInUp" data-wow-delay="200ms"
                  style="visibility: hidden; animation-delay: 200ms; animation-name: none;">
                 <ul class="list-unstyled service-two__tab tab-buttons">
                     {%for i in services %}
+
                     <li class="service-two__tab__item tab-btn" data-tab="">
-                        <i class=""></i>{{i.name}}
+                        {{i.name}}
+
                     </li>
                     {%endfor%}
 
@@ -129,6 +128,7 @@
                     <div class="tab active-tab fadeInUp animated" id="">
                         <div class="service-two__wrapper">
                             {%for i in services %}
+                            <a href="{% url 'service' i.pk%}">
                             <div class="service-two__item">
                                 <div class="service-two__item__icon">
                                     <i class="icon-criminal-law"></i>
@@ -143,6 +143,7 @@
                                     <i class="icon-plus"></i>
                                 </a>
                             </div><!-- /.service-card-two -->
+                            </a>
                             {%endfor%}
 
                         </div>
