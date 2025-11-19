@@ -7,8 +7,6 @@
             <div class="container">
                 <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;"><div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">C</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">r</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">m</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">n</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">l</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">L</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate3d(0.0056px, 0px, 0px); opacity: 0.9997;">w</div></div></h2>
                 <ul class="procounsel-breadcrumb list-unstyled">
-                    <li><a href="https://bracketweb.com/procounsel-html/index.html">Home</a></li>
-                    <li><a href="https://bracketweb.com/procounsel-html/services.html">Services</a></li>
                     <li><span>Services details</span></li>
                 </ul><!-- /.thm-breadcrumb list-unstyled -->
             </div><!-- /.container -->
@@ -25,7 +23,7 @@
                                 </div>
                                 <ul class="list-unstyled service-sidebar__nav">
                                     {% for i in service_category%}
-                                    <li class=""><a href=""> {{i.name}}<i class="icon-arrow-right"></i></a></li>
+                                    <li class=""><a href="{% url 'service' i.pk%}"> {{i.name}}<i class="icon-arrow-right"></i></a></li>
                                     {%endfor%}
                                 </ul><!-- /.list-unstyled service-sidebar__nav -->
                             </div><!-- /.service-sidebar__single -->
