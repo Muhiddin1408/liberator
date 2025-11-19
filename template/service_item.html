@@ -47,145 +47,27 @@
                             <div class="service-details__thumbnail">
                                 <img src="/static/service_item/service-d-1.jpg" alt="Criminal Law">
                             </div><!-- /.service-details__thumbnail -->
-                            <h3 class="service-details__title">Criminal Law</h3><!-- /.service-details__title -->
-                            <p class="service-details__text">
-                                Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh. Nam nec eros id magna hendrerit sagittis. Nullam sed
-                                mi non odio feugiat volutpat sit amet nec elit. Maecenas id hendrerit ipsum. Sed eget auctor metus, ac dapibus
-                                dolor. Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh.
-                            </p>
-                            <!-- /.service-details__text -->
-                            <h4 class="service-details__sub-title text-base">Defines Rights Related To Real Estate Ownership,</h4>
-                            <!-- /.service-details__sub-title -->
-                            <p class="service-details__text">
-                                Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh. Nam nec eros id magna hendrerit sagittis. Nullam sed
-                                mi non odio feugiat volutpat sit amet nec elit. Maecenas id hendrerit ipsum.
-                            </p><!-- /.service-details__text -->
-                            <h3 class="service-details__sub-title">Why Choose Our ProCounsel?</h3>
-                            <div class="row gutter-y-30">
-                                <div class="col-lg-6 col-md-6 wow fadeInUp animated" data-wow-delay="00ms" style="visibility: visible; animation-delay: 0ms; animation-name: fadeInUp;">
-                                    <div class="service-details__item">
-                                        <div class="service-details__item__icon">
-                                            <i class="icon-idea-1"></i>
-                                            <span class="service-details__item__icon__zoom">
-                                                <i class="icon-idea-1"></i>
-                                            </span>
-                                        </div><!-- /.service-details__item__icon -->
-                                        <div class="service-details__item__content">
-                                            <h4 class="service-details__item__title">24/7 Premium Support</h4>
-                                            <!-- /.service-details__item__title -->
-                                            <p class="service-details__item__text">Lorem Ipsum is simply dummy
-                                                typesetting industry.</p><!-- /.service-details__item__text -->
-                                        </div>
-                                    </div><!-- /.service-details__item__item -->
-                                </div><!-- /.col-lg-6 -->
-                                <div class="col-lg-6 col-md-6 wow fadeInUp animated" data-wow-delay="100ms" style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
-                                    <div class="service-details__item">
-                                        <div class="service-details__item__icon">
-                                            <i class="icon-address-book-1"></i>
-                                            <span class="service-details__item__icon__zoom">
-                                                <i class="icon-address-book-1"></i>
-                                            </span>
-                                        </div><!-- /.service-details__item__icon -->
-                                        <div class="service-details__item__content">
-                                            <h4 class="service-details__item__title">Professional Attorneys </h4>
-                                            <!-- /.service-details__item__title -->
-                                            <p class="service-details__item__text">Lorem Ipsum is simply dummy
-                                                typesetting industry.</p><!-- /.service-details__item__text -->
-                                        </div>
-                                    </div><!-- /.service-details__item__item -->
-                                </div><!-- /.col-lg-6 -->
-                            </div>
-                            <div class="row gutter-y-30 mt30">
-                                <div class="col-md-5">
-                                    <div class="service-details__image">
-                                        <img src="/static/service_item/service-detail-1.jpg" alt="procounsel">
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="service-details__support">
-                                        <h4 class="service-details__sub-title">Our Few Benefits</h4><!-- /.service-details__sub-title -->
-                                        <p class="service-details__text">
-                                            Nam vel lacus eu nisl bibendum accumsan vitae vitae nibh.
-                                            Nam nec eros id magna hendrerit sagittis.
-                                        </p><!-- /.service-details__text -->
-                                        <h4 class="service-details__sub-title-two">Namnec Eros Id Magna Hendrerit</h4>
-                                        <ul class="list-unstyled service-details__list">
-                                            <li><i class="icon-check"></i>Nibh. Nam nec eros id magna hend</li>
-                                            <li><i class="icon-check"></i>Vitae nibh. Nam nec eros id magna he</li>
-                                            <li><i class="icon-check"></i>Nam nec eros id magna </li>
-                                        </ul><!-- /.list-unstyled team-details__list -->
-                                    </div>
-                                </div>
-                            </div>
+
+
                             <div class="faq-one__accordion procounsel-accrodion" data-grp-name="procounsel-accrodion">
+                                {% for i in service%}
                                 <div class="accrodion">
                                     <div class="accrodion-title">
                                         <span class="accrodion__number"></span>
                                         <h4>
-                                            What is attorney-client privilege?
+                                            {{i.title}}
                                             <i class="accrodion-title__icon"></i><!-- /.accrodion-title__icon -->
                                         </h4>
                                     </div><!-- /.accordian-title -->
                                     <div class="accrodion-content" style="display: none;">
                                         <div class="inner">
                                             <p>
-                                                There are many variations of passages of Lorem Ipsum available, but the majority
-                                                have suffered alteradution some form by injected humour,
+                                                {{i.description}}
                                             </p>
                                         </div><!-- /.accordian-content -->
                                     </div>
-                                </div><!-- /.accordian-item -->
-                                <div class="accrodion ">
-                                    <div class="accrodion-title">
-                                        <span class="accrodion__number"></span>
-                                        <h4>
-                                            How much does a lawyer cost?
-                                            <i class="accrodion-title__icon"></i><!-- /.accrodion-title__icon -->
-                                        </h4>
-                                    </div><!-- /.accordian-title -->
-                                    <div class="accrodion-content" style="display: none;">
-                                        <div class="inner">
-                                            <p>
-                                                There are many variations of passages of Lorem Ipsum available, but the majority
-                                                have suffered alteradution some form by injected humour,
-                                            </p>
-                                        </div><!-- /.accordian-content -->
-                                    </div>
-                                </div><!-- /.accordian-item -->
-                                <div class="accrodion active">
-                                    <div class="accrodion-title">
-                                        <span class="accrodion__number"></span>
-                                        <h4>
-                                            Can a lawyer help get my charges reduced?
-                                            <i class="accrodion-title__icon"></i><!-- /.accrodion-title__icon -->
-                                        </h4>
-                                    </div><!-- /.accordian-title -->
-                                    <div class="accrodion-content" style="">
-                                        <div class="inner">
-                                            <p>
-                                                There are many variations of passages of Lorem Ipsum available, but the majority
-                                                have suffered alteradution some form by injected humour,
-                                            </p>
-                                        </div><!-- /.accordian-content -->
-                                    </div>
-                                </div><!-- /.accordian-item -->
-                                <div class="accrodion ">
-                                    <div class="accrodion-title">
-                                        <span class="accrodion__number"></span>
-                                        <h4>
-                                            What are the grounds for divorce?
-                                            <i class="accrodion-title__icon"></i><!-- /.accrodion-title__icon -->
-                                        </h4>
-                                    </div><!-- /.accordian-title -->
-                                    <div class="accrodion-content" style="display: none;">
-                                        <div class="inner">
-                                            <p>
-                                                There are many variations of passages of Lorem Ipsum available, but the majority
-                                                have suffered alteradution some form by injected humour,
-                                            </p>
-                                        </div><!-- /.accordian-content -->
-                                    </div>
-                                </div><!-- /.accordian-item -->
+                                </div>
+                                {% endfor %}<!-- /.accordian-item -->
                             </div>
                         </div><!-- /.service-details__content -->
                     </div><!-- /.col-md-12 col-lg-8 -->

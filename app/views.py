@@ -33,7 +33,7 @@ class Teams(TemplateView):
 def contact(request):
     return render(request, 'contact.html')
 def service(request, pk):
-    service = get_object_or_404(ServiceCategory, pk=pk)
+    service = Service.objects.filter(category_id=pk)
     service_category = ServiceCategory.objects.all()
     return render(request, "service_item.html", {"service": service, "service_category": service_category})
 
