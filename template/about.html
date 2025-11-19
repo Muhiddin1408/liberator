@@ -7,10 +7,35 @@
             <!-- <div class="page-header__shape"></div> -->
             <!-- /.page-header__shape -->
             <div class="container">
-                <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;"><div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">A</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">b</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">o</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">u</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">t</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">U</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">s</div></div></h2>
+                <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;">
+                    <div style="position:relative;display:inline-block;">
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">B</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">i</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">z</div>
+                    </div>
+                    <div style="position:relative;display:inline-block;">
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">H</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">q</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">i</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">m</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">i</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">z</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">d</div>
+                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div>
+                    </div>
+                </h2>
                 <ul class="procounsel-breadcrumb list-unstyled">
                     <li><a href="https://bracketweb.com/procounsel-html/index.html">Home</a></li>
-                    <li><span>About</span></li>
+                    <li><span>{% if current_lang == "uz" %}
+                                        Biz haqimizda
+                                    {% elif current_lang == "ru" %}
+                                        О нас
+                                    {% elif current_lang == "en" %}
+                                        About
+                                    {% else %}
+                                        About
+                                    {% endif %}</span></li>
                 </ul><!-- /.thm-breadcrumb list-unstyled -->
             </div><!-- /.container -->
         </section><!-- /.page-header -->

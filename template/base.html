@@ -367,7 +367,17 @@
                                 </form><!-- /. mc-form -->
                                 <div class="footer-widget__check">
                                     <input type="checkbox" checked="" name="save-data" id="save-data">
-                                    <label for="save-data"><span></span>I agree to the <a href="https://bracketweb.com/procounsel-html/checkout.html">Privacy Policy.</a></label>
+                                    <label for="save-data"><span>
+                                        {% if current_lang == "uz" %}
+                                            </span>Men <a href="">Maxfiylik siyosatiga</a> roziman.
+                                        {% elif current_lang == "ru" %}
+                                            </span>Я согласен с <a href="">политикой конфиденциальности</a>.
+                                        {% elif current_lang == "en" %}
+                                            </span>I agree to the <a href="">Privacy Policy.</a>
+                                        {% else %}
+                                            </span>I agree to the <a href="">Privacy Policy.</a>
+                                        {% endif %}
+                                        </label>
                                 </div>
                                 <div class="mc-form__response"></div><!-- /.mc-form__response -->
                                 <!-- /.footer-widget__text -->
