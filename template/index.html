@@ -12,7 +12,7 @@
 		&quot;autoplayTimeout&quot;: 7000,
 		&quot;smartSpeed&quot;: 1000,
 		&quot;nav&quot;: false,
-        &quot;navText&quot;: [&quot;&lt;span class=\&quot;icon-arrow-left\&quot;&gt;&lt;/span&gt;&quot;,&quot;&lt;span class=\&quot;icon-arrow-right\&quot;&gt;&lt;/span&gt;&quot;],
+        &quot;navText&quot;: [&quot;&lt;span class=\&quot;fa fa-arrow-left\&quot;&gt;&lt;/span&gt;&quot;,&quot;&lt;span class=\&quot;fa fa-arrow-right\&quot;&gt;&lt;/span&gt;&quot;],
 		&quot;dots&quot;: true,
 		&quot;margin&quot;: 0
 	    }">
@@ -59,30 +59,7 @@
                                         {% endif %}
 
                                     </h2><!-- slider-title -->
-                                    <div class="main-slider-two__btn">
-                                        <a href="" class="procounsel-btn">
-                                            <i>{% if current_lang == "uz" %}
-                                                    Batafsil
-                                                {% elif current_lang == "ru" %}
-                                                    Узнать больше
-                                                {% elif current_lang == "en" %}
-                                                    Discover More
-                                                {% else %}
-                                                    Discover More
-                                                {% endif %}
-                                                </i>
-                                            <span>
-                                                {% if current_lang == "uz" %}
-                                                    Batafsil
-                                                {% elif current_lang == "ru" %}
-                                                    Узнать больше
-                                                {% elif current_lang == "en" %}
-                                                    Discover More
-                                                {% else %}
-                                                    Discover More
-                                                {% endif %}</span>
-                                        </a><!-- slider-btn -->
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -92,9 +69,9 @@
         </div>
         <div class="owl-nav disabled">
             <button type="button" role="presentation" class="owl-prev" aria-label="carousel button"><span
-                    class="icon-arrow-left"></span></button>
+                    class="fa fa-arrow-left"></span></button>
             <button type="button" role="presentation" class="owl-next" aria-label="carousel button"><span
-                    class="icon-arrow-right"></span></button>
+                    class="fa fa-arrow-right"></span></button>
         </div>
         <div class="owl-dots">
             <button role="button" class="owl-dot active" aria-label="carousel button"><span></span></button>
@@ -106,163 +83,206 @@
 <!-- main-slider-end -->
 
 <!-- Service Start -->
-<section class="service-two" id="services">
+<section class="portfolio-two" id="caseStudy">
     <div class="container">
-        <div class="row tabs-box">
-            <div class="col-xl-3 wow fadeInUp" data-wow-delay="200ms"
-                 style="visibility: hidden; animation-delay: 200ms; animation-name: none;">
-                <ul class="list-unstyled service-two__tab tab-buttons">
-                    {%for i in services %}
+        <div class="sec-title text-center">
 
-                    <li class="service-two__tab__item tab-btn" data-tab="">
-                        {{i.name}}
+            <div class="sec-title__tagline bw-split-in-up-fast d-inline-flex align-items-center gap-2"
+                 style="perspective: 400px;">
+                <div>
+                    <svg class="hammer" width="23" height="23" viewBox="0 0 23 23" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.6562 20.875H10.7188C10.5115 20.875 10.3128 20.9573 10.1663 21.1038C10.0198 21.2503 9.9375 21.449 9.9375 21.6562C9.9375 21.8635 10.0198 22.0622 10.1663 22.2087C10.3128 22.3552 10.5115 22.4375 10.7188 22.4375H21.6562C21.8635 22.4375 22.0622 22.3552 22.2087 22.2087C22.3552 22.0622 22.4375 21.8635 22.4375 21.6562C22.4375 21.449 22.3552 21.2503 22.2087 21.1038C22.0622 20.9573 21.8635 20.875 21.6562 20.875Z"></path>
+                        <path d="M13.8056 16.9688C13.1943 16.9695 12.6083 17.2126 12.1761 17.6448C11.7439 18.0771 11.5007 18.6631 11.5 19.2744V20.0938H20.875V19.2744C20.8743 18.6631 20.6311 18.0771 20.1989 17.6448C19.7667 17.2126 19.1807 16.9695 18.5694 16.9688H13.8056Z"></path>
+                        <path d="M15.9585 13.6149C15.9006 13.6678 15.8349 13.7114 15.7637 13.7442L15.989 13.9696C16.4566 14.4355 17.0898 14.6971 17.7499 14.697C18.41 14.6969 19.0432 14.4352 19.5107 13.9693L21.7812 11.698C22.0124 11.4668 22.1959 11.1924 22.321 10.8903C22.4462 10.5882 22.5106 10.2645 22.5106 9.9375C22.5106 9.61053 22.4462 9.28677 22.321 8.9847C22.1959 8.68263 22.0124 8.40818 21.7812 8.17701L21.5888 7.98456L15.9585 13.6149Z"></path>
+                        <path d="M9.2226 7.20295L14.8529 1.57267C14.9108 1.51976 14.9765 1.47611 15.0478 1.44326L14.8224 1.21791C14.3548 0.752021 13.7216 0.490468 13.0615 0.49054C12.4014 0.490611 11.7682 0.752302 11.3007 1.21829L9.03015 3.48915C8.79891 3.72035 8.61548 3.99484 8.49034 4.29694C8.36519 4.59904 8.30078 4.92283 8.30078 5.24982C8.30078 5.57681 8.36519 5.9006 8.49034 6.2027C8.61548 6.5048 8.79891 6.77929 9.03015 7.01049L9.2226 7.20295Z"></path>
+                        <path d="M14.3015 12.2813L14.0726 12.5102C13.9993 12.5825 13.9411 12.6687 13.9012 12.7637C13.8613 12.8586 13.8406 12.9605 13.8403 13.0635C13.84 13.1665 13.8601 13.2686 13.8993 13.3638C13.9386 13.459 13.9963 13.5455 14.0691 13.6184C14.142 13.6912 14.2285 13.7489 14.3237 13.7882C14.4189 13.8274 14.521 13.8475 14.624 13.8471C14.727 13.8468 14.8289 13.8261 14.9238 13.7863C15.0188 13.7464 15.105 13.6881 15.1773 13.6149L21.4273 7.36485C21.5716 7.21791 21.6521 7.01992 21.6511 6.81397C21.6502 6.60802 21.568 6.41077 21.4223 6.26514C21.2767 6.11951 21.0795 6.03729 20.8735 6.03635C20.6676 6.03542 20.4696 6.11586 20.3226 6.26016L20.0937 6.48907L16.5113 2.90602L16.7398 2.67735C16.8841 2.53041 16.9646 2.33242 16.9636 2.12647C16.9627 1.92052 16.8805 1.72327 16.7348 1.57764C16.5892 1.43201 16.392 1.34979 16.186 1.34885C15.9801 1.34792 15.7821 1.42836 15.6351 1.57266L9.38514 7.82266C9.31152 7.89496 9.25296 7.98112 9.21283 8.07618C9.17269 8.17123 9.15179 8.27329 9.15132 8.37647C9.15086 8.47965 9.17083 8.5819 9.2101 8.67731C9.24937 8.77273 9.30715 8.85942 9.38011 8.93238C9.45307 9.00534 9.53976 9.06312 9.63518 9.10239C9.73059 9.14166 9.83284 9.16163 9.93602 9.16117C10.0392 9.1607 10.1413 9.1398 10.2363 9.09966C10.3314 9.05953 10.4175 9.00097 10.4898 8.92735L10.7187 8.69844L10.7859 8.76559L1.18201 18.3695C0.953685 18.5955 0.772269 18.8644 0.648189 19.1608C0.524109 19.4571 0.459812 19.7751 0.458992 20.0963C0.458172 20.4176 0.520846 20.7359 0.643411 21.0328C0.765976 21.3298 0.946017 21.5996 1.17319 21.8268C1.40036 22.054 1.67018 22.234 1.96715 22.3566C2.26412 22.4791 2.58239 22.5418 2.90365 22.541C3.22492 22.5402 3.54286 22.4759 3.8392 22.3518C4.13554 22.2277 4.40444 22.0463 4.63045 21.818L14.2344 12.2141L14.3015 12.2813Z"></path>
+                    </svg>
+                </div>
+<!--                <div style="position:relative;display:inline-block;">-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 0; transform: translate(0px, -10px); transform-origin: 0% 50%;">-->
+<!--                        C-->
+<!--                    </div>-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">-->
+<!--                        a-->
+<!--                    </div>-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">-->
+<!--                        s-->
+<!--                    </div>-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">-->
+<!--                        e-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div style="position:relative;display:inline-block;">-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">-->
+<!--                        S-->
+<!--                    </div>-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">-->
+<!--                        t-->
+<!--                    </div>-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">-->
+<!--                        u-->
+<!--                    </div>-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">-->
+<!--                        d-->
+<!--                    </div>-->
+<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">-->
+<!--                        y-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div><!-- /.sec-title__tagline -->
 
-                    </li>
-                    {%endfor%}
-
-                </ul>
-            </div>
-            <div class="col-xl-9 wow fadeInUp" data-wow-delay="300ms"
-                 style="visibility: hidden; animation-delay: 300ms; animation-name: none;">
-                <div class="tabs-content">
-                    <div class="tab active-tab fadeInUp animated" id="">
-                        <div class="service-two__wrapper">
-                            {%for i in services %}
-                            <a href="{% url 'service' i.pk%}">
-                            <div class="service-two__item">
-                                <div class="service-two__item__icon">
-                                    <i class="icon-criminal-law"></i>
-                                </div>
-                                <h3 class="service-two__item__title">
-                                    <a href="">{{i.name}}</a>
-                                </h3><!-- /.service-title -->
-                                <p class="service-two__item__text">
-                                    {{i.description}}
-                                </p>
-                                <a href="" class="service-two__item__link">
-                                    <i class="icon-plus"></i>
-                                </a>
-                            </div><!-- /.service-card-two -->
-                            </a>
-                            {%endfor%}
-
-                        </div>
+            <h3 class="sec-title__title bw-split-in-up" style="perspective: 400px;">
+                <div style="position:relative;display:inline-block;">
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 0; transform: translate(0px, 80px); transform-origin: 0% 50%;">
+                        O
                     </div>
-                    <div class="tab  fadeInUp animated" id="employment-law">
-                        <div class="service-two__wrapper">
-                            <div class="service-two__item">
-                                <div class="service-two__item__icon">
-                                    <i class="icon-criminal-law"></i>
-                                </div>
-                                <h3 class="service-two__item__title">
-                                    <a href="https://bracketweb.com/procounsel-html/service-d-companion.html">Criminal
-                                        Law</a>
-                                </h3><!-- /.service-title -->
-                                <p class="service-two__item__text">
-                                    {% if current_lang == "uz" %}
-                                    Lorem Ipsum matnining ko‘plab bepul variantlari mavjud
-                                    {% elif current_lang == "ru" %}
-                                    Существует множество бесплатных вариантов текста Lorem Ipsum
-                                    {% elif current_lang == "en" %}
-                                    There are many free variations of Lorem Ipsum passages
-                                    {% else %}
-                                    There are many free variations of Lorem Ipsum passages
-                                    {% endif %}
-
-                                </p>
-                                <a href="https://bracketweb.com/procounsel-html/service-d-companion.html"
-                                   class="service-two__item__link">
-                                    <i class="icon-plus"></i>
-                                </a>
-                            </div><!-- /.service-card-two -->
-                            <div class="service-two__item">
-                                <div class="service-two__item__icon">
-                                    <i class="icon-real-estate-law"></i>
-                                </div>
-                                <h3 class="service-two__item__title">
-                                    <a href="https://bracketweb.com/procounsel-html/service-d-companion.html">Real
-                                        Estate Law</a>
-                                </h3><!-- /.service-title -->
-                                <p class="service-two__item__text">
-                                    There are many free to variations of passages of Lorem Ipsum
-                                </p>
-                                <a href="https://bracketweb.com/procounsel-html/service-d-companion.html"
-                                   class="service-two__item__link">
-                                    <i class="icon-plus"></i>
-                                </a>
-                            </div><!-- /.service-card-two -->
-                            <div class="service-two__item">
-                                <div class="service-two__item__icon">
-                                    <i class="icon-ecommerce-law"></i>
-                                </div>
-                                <h3 class="service-two__item__title">
-                                    <a href="https://bracketweb.com/procounsel-html/service-d-companion.html">Ecommerce
-                                        Law</a>
-                                </h3><!-- /.service-title -->
-                                <p class="service-two__item__text">
-                                    There are many free to variations of passages of Lorem Ipsum
-                                </p>
-                                <a href="https://bracketweb.com/procounsel-html/service-d-companion.html"
-                                   class="service-two__item__link">
-                                    <i class="icon-plus"></i>
-                                </a>
-                            </div><!-- /.service-card-two -->
-                        </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        u
                     </div>
-                    <div class="tab  fadeInUp animated" id="healthcare-law">
-                        <div class="service-two__wrapper">
-                            <div class="service-two__item ">
-                                <div class="service-two__item__icon">
-                                    <i class="icon-criminal-law"></i>
-                                </div>
-                                <h3 class="service-two__item__title">
-                                    <a href="https://bracketweb.com/procounsel-html/service-d-companion.html">Criminal
-                                        Law</a>
-                                </h3><!-- /.service-title -->
-                                <p class="service-two__item__text">
-                                    There are many free to variations of passages of Lorem Ipsum
-                                </p>
-                                <a href="https://bracketweb.com/procounsel-html/service-d-companion.html"
-                                   class="service-two__item__link">
-                                    <i class="icon-plus"></i>
-                                </a>
-                            </div><!-- /.service-card-two -->
-                            <div class="service-two__item">
-                                <div class="service-two__item__icon">
-                                    <i class="icon-real-estate-law"></i>
-                                </div>
-                                <h3 class="service-two__item__title">
-                                    <a href="https://bracketweb.com/procounsel-html/service-d-companion.html">Real
-                                        Estate Law</a>
-                                </h3><!-- /.service-title -->
-                                <p class="service-two__item__text">
-                                    There are many free to variations of passages of Lorem Ipsum
-                                </p>
-                                <a href="https://bracketweb.com/procounsel-html/service-d-companion.html"
-                                   class="service-two__item__link">
-                                    <i class="icon-plus"></i>
-                                </a>
-                            </div><!-- /.service-card-two -->
-                            <div class="service-two__item ">
-                                <div class="service-two__item__icon">
-                                    <i class="icon-ecommerce-law"></i>
-                                </div>
-                                <h3 class="service-two__item__title">
-                                    <a href="https://bracketweb.com/procounsel-html/service-d-companion.html">Ecommerce
-                                        Law</a>
-                                </h3><!-- /.service-title -->
-                                <p class="service-two__item__text">
-                                    There are many free to variations of passages of Lorem Ipsum
-                                </p>
-                                <a href="https://bracketweb.com/procounsel-html/service-d-companion.html"
-                                   class="service-two__item__link">
-                                    <i class="icon-plus"></i>
-                                </a>
-                            </div><!-- /.service-card-two -->
-                        </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        r
                     </div>
                 </div>
+                <div style="position:relative;display:inline-block;">
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        R
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        e
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        c
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        e
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        n
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        t
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        l
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        y
+                    </div>
+                </div>
+                <div style="position:relative;display:inline-block;">
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        C
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        o
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        m
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        p
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        l
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        e
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        t
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        e
+                    </div>
+                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">
+                        d
+                    </div>
+                </div>
+                <br> <span>
+            <div style="position:relative;display:inline-block;">
+                <div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">L</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">a</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">t</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">e</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">s</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">t</div></div> <div
+                    style="position:relative;display:inline-block;"><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">C</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">a</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">s</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">e</div></div> <div
+                    style="position:relative;display:inline-block;"><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">S</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">t</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">u</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">d</div><div
+                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">y</div></div></span>
+            </h3><!-- /.sec-title__title -->
+        </div><!-- /.sec-title -->
+    </div>
+    <div class="container portfolio-two__container wow fadeInUp" data-wow-delay="100ms"
+         style="visibility: hidden; animation-delay: 100ms; animation-name: none;">
+        <div class="portfolio-two__carousel procounsel-owl__carousel procounsel-owl__carousel--basic-nav owl-carousel owl-loaded owl-drag"
+             data-owl-options="{
+				&quot;items&quot;: 1,
+				&quot;margin&quot;: 30,
+				&quot;loop&quot;: true,
+				&quot;smartSpeed&quot;: 700,
+				&quot;nav&quot;: false,
+				&quot;navText&quot;: [&quot;&lt;span&gt;Prev&lt;/span&gt;&quot;,&quot;&lt;span&gt;Next&lt;/span&gt;&quot;],
+				&quot;dots&quot;: false,
+				&quot;autoplay&quot;: false,
+				&quot;responsive&quot;: {
+					&quot;0&quot;: {
+						&quot;items&quot;: 1
+					},
+					&quot;768&quot;: {
+						&quot;items&quot;: 2
+					},
+					&quot;992&quot;: {
+						&quot;items&quot;: 3
+					},
+                    &quot;1350&quot;: {
+						&quot;items&quot;: 4
+					}
+				}
+			}">
+            <!-- item -->
+            <!-- item -->
+            <!-- item -->
+            <!-- item -->
+            <!-- item -->
+            <!-- item -->
+            <div class="owl-stage-outer">
+                <div class="owl-stage"
+                     style="transform: translate3d(-1520px, 0px, 0px); transition: all; width: 5323px;">
+                    {%for i in services %}
+                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
+                        <div class="item">
+                            <div class="portfolio-two__item">
+                                <img src="/static/index_files/portfolio-2-3.jpg" alt="procounsel">
+                                <div class="portfolio-two__item__bg"></div>
+                                <div class="portfolio-two__item__content">
+
+                                    <h3 class="portfolio-two__item__title">
+                                        <a href="{% url 'service' i.pk %}">{{i.name}}</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+            <div class="owl-nav disabled">
+                <button type="button" role="presentation" class="owl-prev" aria-label="carousel button">
+                    <span>Prev</span></button>
+                <button type="button" role="presentation" class="owl-next" aria-label="carousel button">
+                    <span>Next</span></button>
+            </div>
+            <div class="owl-dots disabled"></div>
         </div>
     </div>
 </section>
@@ -321,7 +341,7 @@
                             </h3>
                             <ul class="list-unstyled about-three__left__bottom-list">
                                 <li class="about-three__left__bottom-item">
-                                    <i class="icon-check"></i>
+                                    <i class="fa fa-check"></i>
                                     {% if current_lang == "uz" %}
                                         Barcha turdagi sud ishlari
                                     {% elif current_lang == "ru" %}
@@ -334,7 +354,7 @@
 
                                 </li>
                                 <li class="about-three__left__bottom-item">
-                                    <i class="icon-check"></i>
+                                    <i class="fa fa-check"></i>
                                     {% if current_lang == "uz" %}
                                         Biznesni huquqiy jihatdan qo’llab-quvvatlash
                                     {% elif current_lang == "ru" %}
@@ -346,7 +366,7 @@
                                     {% endif %}
                                 </li>
                                 <li class="about-three__left__bottom-item">
-                                    <i class="icon-check"></i>
+                                    <i class="fa fa-check"></i>
                                     {% if current_lang == "uz" %}
                                         Huquqiy hujjatlar yaratish va boshqa turdagi yuridik yordamlar
                                     {% elif current_lang == "ru" %}
@@ -373,8 +393,8 @@
                             <img src="/static/index_files/about-2-shape-1.png" alt="">
                         </div>
                     </div>
-                    <div class="about-three__right-icon">
-                        <i class="icon-pillar"></i>
+                    <div class="about-three__right-fa fa">
+                        <i class="fa fa-pillar"></i>
                     </div>
                 </div>
             </div>
@@ -384,487 +404,7 @@
 
 
 <!-- Portfolio Start -->
-<section class="portfolio-two" id="caseStudy">
-    <div class="container">
-        <div class="sec-title text-center">
 
-<!--            <div class="sec-title__tagline bw-split-in-up-fast d-inline-flex align-items-center gap-2"-->
-<!--                 style="perspective: 400px;">-->
-<!--                <div>-->
-<!--&lt;!&ndash;                    <svg class="hammer" width="23" height="23" viewBox="0 0 23 23" fill="none"&ndash;&gt;-->
-<!--&lt;!&ndash;                         xmlns="http://www.w3.org/2000/svg">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <path d="M21.6562 20.875H10.7188C10.5115 20.875 10.3128 20.9573 10.1663 21.1038C10.0198 21.2503 9.9375 21.449 9.9375 21.6562C9.9375 21.8635 10.0198 22.0622 10.1663 22.2087C10.3128 22.3552 10.5115 22.4375 10.7188 22.4375H21.6562C21.8635 22.4375 22.0622 22.3552 22.2087 22.2087C22.3552 22.0622 22.4375 21.8635 22.4375 21.6562C22.4375 21.449 22.3552 21.2503 22.2087 21.1038C22.0622 20.9573 21.8635 20.875 21.6562 20.875Z"></path>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <path d="M13.8056 16.9688C13.1943 16.9695 12.6083 17.2126 12.1761 17.6448C11.7439 18.0771 11.5007 18.6631 11.5 19.2744V20.0938H20.875V19.2744C20.8743 18.6631 20.6311 18.0771 20.1989 17.6448C19.7667 17.2126 19.1807 16.9695 18.5694 16.9688H13.8056Z"></path>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <path d="M15.9585 13.6149C15.9006 13.6678 15.8349 13.7114 15.7637 13.7442L15.989 13.9696C16.4566 14.4355 17.0898 14.6971 17.7499 14.697C18.41 14.6969 19.0432 14.4352 19.5107 13.9693L21.7812 11.698C22.0124 11.4668 22.1959 11.1924 22.321 10.8903C22.4462 10.5882 22.5106 10.2645 22.5106 9.9375C22.5106 9.61053 22.4462 9.28677 22.321 8.9847C22.1959 8.68263 22.0124 8.40818 21.7812 8.17701L21.5888 7.98456L15.9585 13.6149Z"></path>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <path d="M9.2226 7.20295L14.8529 1.57267C14.9108 1.51976 14.9765 1.47611 15.0478 1.44326L14.8224 1.21791C14.3548 0.752021 13.7216 0.490468 13.0615 0.49054C12.4014 0.490611 11.7682 0.752302 11.3007 1.21829L9.03015 3.48915C8.79891 3.72035 8.61548 3.99484 8.49034 4.29694C8.36519 4.59904 8.30078 4.92283 8.30078 5.24982C8.30078 5.57681 8.36519 5.9006 8.49034 6.2027C8.61548 6.5048 8.79891 6.77929 9.03015 7.01049L9.2226 7.20295Z"></path>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <path d="M14.3015 12.2813L14.0726 12.5102C13.9993 12.5825 13.9411 12.6687 13.9012 12.7637C13.8613 12.8586 13.8406 12.9605 13.8403 13.0635C13.84 13.1665 13.8601 13.2686 13.8993 13.3638C13.9386 13.459 13.9963 13.5455 14.0691 13.6184C14.142 13.6912 14.2285 13.7489 14.3237 13.7882C14.4189 13.8274 14.521 13.8475 14.624 13.8471C14.727 13.8468 14.8289 13.8261 14.9238 13.7863C15.0188 13.7464 15.105 13.6881 15.1773 13.6149L21.4273 7.36485C21.5716 7.21791 21.6521 7.01992 21.6511 6.81397C21.6502 6.60802 21.568 6.41077 21.4223 6.26514C21.2767 6.11951 21.0795 6.03729 20.8735 6.03635C20.6676 6.03542 20.4696 6.11586 20.3226 6.26016L20.0937 6.48907L16.5113 2.90602L16.7398 2.67735C16.8841 2.53041 16.9646 2.33242 16.9636 2.12647C16.9627 1.92052 16.8805 1.72327 16.7348 1.57764C16.5892 1.43201 16.392 1.34979 16.186 1.34885C15.9801 1.34792 15.7821 1.42836 15.6351 1.57266L9.38514 7.82266C9.31152 7.89496 9.25296 7.98112 9.21283 8.07618C9.17269 8.17123 9.15179 8.27329 9.15132 8.37647C9.15086 8.47965 9.17083 8.5819 9.2101 8.67731C9.24937 8.77273 9.30715 8.85942 9.38011 8.93238C9.45307 9.00534 9.53976 9.06312 9.63518 9.10239C9.73059 9.14166 9.83284 9.16163 9.93602 9.16117C10.0392 9.1607 10.1413 9.1398 10.2363 9.09966C10.3314 9.05953 10.4175 9.00097 10.4898 8.92735L10.7187 8.69844L10.7859 8.76559L1.18201 18.3695C0.953685 18.5955 0.772269 18.8644 0.648189 19.1608C0.524109 19.4571 0.459812 19.7751 0.458992 20.0963C0.458172 20.4176 0.520846 20.7359 0.643411 21.0328C0.765976 21.3298 0.946017 21.5996 1.17319 21.8268C1.40036 22.054 1.67018 22.234 1.96715 22.3566C2.26412 22.4791 2.58239 22.5418 2.90365 22.541C3.22492 22.5402 3.54286 22.4759 3.8392 22.3518C4.13554 22.2277 4.40444 22.0463 4.63045 21.818L14.2344 12.2141L14.3015 12.2813Z"></path>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </svg>&ndash;&gt;-->
-<!--                </div>-->
-<!--&lt;!&ndash;                <div style="position:relative;display:inline-block;">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 0; transform: translate(0px, -10px); transform-origin: 0% 50%;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        C&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        a&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        s&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        e&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div style="position:relative;display:inline-block;">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        S&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        t&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        u&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        d&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, -10px); opacity: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        y&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            </div>&lt;!&ndash; /.sec-title__tagline &ndash;&gt;-->
-
-<!--            <h3 class="sec-title__title bw-split-in-up" style="perspective: 400px;">-->
-<!--                <div style="position:relative;display:inline-block;">-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; opacity: 0; transform: translate(0px, 80px); transform-origin: 0% 50%;">-->
-<!--                        O-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        u-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        r-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div style="position:relative;display:inline-block;">-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        R-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        e-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        c-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        e-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        n-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        t-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        l-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        y-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div style="position:relative;display:inline-block;">-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        C-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        o-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        m-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        p-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        l-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        e-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        t-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        e-->
-<!--                    </div>-->
-<!--                    <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">-->
-<!--                        d-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <br> <span> -->
-<!--            <div style="position:relative;display:inline-block;">-->
-<!--                <div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">L</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">a</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">t</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">e</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">s</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">t</div></div> <div-->
-<!--                    style="position:relative;display:inline-block;"><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">C</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">a</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">s</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">e</div></div> <div-->
-<!--                    style="position:relative;display:inline-block;"><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">S</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">t</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">u</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">d</div><div-->
-<!--                    style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 0% 50%; transform: translate(0px, 80px); opacity: 0;">y</div></div></span>-->
-<!--            </h3>&lt;!&ndash; /.sec-title__title &ndash;&gt;-->
-        </div><!-- /.sec-title -->
-    </div>
-    <div class="container portfolio-two__container wow fadeInUp" data-wow-delay="100ms"
-         style="visibility: hidden; animation-delay: 100ms; animation-name: none;">
-        <div class="portfolio-two__carousel procounsel-owl__carousel procounsel-owl__carousel--basic-nav owl-carousel owl-loaded owl-drag"
-             data-owl-options="{
-				&quot;items&quot;: 1,
-				&quot;margin&quot;: 30,
-				&quot;loop&quot;: true,
-				&quot;smartSpeed&quot;: 700,
-				&quot;nav&quot;: false,
-				&quot;navText&quot;: [&quot;&lt;span&gt;Prev&lt;/span&gt;&quot;,&quot;&lt;span&gt;Next&lt;/span&gt;&quot;],
-				&quot;dots&quot;: false,
-				&quot;autoplay&quot;: false,
-				&quot;responsive&quot;: {
-					&quot;0&quot;: {
-						&quot;items&quot;: 1
-					},
-					&quot;768&quot;: {
-						&quot;items&quot;: 2
-					},
-					&quot;992&quot;: {
-						&quot;items&quot;: 3
-					},
-                    &quot;1350&quot;: {
-						&quot;items&quot;: 4
-					}
-				}
-			}">
-            <!-- item -->
-            <!-- item -->
-            <!-- item -->
-            <!-- item -->
-            <!-- item -->
-            <!-- item -->
-            <div class="owl-stage-outer">
-                <div class="owl-stage"
-                     style="transform: translate3d(-1520px, 0px, 0px); transition: all; width: 5323px;">
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-3.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-4.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-2.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-3.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item active" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-1.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item active" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-2.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item active" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-3.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item active" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-4.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-2.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-3.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-1.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-2.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-3.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
-                        <div class="item">
-                            <div class="portfolio-two__item">
-                                <img src="/static/index_files/portfolio-2-4.jpg" alt="procounsel">
-                                <div class="portfolio-two__item__bg"></div>
-                                <div class="portfolio-two__item__content">
-                                    <div class="portfolio-two__item__cat">
-                                        <i class="icon-pin"></i>United State
-                                    </div>
-                                    <h3 class="portfolio-two__item__title">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html">Domestic
-                                            Violence</a>
-                                    </h3>
-                                    <div class="portfolio-two__item__rm">
-                                        <a href="https://bracketweb.com/procounsel-html/portfolio-details.html"><i
-                                                class="icon-right-arrow-1-4"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="owl-nav disabled">
-                <button type="button" role="presentation" class="owl-prev" aria-label="carousel button">
-                    <span>Prev</span></button>
-                <button type="button" role="presentation" class="owl-next" aria-label="carousel button">
-                    <span>Next</span></button>
-            </div>
-            <div class="owl-dots disabled"></div>
-        </div>
-    </div>
-</section>
 <!-- Portfolio End -->
 
 <section class="testimonials-two" id="testimonial">
@@ -985,29 +525,14 @@
                     </h3><!-- /.sec-title__title -->
                 </div><!-- /.sec-title -->
                 <p class="testimonials-two__text">
-                    {% if current_lang == "uz" %}
-                        Biz uzoq yillardan buyon ko’plab tadbirkorlar va tadbirkorlik subyektlari bilan hamkorlik qilib kelmoqdamiz.
-                        “LIBERATOR” Advokatlik firmasi uzoq yillik tajribaga ega advokatlari va o’zining sifatli xizmatlari bilan
-                        o’z hamkorlarining ishonchini qozongan.
-                    {% elif current_lang == "ru" %}
-                        Мы на протяжении многих лет сотрудничаем со многими предпринимателями и субъектами предпринимательства.
-                        Адвокатская фирма “LIBERATOR” заслужила доверие своих партнеров благодаря опытным адвокатам и высококачественным услугам.
-                    {% elif current_lang == "en" %}
-                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
-                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
-                        and high-quality services.
-                    {% else %}
-                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
-                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
-                        and high-quality services.
-                    {% endif %}
+
 
                 </p>
                 <div class="testimonials-two__carousel-nav">
                     <a href="https://bracketweb.com/procounsel-html/index-2.html#" class="testimonials-two__prev"><span
-                            class="icon-arrow-left"></span></a>
+                            class="fa fa-arrow-left"></span></a>
                     <a href="https://bracketweb.com/procounsel-html/index-2.html#" class="testimonials-two__next"><span
-                            class="icon-arrow-right"></span></a>
+                            class="fa fa-arrow-right"></span></a>
                 </div>
             </div>
             <div class="col-xl-8">
@@ -1045,11 +570,11 @@
                                                 <!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 {% if current_lang == "uz" %}
@@ -1120,31 +645,29 @@
                                                     Founder</p><!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 {% if current_lang == "uz" %}
-                                                Lorem Ipsum paragraflarining ko‘plab variantlari mavjud, lekin
-                                                ko‘pchiligi
-                                                biror shaklda o‘zgartirilgan, kiritilgan hazil yoki<br>tasodifiy so‘zlar
-                                                tufayli ularning haqiqiyligi sezilmaydi.
-                                                {% elif current_lang == "ru" %}
-                                                Существует множество вариантов текста Lorem Ipsum, но большинство из них
-                                                были изменены в той или иной форме: добавлен юмор или<br>случайные
-                                                слова, из-за чего текст выглядит неправдоподобно.
-                                                {% elif current_lang == "en" %}
-                                                There are many variations of passages of Lorem Ipsum available, but the
-                                                majority have suffered alteration in some form, by injected humour,
-                                                or<br>randomised words which don't look even slightly believable.
-                                                {% else %}
-                                                There are many variations of passages of Lorem Ipsum available, but the
-                                                majority have suffered alteration in some form, by injected humour,
-                                                or<br>randomised words which don't look even slightly believable.
-                                                {% endif %}
+                        Biz uzoq yillardan buyon ko’plab tadbirkorlar va tadbirkorlik subyektlari bilan hamkorlik qilib kelmoqdamiz.
+                        “LIBERATOR” Advokatlik firmasi uzoq yillik tajribaga ega advokatlari va o’zining sifatli xizmatlari bilan
+                        o’z hamkorlarining ishonchini qozongan.
+                    {% elif current_lang == "ru" %}
+                        Мы на протяжении многих лет сотрудничаем со многими предпринимателями и субъектами предпринимательства.
+                        Адвокатская фирма “LIBERATOR” заслужила доверие своих партнеров благодаря опытным адвокатам и высококачественным услугам.
+                    {% elif current_lang == "en" %}
+                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
+                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
+                        and high-quality services.
+                    {% else %}
+                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
+                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
+                        and high-quality services.
+                    {% endif %}
 
                                             </p>
                                         </div><!-- /.testimonials-card-two__content -->
@@ -1170,31 +693,29 @@
                                                     Founder</p><!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 {% if current_lang == "uz" %}
-                                                Lorem Ipsum paragraflarining ko‘plab variantlari mavjud, lekin
-                                                ko‘pchiligi
-                                                biror shaklda o‘zgartirilgan, kiritilgan hazil yoki<br>tasodifiy so‘zlar
-                                                tufayli ularning haqiqiyligi sezilmaydi.
-                                                {% elif current_lang == "ru" %}
-                                                Существует множество вариантов текста Lorem Ipsum, но большинство из них
-                                                были изменены в той или иной форме: добавлен юмор или<br>случайные
-                                                слова, из-за чего текст выглядит неправдоподобно.
-                                                {% elif current_lang == "en" %}
-                                                There are many variations of passages of Lorem Ipsum available, but the
-                                                majority have suffered alteration in some form, by injected humour,
-                                                or<br>randomised words which don't look even slightly believable.
-                                                {% else %}
-                                                There are many variations of passages of Lorem Ipsum available, but the
-                                                majority have suffered alteration in some form, by injected humour,
-                                                or<br>randomised words which don't look even slightly believable.
-                                                {% endif %}
+                        Biz uzoq yillardan buyon ko’plab tadbirkorlar va tadbirkorlik subyektlari bilan hamkorlik qilib kelmoqdamiz.
+                        “LIBERATOR” Advokatlik firmasi uzoq yillik tajribaga ega advokatlari va o’zining sifatli xizmatlari bilan
+                        o’z hamkorlarining ishonchini qozongan.
+                    {% elif current_lang == "ru" %}
+                        Мы на протяжении многих лет сотрудничаем со многими предпринимателями и субъектами предпринимательства.
+                        Адвокатская фирма “LIBERATOR” заслужила доверие своих партнеров благодаря опытным адвокатам и высококачественным услугам.
+                    {% elif current_lang == "en" %}
+                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
+                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
+                        and high-quality services.
+                    {% else %}
+                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
+                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
+                        and high-quality services.
+                    {% endif %}
 
                                             </p>
                                         </div><!-- /.testimonials-card-two__content -->
@@ -1220,31 +741,29 @@
                                                 <!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 {% if current_lang == "uz" %}
-                                                Lorem Ipsum paragraflarining ko‘plab variantlari mavjud, lekin
-                                                ko‘pchiligi
-                                                biror shaklda o‘zgartirilgan, kiritilgan hazil yoki<br>tasodifiy so‘zlar
-                                                tufayli ularning haqiqiyligi sezilmaydi.
-                                                {% elif current_lang == "ru" %}
-                                                Существует множество вариантов текста Lorem Ipsum, но большинство из них
-                                                были изменены в той или иной форме: добавлен юмор или<br>случайные
-                                                слова, из-за чего текст выглядит неправдоподобно.
-                                                {% elif current_lang == "en" %}
-                                                There are many variations of passages of Lorem Ipsum available, but the
-                                                majority have suffered alteration in some form, by injected humour,
-                                                or<br>randomised words which don't look even slightly believable.
-                                                {% else %}
-                                                There are many variations of passages of Lorem Ipsum available, but the
-                                                majority have suffered alteration in some form, by injected humour,
-                                                or<br>randomised words which don't look even slightly believable.
-                                                {% endif %}
+                        Biz uzoq yillardan buyon ko’plab tadbirkorlar va tadbirkorlik subyektlari bilan hamkorlik qilib kelmoqdamiz.
+                        “LIBERATOR” Advokatlik firmasi uzoq yillik tajribaga ega advokatlari va o’zining sifatli xizmatlari bilan
+                        o’z hamkorlarining ishonchini qozongan.
+                    {% elif current_lang == "ru" %}
+                        Мы на протяжении многих лет сотрудничаем со многими предпринимателями и субъектами предпринимательства.
+                        Адвокатская фирма “LIBERATOR” заслужила доверие своих партнеров благодаря опытным адвокатам и высококачественным услугам.
+                    {% elif current_lang == "en" %}
+                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
+                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
+                        and high-quality services.
+                    {% else %}
+                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
+                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
+                        and high-quality services.
+                    {% endif %}
 
                                             </p>
                                         </div><!-- /.testimonials-card-two__content -->
@@ -1270,17 +789,29 @@
                                                 <!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
-                                                There are many variations of passages of Lorem Ipsum avalab but the
-                                                majority have suffered alteration in
-                                                some form, by injected humour, or randomised words which don't avalab
-                                                but the majority
+                                                {% if current_lang == "uz" %}
+                        Biz uzoq yillardan buyon ko’plab tadbirkorlar va tadbirkorlik subyektlari bilan hamkorlik qilib kelmoqdamiz.
+                        “LIBERATOR” Advokatlik firmasi uzoq yillik tajribaga ega advokatlari va o’zining sifatli xizmatlari bilan
+                        o’z hamkorlarining ishonchini qozongan.
+                    {% elif current_lang == "ru" %}
+                        Мы на протяжении многих лет сотрудничаем со многими предпринимателями и субъектами предпринимательства.
+                        Адвокатская фирма “LIBERATOR” заслужила доверие своих партнеров благодаря опытным адвокатам и высококачественным услугам.
+                    {% elif current_lang == "en" %}
+                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
+                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
+                        and high-quality services.
+                    {% else %}
+                        For many years, we have been cooperating with numerous entrepreneurs and business entities.
+                        The “LIBERATOR” Law Firm has earned the trust of its partners through its experienced attorneys
+                        and high-quality services.
+                    {% endif %}
                                             </p>
                                         </div><!-- /.testimonials-card-two__content -->
                                         <div class="testimonials-card-two__images">
@@ -1305,11 +836,11 @@
                                                 <!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 There are many variations of passages of Lorem Ipsum avalab but the
@@ -1340,11 +871,11 @@
                                                 <!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 There are many variations of passages of Lorem Ipsum avalab but the
@@ -1375,11 +906,11 @@
                                                     Founder</p><!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 There are many variations of passages of Lorem Ipsum avalab but the
@@ -1410,11 +941,11 @@
                                                     Founder</p><!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 There are many variations of passages of Lorem Ipsum avalab but the
@@ -1445,11 +976,11 @@
                                                 <!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 There are many variations of passages of Lorem Ipsum avalab but the
@@ -1480,11 +1011,11 @@
                                                 <!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 There are many variations of passages of Lorem Ipsum avalab but the
@@ -1515,11 +1046,11 @@
                                                 <!-- /.testimonials-card-two__designation -->
                                             </div>
                                             <div class="testimonials-card-two__rating">
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
-                                                <i class="icon-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                             </div><!-- /.testimonials-card-two__rating -->
                                             <p class="testimonials-card-two__text">
                                                 There are many variations of passages of Lorem Ipsum avalab but the
@@ -1732,7 +1263,7 @@
                                         </div>
                                     </div>
                                     <h3 class="blog-card__title"><a
-                                            href="https://bracketweb.com/procounsel-html/blog-details-right.html">10
+                                            href="">10
                                         Simple Practices that Will Help You Get 1% </a></h3><!-- /.blog-card__title -->
                                 </div><!-- /.blog-card__content -->
                                 <div class="blog-card__image">
@@ -1741,7 +1272,7 @@
                                              alt="10 Simple Practices that Will Help You Get 1% ">
                                         <img src="/static/index_files/blog-1-1.jpg"
                                              alt="10 Simple Practices that Will Help You Get 1% ">
-                                        <a href="https://bracketweb.com/procounsel-html/blog-details-right.html"
+                                        <a href=""
                                            class="blog-card__image__link"><span class="sr-only">10 Simple Practices that Will Help You Get 1% </span></a>
                                     </div>
                                     <div class="blog-card__date"><span>03</span>Feb</div><!-- /.blog-card__date -->

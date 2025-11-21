@@ -23,7 +23,7 @@
                                 </div>
                                 <ul class="list-unstyled service-sidebar__nav">
                                     {% for i in service_category%}
-                                    <li class=""><a href="{% url 'service' i.pk%}"> {{i.name}}<i class="icon-arrow-right"></i></a></li>
+                                    <li class=""><a href="{% url 'service' i.pk%}"> {{i.name}}<i class="fa fa-arrow-right"></i></a></li>
                                     {%endfor%}
                                 </ul><!-- /.list-unstyled service-sidebar__nav -->
                             </div><!-- /.service-sidebar__single -->
@@ -54,7 +54,7 @@
                                         <span class="accrodion__number"></span>
                                         <h4>
                                             {{i.title}}
-                                            <i class="accrodion-title__icon"></i><!-- /.accrodion-title__icon -->
+                                            <i class="accrodion-title__fa fa"></i><!-- /.accrodion-title__fa fa -->
                                         </h4>
                                     </div><!-- /.accordian-title -->
                                     <div class="accrodion-content" style="display: none;">
