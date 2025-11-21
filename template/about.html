@@ -8,24 +8,40 @@
             <!-- /.page-header__shape -->
             <div class="container">
                 <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;">
-                    <div style="display:inline-block;">
-                        <div style="display:inline;">B</div>
-                        <div style="position: relative; display:inline;">i</div>
-                        <div style="position: relative; display:inline;">z</div>
-                    </div>
-                    <div style="position:relative;display:inline-block;">
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">H</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">q</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">i</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">m</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">i</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">z</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">d</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div>
-                    </div>
-                </h2>
+                    {% if current_lang == "uz" %}
+                        <div style="position:relative;display:inline-block;">
+                            <div style="position: relative; display: inline-block;">Biz</div>
+                        </div>
+                        <div style="position:relative;display:inline-block;">
+                            <div style="position: relative; display: inline-block;">Haqimizda</div>
+                        </div>
 
+                    {% elif current_lang == "ru" %}
+                        <div style="position:relative;display:inline-block;">
+                            <div style="position: relative; display: inline-block;">О</div>
+                        </div>
+                        <div style="position:relative;display:inline-block;">
+                            <div style="position: relative; display: inline-block;">Нас</div>
+                        </div>
+
+                    {% elif current_lang == "en" %}
+                        <div style="position:relative;display:inline-block;">
+                            <div style="position: relative; display: inline-block;">About</div>
+                        </div>
+                        <div style="position:relative;display:inline-block;">
+                            <div style="position: relative; display: inline-block;">Us</div>
+                        </div>
+
+                    {% else %}
+                        <div style="position:relative;display:inline-block;">
+                            <div style="position: relative; display: inline-block;">About</div>
+                        </div>
+                        <div style="position:relative;display:inline-block;">
+                            <div style="position: relative; display: inline-block;">Us</div>
+                        </div>
+                    {% endif %}
+
+                </h2>
             </div><!-- /.container -->
         </section><!-- /.page-header -->
         <section class="about-four about-four-about" id="about">
