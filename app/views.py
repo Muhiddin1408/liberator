@@ -29,6 +29,7 @@ class Teams(TemplateView):
     def get(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context['staffs'] = Staff.objects.all()
+        context['services'] = ServiceCategory.objects.all()
         return render(request, "team.html", context)
 
 def contact(request):
