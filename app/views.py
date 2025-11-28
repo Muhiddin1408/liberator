@@ -20,7 +20,8 @@ class DashboardView(TemplateView):
 
 
 def about(request):
-    return render(request, 'about.html')
+    services = ServiceCategory.objects.all()
+    return render(request, 'about.html', {"services": services})
 
 
 class Teams(TemplateView):
@@ -31,12 +32,14 @@ class Teams(TemplateView):
         return render(request, "team.html", context)
 
 def contact(request):
-    return render(request, 'contact.html')
+    services = ServiceCategory.objects.all()
+    return render(request, 'contact.html', {"services": services})
 def service(request, pk):
     service = Service.objects.filter(category_id=pk)
     service_category = ServiceCategory.objects.all()
+    services = ServiceCategory.objects.all()
     image = ServiceCategory.objects.get(pk=pk).image
-    return render(request, "service_item.html", {"service": service, "service_category": service_category, "image": image})
+    return render(request, "service_item.html", {"service": service, "service_category": service_category, "image": image, "services": services})
 
 from django.shortcuts import redirect
 from django.utils.translation import activate
