@@ -35,7 +35,8 @@ def contact(request):
 def service(request, pk):
     service = Service.objects.filter(category_id=pk)
     service_category = ServiceCategory.objects.all()
-    return render(request, "service_item.html", {"service": service, "service_category": service_category})
+    image = ServiceCategory.objects.get(pk=pk).image
+    return render(request, "service_item.html", {"service": service, "service_category": service_category, "image": image})
 
 from django.shortcuts import redirect
 from django.utils.translation import activate
