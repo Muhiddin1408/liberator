@@ -15,7 +15,6 @@ class DashboardView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context['services'] = ServiceCategory.objects.all()
-        print(ServiceCategory.objects.all().count())
 
         return render(request, 'index.html', context)
 
