@@ -259,21 +259,35 @@
                 <div class="owl-stage"
                      style="transform: translate3d(-1520px, 0px, 0px); transition: all; width: 5323px;">
                     {%for i in services %}
-                    <div class="owl-item cloned" style="width: 350.2px; margin-right: 30px;">
+                    <div class="owl-item" style="width: 350.2px; margin-right: 30px;">
                         <div class="item">
                             <div class="portfolio-two__item">
+                                {% if i.image %}
+                                <img src="{{i.image.url}}" alt="procounsel">
+                                {% else %}
                                 <img src="/static/index_files/portfolio-2-3.jpg" alt="procounsel">
+                                {%endif%}
                                 <div class="portfolio-two__item__bg"></div>
                                 <div class="portfolio-two__item__content">
 
                                     <h3 class="portfolio-two__item__title">
-                                        <a href="{% url 'service' i.pk %}">{{i.name}}</a>
+                                        <a href="{% url 'service' i.pk %}">
+                                            {% if current_lang == "uz" %}
+                                                {{i.name}}
+                                            {% elif current_lang == "ru" %}
+                                                {{i.name_ru}}
+                                            {% elif current_lang == "en" %}
+                                                {{i.name_en}}
+                                            {% else %}
+                                                {{i.name}}
+                                            {% endif %}
+                                        </a>
                                     </h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
+                {% endfor %}
                 </div>
             </div>
             <div class="owl-nav disabled">

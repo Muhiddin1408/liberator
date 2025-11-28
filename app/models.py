@@ -26,7 +26,13 @@ class Staff(models.Model):
 
 class ServiceCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    name_ru = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    name_en = models.CharField(max_length=100, unique=True, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    description_ru = models.CharField(max_length=100, blank=True, null=True)
+    description_en = models.CharField(max_length=100, blank=True, null=True)
+    image = models.ImageField(upload_to="service_categories/%Y/%m/%d", blank=True, null=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Service Category"
@@ -39,7 +45,11 @@ class ServiceCategory(models.Model):
 class Service(models.Model):
     category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, related_name="services")
     title = models.CharField(max_length=200)
+    title_ru = models.CharField(max_length=100, blank=True, null=True)
+    title_en = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    description_ru = models.CharField(max_length=100, blank=True, null=True)
+    description_en = models.CharField(max_length=100, blank=True, null=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:

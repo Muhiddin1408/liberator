@@ -23,7 +23,16 @@
                                 </div>
                                 <ul class="list-unstyled service-sidebar__nav">
                                     {% for i in service_category%}
-                                    <li class=""><a href="{% url 'service' i.pk%}"> {{i.name}}<i class="fa fa-arrow-right"></i></a></li>
+                                    <li class=""><a href="{% url 'service' i.pk%}">
+                                        {% if current_lang == "uz" %}
+                                                {{i.name}}
+                                            {% elif current_lang == "ru" %}
+                                                {{i.name_ru}}
+                                            {% elif current_lang == "en" %}
+                                                {{i.name_en}}
+                                            {% else %}
+                                                {{i.name}}
+                                            {% endif %}<i class="fa fa-arrow-right"></i></a></li>
                                     {%endfor%}
                                 </ul><!-- /.list-unstyled service-sidebar__nav -->
                             </div><!-- /.service-sidebar__single -->
@@ -35,7 +44,7 @@
                                     <h3 class="service-sidebar__contact__title">Get a Free <br> Quick Solution <br>
                                         of Problem</h3>
                                     <!-- /.service-sidebar__contact__title -->
-                                    <a href="https://bracketweb.com/procounsel-html/contact.html" class="procounsel-btn"><i>Contact</i><span>Contact</span></a>
+                                    <a href="" class="procounsel-btn"><i>Contact</i><span>Contact</span></a>
                                 </div><!-- /.service-sidebar__contact -->
                             </div>
                         </div><!-- /.sidebar -->
@@ -53,14 +62,30 @@
                                     <div class="accrodion-title">
                                         <span class="accrodion__number"></span>
                                         <h4>
-                                            {{i.title}}
+                                            {% if current_lang == "uz" %}
+                                                {{i.title}}
+                                            {% elif current_lang == "ru" %}
+                                                {{i.title_ru}}
+                                            {% elif current_lang == "en" %}
+                                                {{i.title_en}}
+                                            {% else %}
+                                                {{i.title}}
+                                            {% endif %}
                                             <i class="accrodion-title__fa fa"></i><!-- /.accrodion-title__fa fa -->
                                         </h4>
                                     </div><!-- /.accordian-title -->
                                     <div class="accrodion-content" style="display: none;">
                                         <div class="inner">
                                             <p>
+                                                {% if current_lang == "uz" %}
                                                 {{i.description}}
+                                            {% elif current_lang == "ru" %}
+                                                {{i.description_ru}}
+                                            {% elif current_lang == "en" %}
+                                                {{i.description_en}}
+                                            {% else %}
+                                                {{i.description}}
+                                            {% endif %}
                                             </p>
                                         </div><!-- /.accordian-content -->
                                     </div>
