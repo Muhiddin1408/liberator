@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import ServiceCategory, Staff, Service
+from app.models import ServiceCategory, Staff, Service, Partner
 
 # Register your models here.
 admin.site.site_header = 'Liberator Administration'
@@ -11,4 +11,5 @@ class ServiceCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Staff)
 admin.site.register(Service)
+admin.site.register(Partner)
 

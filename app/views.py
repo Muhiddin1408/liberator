@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
 
-from app.models import Staff, Service, ServiceCategory
+from app.models import Staff, Service, ServiceCategory, Partner
 
 
 # Create your views here.
@@ -21,7 +21,8 @@ class DashboardView(TemplateView):
 
 def about(request):
     services = ServiceCategory.objects.all()
-    return render(request, 'about.html', {"services": services})
+    partner = Partner.objects.all()
+    return render(request, 'about.html', {"services": services, "partners": partner})
 
 
 class Teams(TemplateView):
