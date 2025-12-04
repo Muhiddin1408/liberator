@@ -48,8 +48,8 @@ class Service(models.Model):
     title_ru = models.CharField(max_length=100, blank=True, null=True)
     title_en = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    description_ru = models.CharField(max_length=100, blank=True, null=True)
-    description_en = models.CharField(max_length=100, blank=True, null=True)
+    description_ru = models.TextField(blank=True, null=True)
+    description_en = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:
