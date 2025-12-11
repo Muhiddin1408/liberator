@@ -7,11 +7,30 @@
             <!-- <div class="page-header__shape"></div> -->
             <!-- /.page-header__shape -->
             <div class="container">
-                <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;"><div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">C</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">o</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">n</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">t</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">c</div><div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">t</div></div></h2>
-                <ul class="procounsel-breadcrumb list-unstyled">
-                    <li><a href="{}">Home</a></li>
-                    <li><span></span></li>
-                </ul><!-- /.thm-breadcrumb list-unstyled -->
+                <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;">
+                    {% if current_lang == "uz" %}
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Bog‘lanish</div>
+    </div>
+
+{% elif current_lang == "ru" %}
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Контакты</div>
+    </div>
+
+{% elif current_lang == "en" %}
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Contact</div>
+    </div>
+
+{% else %}
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Contact</div>
+    </div>
+{% endif %}
+
+                </h2>
+                <!-- /.thm-breadcrumb list-unstyled -->
             </div><!-- /.container -->
         </section><!-- /.page-header -->
 
