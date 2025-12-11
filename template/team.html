@@ -8,17 +8,39 @@
             <!-- /.page-header__shape -->
             <div class="container">
                 <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;">
-                    <div style="position:relative;display:inline-block;">
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">O</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">u</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">r</div>
-                    </div>
-                    <div style="position:relative;display:inline-block;">
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">T</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">e</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">a</div>
-                        <div style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">m</div>
-                    </div>
+                    {% if current_lang == "uz" %}
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Bizning</div>
+    </div>
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Jamoa</div>
+    </div>
+
+{% elif current_lang == "ru" %}
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Наша</div>
+    </div>
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Команда</div>
+    </div>
+
+{% elif current_lang == "en" %}
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Our</div>
+    </div>
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Team</div>
+    </div>
+
+{% else %}
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Our</div>
+    </div>
+    <div style="position:relative;display:inline-block;">
+        <div style="position: relative; display: inline-block;">Team</div>
+    </div>
+{% endif %}
+
                 </h2>
                 <!-- /.thm-breadcrumb list-unstyled -->
             </div><!-- /.container -->
