@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-        <section class="page-header">
-            <div class="page-header__bg"></div>
-            <!-- /.page-header__bg --><!-- /.container -->
-        </section><!-- /.page-header -->
 
         <section class="service-details">
             <div class="container">
@@ -32,14 +28,36 @@
                             </div><!-- /.service-sidebar__single -->
                             <div class="service-sidebar__single ">
                                 <div class="service-sidebar__contact">
-                                    <div class="service-sidebar__contact__image">
-                                        <img src="/static/service_item/service-author.png" alt="procounsel">
-                                    </div>
-                                    <h3 class="service-sidebar__contact__title">Get a Free <br> Quick Solution <br>
-                                        of Problem</h3>
-                                    <!-- /.service-sidebar__contact__title -->
-                                    <a href="" class="procounsel-btn"><i>Contact</i><span>Contact</span></a>
-                                </div><!-- /.service-sidebar__contact -->
+    <div class="service-sidebar__contact__image">
+        <img src="/static/service_item/service-author.png" alt="procounsel">
+    </div>
+
+    {% if current_lang == "uz" %}
+        <h3 class="service-sidebar__contact__title">
+            Bepul <br> Tezkor Yechim <br> Oling
+        </h3>
+        <a href="{% url 'contact'%}" class="procounsel-btn"><i>Aloqa</i><span>Aloqa</span></a>
+
+    {% elif current_lang == "ru" %}
+        <h3 class="service-sidebar__contact__title">
+            Получите Бесплатное <br> Быстрое Решение <br> Вашей Проблемы
+        </h3>
+        <a href="{% url 'contact'%}" class="procounsel-btn"><i>Контакт</i><span>Контакт</span></a>
+
+    {% elif current_lang == "en" %}
+        <h3 class="service-sidebar__contact__title">
+            Get a Free <br> Quick Solution <br> of Problem
+        </h3>
+        <a href="{% url 'contact'%}" class="procounsel-btn"><i>Contact</i><span>Contact</span></a>
+
+    {% else %}
+        <h3 class="service-sidebar__contact__title">
+            Get a Free <br> Quick Solution <br> of Problem
+        </h3>
+        <a href="{% url 'contact'%}" class="procounsel-btn"><i>Contact</i><span>Contact</span></a>
+    {% endif %}
+</div>
+<!-- /.service-sidebar__contact -->
                             </div>
                         </div><!-- /.sidebar -->
                     </div><!-- /.col-md-12 col-lg-4 -->
