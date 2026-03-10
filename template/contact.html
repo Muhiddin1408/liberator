@@ -66,7 +66,7 @@
                                         <div class="contact-one__info__content">
                                             <p class="contact-one__info__text">
                                                 <a href="mailto:Liberator.inbox@gmail.com">Liberator.inbox@gmail.com</a><br>
-                                                <a href="">www.website.com</a>
+                                                <a href="https://liberator.uz/">liberator.uz</a>
                                             </p><!-- /.contact-one__info__text -->
                                         </div><!-- /.contact-one__info__content -->
                                     </li>
@@ -79,7 +79,15 @@
                                         </div>
                                         <div class="contact-one__info__content">
                                             <p class="contact-one__info__text">
-                                                Alisher Navoiy koʻchasi, 30 <br>Shayxontohur tumani, Toshkent
+                                                {% if current_lang == "uz" %}
+                                                Toshkent shahri, Shayxontohur tumani,<br> A. Navoiy ko‘chasi 30
+                                                {% elif current_lang == "ru" %}
+                                                г. Ташкент, Шайхонтохурский район,<br> ул. А.Навои 30
+                                                {% elif current_lang == "en" %}
+                                                30 A. Navoi Street, <br>Shaykhontokhur District, Tashkent
+                                                {% else %}
+                                                30 A. Navoi Street, <br>Shaykhontokhur District, Tashkent
+                                                {% endif %}
                                             </p><!-- /.contact-one__info__text -->
                                         </div><!-- /.contact-one__info__content -->
                                     </li>
