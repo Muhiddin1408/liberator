@@ -8767,7 +8767,7 @@ body.megamenu-popup-active .mobile-nav__content {
   align-items: center;
   justify-content: space-between;
   transition: all 500ms ease;
-  text-transform: capitalize;
+  text-transform: none;
   padding: 11px 30px;
   border: 1px solid var(--procounsel-border-color, #d9d9d9);
   position: relative;

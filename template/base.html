@@ -71,7 +71,15 @@
                             <ul class="list-unstyled topbar-one__info">
                                 <li class="topbar-one__info__item">
                                     <i class="fas fa-map-marker-alt topbar-one__info__icon"></i>
-                                    Alisher Navoiy koʻchasi, 30 <br> Shayxontohur tumani, Toshkent
+                                    {% if current_lang == "uz" %}
+Toshkent shahri, Shayxontohur tumani,<br> A. Navoiy ko‘chasi 30
+{% elif current_lang == "ru" %}
+г. Ташкент, Шайхонтохурский район,<br>  ул. А.Навои 30
+{% elif current_lang == "en" %}
+30 A. Navoi Street, <br> Shaykhontokhur District, Tashkent
+{% else %}
+30 A. Navoi Street, <br> Shaykhontokhur District, Tashkent
+{% endif %}
                                 </li>
                                 <li class="topbar-one__info__item">
                                     <i class="fas fa-envelope topbar-one__info__icon"></i>
@@ -154,7 +162,15 @@
 
                                     <ul>
                                         {% for i in services %}
-                                        <li><a href="{% url 'service' i.pk%}">{{i.name}}</a></li>
+                                        <li><a href="{% url 'service' i.pk%}">{% if current_lang == "uz" %}
+                                            {{i.name}}
+                                        {% elif current_lang == "ru" %}
+                                            {{i.name_ru}}
+                                        {% elif current_lang == "en" %}
+                                            {{i.name_en}}
+                                        {% else %}
+                                            {{i.name}}
+                                        {% endif %}</a></li>
                                         {% endfor %}
 
                                     </ul>
@@ -274,31 +290,21 @@
                                 <p class="footer-widget__text">
 
                                     {% if current_lang == "uz" %}
-            Bizning fidoyi advokatlarimiz va samarali yuridik yechimlarimiz bilan noyob yondashuvni kashf eting.
-        {% elif current_lang == "ru" %}
-            Откройте для себя уникальный подход наших преданных своему делу юристов, предлагающих эффективные правовые решения.
-        {% elif current_lang == "en" %}
-            Discover a unique approach with our dedicated attorneys, committed effective legal solutions.
-        {% else %}
-            Discover a unique approach with our dedicated attorneys, committed effective legal solutions.
-        {% endif %}
+                                    “LIBERATOR” AF – bu professionallik, vazifalarni o‘z vaqtida bajarish va natijaga yo‘naltirilgan ish.
+                                    {% elif current_lang == "ru" %}
+                                    АФ “LIBERATOR” это профессионализм, своевременность выполнения задач, работа на результат.
+                                    {% elif current_lang == "en" %}
+                                    “LIBERATOR” AF stands for professionalism, timely task execution, and results-oriented work.
+                                    {% else %}
+                                    “LIBERATOR” AF stands for professionalism, timely task execution, and results-oriented work.
+                                    {% endif %}
                                 </p>
                             </div><!-- /.footer-widget -->
                         </div><!-- /.col-md-6 -->
 
                         <div class="col-md-6 col-xl-2 wow fadeInUp" data-wow-delay="200ms" style="visibility: hidden; animation-delay: 200ms; animation-name: none;">
                             <div class="footer-widget footer-widget--links">
-                                <h2 class="footer-widget__title">
-                                    {% if current_lang == "uz" %}
-                                        Bizda
-                                    {% elif current_lang == "ru" %}
-                                        У нас
-                                    {% elif current_lang == "en" %}
-                                        Explore
-                                    {% else %}
-                                        Explore
-                                    {% endif %}
-                                    </h2><!-- /.footer-widget__title -->
+
                                 <ul class="list-unstyled footer-widget__links">
                                     <li><a href="">{% if current_lang == "uz" %}
                                             Biz haqimizda
@@ -392,7 +398,15 @@
                                         <i class="fa fa-pin"></i>
                                     </div>
                                     <div class="main-footer__info__location">
-                                        Alisher Navoiy koʻchasi, 30 <br>Shayxontohur tumani, Toshkent
+                                        {% if current_lang == "uz" %}
+Toshkent shahri, Shayxontohur tumani, <br> A. Navoiy ko‘chasi 30
+{% elif current_lang == "ru" %}
+г. Ташкент, Шайхонтохурский район,<br>  ул. А.Навои 30
+{% elif current_lang == "en" %}
+30 A. Navoi Street, <br> Shaykhontokhur District, Tashkent
+{% else %}
+30 A. Navoi Street, <br> Shaykhontokhur District, Tashkent
+{% endif %}
                                     </div>
                                     <ul class="list-unstyled main-footer__info__list">
                                         <li class="main-footer__info__item">
