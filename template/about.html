@@ -104,8 +104,19 @@
                                     {% endif %}
                                 </li>
                                 <li class="about-four__item">
+                                    {% if current_lang == "uz" %}
                                     Liberator Advokatlik Firmasi Rahbari <br>
                                     Batirov Farrux Yusupovich
+                                    {% elif current_lang == "ru" %}
+                                    Руководитель адвокатской фирмы Liberator <br>
+                                    Батиров Фаррух Юсупович
+                                    {% elif current_lang == "en" %}
+                                    Head of Liberator Law Firm <br>
+                                    Farrukh Yusupovich Batirov
+                                    {% else %}
+                                    Head of Liberator Law Firm <br>
+                                    Farrukh Yusupovich Batirov
+                                    {% endif %}
 
                                 </li>
                             </ul>
