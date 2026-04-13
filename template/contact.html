@@ -1,106 +1,79 @@
 {% extends 'base.html' %}
 
-{% block content %}<!-- /.main-header -->
-        <section class="page-header">
-            <div class="page-header__bg"></div>
-            <!-- /.page-header__bg -->
-            <!-- <div class="page-header__shape"></div> -->
-            <!-- /.page-header__shape -->
-            <div class="container">
-                <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;">
-                    {% if current_lang == "uz" %}
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Bog‘lanish</div>
-    </div>
+{% block content %}
 
-{% elif current_lang == "ru" %}
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Контакты</div>
-    </div>
+<!-- PAGE HEADER -->
+<section class="page-header"> <div class="page-header__bg"></div> <!-- /.page-header__bg --> <!-- <div class="page-header__shape"></div> --> <!-- /.page-header__shape --> <div class="container"> <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;"> {% if current_lang == "uz" %} <div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block;">Bog‘lanish</div> </div> {% elif current_lang == "ru" %} <div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block;">Контакты</div> </div> {% elif current_lang == "en" %} <div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block;">Contact</div> </div> {% else %} <div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block;">Contact</div> </div> {% endif %} </h2> <!-- /.thm-breadcrumb list-unstyled --> </div><!-- /.container --> </section>
 
-{% elif current_lang == "en" %}
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Contact</div>
-    </div>
+<!-- CONTACT SECTION -->
+<section class="contact-one" style="padding:60px 0;">
+    <div class="container">
+        <div class="row align-items-center">
 
-{% else %}
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Contact</div>
-    </div>
-{% endif %}
+            <!-- LEFT SIDE (INFO) -->
+            <div class="col-lg-5 mb-4">
+                <div style="background:#fff; padding:30px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
 
-                </h2>
-                <!-- /.thm-breadcrumb list-unstyled -->
-            </div><!-- /.container -->
-        </section><!-- /.page-header -->
+                    <ul class="list-unstyled m-0">
 
-        <section class="contact-one">
-            <div class="container">
-                <div class="contact-one__wrapper">
-                    <div class="row">
-                        <div class="col-xl-6">
+                        <!-- PHONE -->
+                        <li style="margin-bottom:25px; display:flex; align-items:center;">
+                            <i class="fa fa-phone" style="font-size:20px; color:#007bff; margin-right:15px;"></i>
+                            <a href="tel:+998555122992" style="text-decoration:none; color:#333;">
+                                +998 (55) 512-29-92
+                            </a>
+                        </li>
 
-                            <div class="contact-one__content">
-
-                                <ul class="list-unstyled contact-one__info">
-                                    <li class="contact-one__info__item">
-                                        <div class="contact-one__info__fa fa">
-                                            <i class="fa fa-telephone"></i>
-                                            <span class="contact-one__info__fa fa__zoom">
-                                                <i class="fa fa-telephone"></i>
-                                            </span>
-                                        </div>
-                                        <div class="contact-one__info__content">
-                                            <p class="contact-one__info__text">
-                                                <a href="tel:+998555122992">+998(55)5122992</a><br>
-                                            </p><!-- /.contact-one__info__text -->
-                                        </div><!-- /.contact-one__info__content -->
-                                    </li>
-                                    <li class="contact-one__info__item">
-                                        <div class="contact-one__info__fa fa">
-                                            <i class="fa fa-mailbox"></i>
-                                            <span class="contact-one__info__fa fa__zoom">
-                                                <i class="fa fa-mailbox"></i>
-                                            </span>
-                                        </div>
-                                        <div class="contact-one__info__content">
-                                            <p class="contact-one__info__text">
-                                                <a href="mailto:Liberator.inbox@gmail.com">Liberator.inbox@gmail.com</a><br>
-                                                <a href="https://liberator.uz/">liberator.uz</a>
-                                            </p><!-- /.contact-one__info__text -->
-                                        </div><!-- /.contact-one__info__content -->
-                                    </li>
-                                    <li class="contact-one__info__item">
-                                        <div class="contact-one__info__fa fa">
-                                            <i class="fa fa-map-pin"></i>
-                                            <span class="contact-one__info__fa fa__zoom">
-                                                <i class="fa fa-map-pin"></i>
-                                            </span>
-                                        </div>
-                                        <div class="contact-one__info__content">
-                                            <p class="contact-one__info__text">
-                                                {% if current_lang == "uz" %}
-Toshkent shahri, Yashnobod tumani,<br> Sodiq Azimov ko‘chasi 68-uy
-{% elif current_lang == "ru" %}
-г. Ташкент, Яшнабадский район,<br> ул. Садыка Азимова, 68
-{% elif current_lang == "en" %}
-68 Sodiq Azimov Street,<br> Yashnobod District, Tashkent
-{% else %}
-68 Sodiq Azimov Street,<br> Yashnobod District, Tashkent
-{% endif %}
-                                            </p><!-- /.contact-one__info__text -->
-                                        </div><!-- /.contact-one__info__content -->
-                                    </li>
-                                </ul>
+                        <!-- EMAIL -->
+                        <li style="margin-bottom:25px; display:flex; align-items:center;">
+                            <i class="fa fa-envelope" style="font-size:20px; color:#007bff; margin-right:15px;"></i>
+                            <div>
+                                <a href="mailto:Liberator.inbox@gmail.com" style="display:block; color:#333;">
+                                    Liberator.inbox@gmail.com
+                                </a>
+                                <a href="https://liberator.uz/" target="_blank" style="color:#007bff;">
+                                    liberator.uz
+                                </a>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+
+                        <!-- ADDRESS -->
+                        <li style="display:flex; align-items:flex-start;">
+                            <i class="fa fa-map-marker" style="font-size:20px; color:#007bff; margin-right:15px; margin-top:5px;"></i>
+                            <div>
+                                {% if current_lang == "uz" %}
+                                    Toshkent shahri, Yashnobod tumani,<br>
+                                    Sodiq Azimov ko‘chasi 68-uy
+                                {% elif current_lang == "ru" %}
+                                    г. Ташкент, Яшнабадский район,<br>
+                                    ул. Садыка Азимова, 68
+                                {% else %}
+                                    68 Sodiq Azimov Street,<br>
+                                    Yashnobod District, Tashkent
+                                {% endif %}
+                            </div>
+                        </li>
+
+                    </ul>
+
                 </div>
             </div>
-        </section>
 
-            <iframe src="https://yandex.uz/map-widget/v1/?ll=69.288944%2C41.303795&z=17&l=map&pt=69.288944,41.303795,pm2rdl"
-    width="100%" height="400" frameborder="0" allowfullscreen="true"></iframe>
+            <!-- RIGHT SIDE (MAP) -->
+            <div class="col-lg-7">
+                <div style="border-radius:12px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+                    <iframe
+                        src="https://yandex.uz/map-widget/v1/?ll=69.288944%2C41.303795&z=17&l=map&pt=69.288944,41.303795,pm2rdl"
+                        width="100%"
+                        height="400"
+                        frameborder="0"
+                        allowfullscreen="true">
+                    </iframe>
+                </div>
+            </div>
 
-        <!-- /.google-map -->
-        {% endblock %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
