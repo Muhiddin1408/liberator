@@ -21,7 +21,7 @@ class Staff(models.Model):
     image = models.ImageField(upload_to="staff/%Y/%m/%d", blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user} "
+        return f"{self.user}"
 
 
 class ServiceCategory(models.Model):

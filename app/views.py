@@ -1,6 +1,6 @@
-import re
-
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.utils.translation import activate
+from django.conf import setting
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
 
@@ -39,13 +39,10 @@ def contact(request):
 def service(request, pk):
     service = Service.objects.filter(category_id=pk)
     service_category = ServiceCategory.objects.all()
-    services = ServiceCategory.objects.all()
+    services = Service.objects.all()
     image = ServiceCategory.objects.get(pk=pk).image
     return render(request, "service_item.html", {"service": service, "service_category": service_category, "image": image, "services": services})
-
-from django.shortcuts import redirect
-from django.utils.translation import activate
-from django.conf import settings
+s
 
 
 def set_language_from_url(request, lang_code):
