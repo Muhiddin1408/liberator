@@ -42,7 +42,6 @@ def service(request, pk):
     services = ServiceCategory.objects.all()
     image = ServiceCategory.objects.get(pk=pk).image
     return render(request, "service_item.html", {"service": service, "service_category": service_category, "image": image, "services": services})
-s
 
 
 def set_language_from_url(request, lang_code):
