@@ -60,10 +60,45 @@
     <div class="page-wrapper">
         <header class="main-header main-header--two sticky-header sticky-header--normal">
             <div class="main-header__inner">
-                <div class="main-header__logo">
-                    <a href="{% url 'index' %}">
-                        <img src="/static/index_files/logo4.png" alt="Liberator" width="200">
-                    </a>
+                <style>
+                  .lib-logo { padding: 6px 0; }
+                  .lib-logo a {
+                    text-decoration: none;
+                    display: inline-block;
+                    position: relative;
+                  }
+                  .lib-logo a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -3px; left: 10%; width: 80%; height: 2px;
+                    background: linear-gradient(to right, transparent, #c9a452, transparent);
+                    opacity: 0;
+                    transform: scaleX(0.4);
+                    transition: opacity 0.35s ease, transform 0.35s ease;
+                  }
+                  .lib-logo a:hover::after {
+                    opacity: 1;
+                    transform: scaleX(1);
+                  }
+                  .lib-logo img {
+                    height: 75px;
+                    width: auto;
+                    object-fit: contain;
+                    display: block;
+                    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.13));
+                    transition: filter 0.3s ease, transform 0.3s ease;
+                  }
+                  .lib-logo a:hover img {
+                    filter: drop-shadow(0 4px 14px rgba(201,164,82,0.45));
+                    transform: translateY(-2px);
+                  }
+                  @media (max-width: 991px) { .lib-logo img { height: 54px; } }
+                  @media (max-width: 575px) { .lib-logo img { height: 42px; } }
+                </style>
+                <div class="main-header__logo lib-logo">
+                  <a href="{% url 'index' %}">
+                    <img src="/static/index_files/logo.png" alt="Liberator">
+                  </a>
                 </div><!-- /.main-header__logo -->
                 <div class="main-header__center">
                     <div class="topbar-one">
