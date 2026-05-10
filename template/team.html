@@ -1,80 +1,157 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-        <section class="page-header">
-            <div class="page-header__bg"></div>
-            <!-- /.page-header__bg -->
-            <!-- <div class="page-header__shape"></div> -->
-            <!-- /.page-header__shape -->
-            <div class="container">
-                <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;">
-                    {% if current_lang == "uz" %}
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Bizning</div>
+<section class="page-header">
+    <div class="page-header__bg"></div>
+    <div class="container">
+        <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;">
+            {% if current_lang == "uz" %}
+                <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block;">Bizning</div></div>
+                <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block;">Jamoa</div></div>
+            {% elif current_lang == "ru" %}
+                <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block;">Наша</div></div>
+                <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block;">Команда</div></div>
+            {% else %}
+                <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block;">Our</div></div>
+                <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block;">Team</div></div>
+            {% endif %}
+        </h2>
     </div>
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Jamoa</div>
-    </div>
+</section>
 
-{% elif current_lang == "ru" %}
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Наша</div>
-    </div>
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Команда</div>
-    </div>
+<style>
+    .lib-team-section { padding: 90px 0 70px; background: #fafafa; }
+    .lib-team-grid { display: grid; gap: 32px;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
+    .lib-team-card {
+        background: #fff; border-radius: 14px; overflow: hidden;
+        box-shadow: 0 6px 24px rgba(15, 23, 42, .06);
+        transition: transform .35s ease, box-shadow .35s ease;
+        display: flex; flex-direction: column; height: 100%;
+        border: 1px solid rgba(201, 164, 82, .08);
+    }
+    .lib-team-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, .12);
+        border-color: rgba(201, 164, 82, .35);
+    }
+    .lib-team-card__image { position: relative; padding-top: 115%; overflow: hidden; background: #1a1a1a; }
+    .lib-team-card__image img {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; transition: transform .6s ease, filter .6s ease;
+    }
+    .lib-team-card:hover .lib-team-card__image img { transform: scale(1.05); filter: brightness(.92); }
+    .lib-team-card__social {
+        position: absolute; left: 0; right: 0; bottom: 0;
+        display: flex; justify-content: center; gap: 10px;
+        padding: 14px 12px;
+        background: linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0));
+        opacity: 0; transform: translateY(10px); transition: .35s ease;
+    }
+    .lib-team-card:hover .lib-team-card__social { opacity: 1; transform: translateY(0); }
+    .lib-team-card__social a {
+        width: 38px; height: 38px; border-radius: 50%;
+        background: #c9a452; color: #fff; display: inline-flex;
+        align-items: center; justify-content: center; font-size: 15px;
+        transition: background .25s ease, transform .25s ease;
+    }
+    .lib-team-card__social a:hover { background: #1a1a1a; transform: translateY(-2px); }
+    .lib-team-card__body { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+    .lib-team-card__name {
+        font-size: 19px; font-weight: 700; color: #1a1a1a;
+        margin: 0 0 4px; line-height: 1.3;
+    }
+    .lib-team-card__name a { color: inherit; text-decoration: none; }
+    .lib-team-card__name a:hover { color: #c9a452; }
+    .lib-team-card__role { color: #c9a452; font-weight: 600; font-size: 14px; margin-bottom: 12px; letter-spacing: .3px; }
+    .lib-team-card__desc {
+        color: #555; font-size: 14px; line-height: 1.6; margin-bottom: 16px;
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .lib-team-card__spec {
+        font-size: 12.5px; color: #777;
+        background: #faf5e8; border-left: 3px solid #c9a452;
+        padding: 10px 12px; border-radius: 4px; margin-bottom: 16px;
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .lib-team-card__more {
+        margin-top: auto; align-self: flex-start;
+        font-weight: 600; font-size: 13px; letter-spacing: .5px;
+        color: #1a1a1a; text-decoration: none; padding-bottom: 2px;
+        border-bottom: 2px solid #c9a452; transition: color .2s ease;
+    }
+    .lib-team-card__more:hover { color: #c9a452; }
+    .lib-team-empty {
+        text-align: center; padding: 60px 20px; color: #888;
+        background: #fff; border-radius: 12px;
+    }
+    @media (max-width: 575px) {
+        .lib-team-section { padding: 60px 0 40px; }
+        .lib-team-grid { gap: 22px; }
+    }
+</style>
 
-{% elif current_lang == "en" %}
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Our</div>
-    </div>
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Team</div>
-    </div>
+<section class="lib-team-section">
+    <div class="container">
+        <div class="lib-team-grid">
+            {% for staff in staffs %}
+                <article class="lib-team-card wow fadeInUp" data-wow-delay="{{ forloop.counter0|add:'0' }}00ms">
+                    <div class="lib-team-card__image">
+                        {% if staff.image_url %}
+                            <img src="{{ staff.image_url }}" alt="{{ staff.full_name }} – {{ staff.position }}" loading="lazy">
+                        {% else %}
+                            <img src="{% static 'index_files/default-avatar.svg' %}"
+                                 alt="{{ staff.full_name }}" loading="lazy"
+                                 onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=600&name={{ staff.full_name|urlencode }}';">
+                        {% endif %}
 
-{% else %}
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Our</div>
-    </div>
-    <div style="position:relative;display:inline-block;">
-        <div style="position: relative; display: inline-block;">Team</div>
-    </div>
-{% endif %}
-
-                </h2>
-                <!-- /.thm-breadcrumb list-unstyled -->
-            </div><!-- /.container -->
-        </section><!-- /.page-header -->
-        <section class="team-one">
-            <div class="container">
-                <div class="row gutter-y-30">
-                    {% for i in staffs %}
-                    <div class="col-lg-4 col-md-6">
-                        <div class="team-card wow fadeInUp animated" data-wow-duration="1500ms" data-wow-delay="000ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
-
-                            <div class="team-card__image bw-img-anim-left" style="clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0% 100%);">
-                                <div class="team-card__content">
-                                    <h3 class="team-card__title">
-                                        <a href="">{{i.user.first_name}} {{ i.user.last_name}}</a>
-                                    </h3><!-- /.team-card__title -->
-                                    <p class="team-card__designation">{{i.role}}</p><!-- /.team-card__designation -->
-                                </div><!-- /.team-card__content -->
-                                <div class="team-card__hover">
-                                    <span class="team-card__hover__btn"><i class="icon-plus"></i></span>
-                                    <div class="team-card__hover__social">
-                                        <a href="{{i.phone}}">
-                                            <i class="icon-facebook"></i>
-                                            <span class="sr-only">Phone</span>
-                                        </a>
-
-                                    </div><!-- /.team-card__social -->
-                                </div><!-- /.team-card__hover -->
-                                <img src="{{i.image.url}}" alt="">
-                            </div><!-- /.team-card__image -->
-                        </div><!-- /.team-card -->
+                        <div class="lib-team-card__social">
+                            {% if staff.phone %}
+                                <a href="tel:{{ staff.phone }}" aria-label="Telefon"><i class="fa fa-phone"></i></a>
+                            {% endif %}
+                            {% if staff.email %}
+                                <a href="mailto:{{ staff.email }}" aria-label="Email"><i class="fa fa-envelope"></i></a>
+                            {% endif %}
+                            {% if staff.telegram %}
+                                <a href="{{ staff.telegram }}" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                            {% endif %}
+                            {% if staff.linkedin %}
+                                <a href="{{ staff.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            {% endif %}
+                        </div>
                     </div>
-                    {% endfor %}
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </section><!-- /.team-two -->
-        {% endblock %}
+
+                    <div class="lib-team-card__body">
+                        <h3 class="lib-team-card__name">
+                            <a href="{{ staff.get_absolute_url }}">{{ staff.full_name }}</a>
+                        </h3>
+                        <div class="lib-team-card__role">{{ staff.position }}</div>
+
+                        {% if staff.short_description %}
+                            <p class="lib-team-card__desc">{{ staff.short_description }}</p>
+                        {% endif %}
+
+                        {% if staff.specialization %}
+                            <div class="lib-team-card__spec">{{ staff.specialization|striptags|truncatewords:22 }}</div>
+                        {% endif %}
+
+                        <a href="{{ staff.get_absolute_url }}" class="lib-team-card__more">
+                            {% if current_lang == "uz" %}Batafsil →
+                            {% elif current_lang == "ru" %}Подробнее →
+                            {% else %}Read more →{% endif %}
+                        </a>
+                    </div>
+                </article>
+            {% empty %}
+                <div class="lib-team-empty">
+                    {% if current_lang == "uz" %}Hozircha xodimlar qo'shilmagan.
+                    {% elif current_lang == "ru" %}Список сотрудников пока пуст.
+                    {% else %}No team members yet.{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

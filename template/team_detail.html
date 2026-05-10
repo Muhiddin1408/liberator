@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="page-header">
+    <div class="page-header__bg"></div>
+    <div class="container">
+        <h2 class="page-header__title">{{ staff.full_name }}</h2>
+        <p style="color:#c9a452; margin-top: 8px; font-weight: 600; letter-spacing: .4px;">
+            {{ staff.position }}
+        </p>
+    </div>
+</section>
+
+<style>
+    .lib-detail { padding: 80px 0; background: #fafafa; }
+    .lib-detail__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 50px; }
+    @media (max-width: 991px) { .lib-detail__grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    .lib-detail__media {
+        position: relative; border-radius: 14px; overflow: hidden;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, .12);
+        background: #1a1a1a;
+    }
+    .lib-detail__media img { width: 100%; display: block; }
+    .lib-detail__media::after {
+        content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+        background: linear-gradient(90deg, transparent, #c9a452, transparent);
+    }
+
+    .lib-detail__contact {
+        margin-top: 24px; background: #fff; border-radius: 12px;
+        padding: 22px 24px; box-shadow: 0 6px 24px rgba(15, 23, 42, .06);
+    }
+    .lib-detail__contact h4 {
+        font-size: 16px; font-weight: 700; color: #1a1a1a; margin: 0 0 14px;
+        text-transform: uppercase; letter-spacing: .8px;
+    }
+    .lib-detail__contact ul { list-style: none; padding: 0; margin: 0; }
+    .lib-detail__contact li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 14px; }
+    .lib-detail__contact li:last-child { border-bottom: 0; }
+    .lib-detail__contact i { color: #c9a452; width: 20px; text-align: center; }
+    .lib-detail__contact a { color: #1a1a1a; text-decoration: none; word-break: break-all; }
+    .lib-detail__contact a:hover { color: #c9a452; }
+
+    .lib-detail__social { display: flex; gap: 10px; margin-top: 16px; }
+    .lib-detail__social a {
+        width: 40px; height: 40px; border-radius: 50%;
+        background: #1a1a1a; color: #fff;
+        display: inline-flex; align-items: center; justify-content: center;
+        transition: background .25s ease, transform .25s ease;
+    }
+    .lib-detail__social a:hover { background: #c9a452; transform: translateY(-2px); }
+
+    .lib-detail__body { background: #fff; border-radius: 14px; padding: 38px 40px; box-shadow: 0 6px 24px rgba(15, 23, 42, .06); }
+    @media (max-width: 575px) { .lib-detail__body { padding: 24px 20px; } }
+    .lib-detail__name { font-size: 30px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    .lib-detail__role { color: #c9a452; font-weight: 600; letter-spacing: .4px; margin-bottom: 22px; }
+    .lib-detail__lead { color: #555; font-size: 15.5px; line-height: 1.7; margin-bottom: 26px; }
+
+    .lib-detail__block { margin-top: 32px; }
+    .lib-detail__heading {
+        font-size: 18px; font-weight: 700; color: #1a1a1a;
+        text-transform: uppercase; letter-spacing: 1px;
+        padding-left: 14px; border-left: 4px solid #c9a452;
+        margin-bottom: 14px;
+    }
+    .lib-detail__rich { color: #444; font-size: 15px; line-height: 1.75; }
+    .lib-detail__rich p { margin: 0 0 12px; }
+    .lib-detail__rich ul { padding-left: 22px; margin: 0 0 12px; }
+    .lib-detail__rich li { margin-bottom: 6px; }
+
+    .lib-detail__related { margin-top: 70px; }
+    .lib-detail__related h3 {
+        font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 22px;
+        text-transform: uppercase; letter-spacing: .6px;
+    }
+    .lib-detail__related-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .lib-related-card {
+        background: #fff; border-radius: 12px; overflow: hidden;
+        box-shadow: 0 6px 24px rgba(15, 23, 42, .06);
+        transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .lib-related-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(15, 23, 42, .12); }
+    .lib-related-card__img { padding-top: 100%; position: relative; background: #1a1a1a; }
+    .lib-related-card__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .lib-related-card__body { padding: 16px 18px 20px; }
+    .lib-related-card__body h5 { font-size: 16px; font-weight: 700; margin: 0 0 4px; }
+    .lib-related-card__body h5 a { color: #1a1a1a; text-decoration: none; }
+    .lib-related-card__body h5 a:hover { color: #c9a452; }
+    .lib-related-card__body span { color: #c9a452; font-size: 13px; font-weight: 600; }
+</style>
+
+<section class="lib-detail">
+    <div class="container">
+        <div class="lib-detail__grid">
+            <aside>
+                <div class="lib-detail__media">
+                    {% if staff.image_url %}
+                        <img src="{{ staff.image_url }}" alt="{{ staff.full_name }} – {{ staff.position }}">
+                    {% else %}
+                        <img src="https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=800&name={{ staff.full_name|urlencode }}"
+                             alt="{{ staff.full_name }}">
+                    {% endif %}
+                </div>
+
+                <div class="lib-detail__contact">
+                    <h4>
+                        {% if current_lang == "uz" %}Aloqa
+                        {% elif current_lang == "ru" %}Контакты
+                        {% else %}Contact{% endif %}
+                    </h4>
+                    <ul>
+                        {% if staff.phone %}
+                            <li><i class="fa fa-phone"></i> <a href="tel:{{ staff.phone }}">{{ staff.phone }}</a></li>
+                        {% endif %}
+                        {% if staff.email %}
+                            <li><i class="fa fa-envelope"></i> <a href="mailto:{{ staff.email }}">{{ staff.email }}</a></li>
+                        {% endif %}
+                        {% if staff.telegram %}
+                            <li><i class="fa-brands fa-telegram"></i> <a href="{{ staff.telegram }}" target="_blank" rel="noopener">Telegram</a></li>
+                        {% endif %}
+                        {% if staff.linkedin %}
+                            <li><i class="fa-brands fa-linkedin-in"></i> <a href="{{ staff.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></li>
+                        {% endif %}
+                    </ul>
+
+                    <div class="lib-detail__social">
+                        {% if staff.phone %}<a href="tel:{{ staff.phone }}" aria-label="Telefon"><i class="fa fa-phone"></i></a>{% endif %}
+                        {% if staff.email %}<a href="mailto:{{ staff.email }}" aria-label="Email"><i class="fa fa-envelope"></i></a>{% endif %}
+                        {% if staff.telegram %}<a href="{{ staff.telegram }}" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>{% endif %}
+                        {% if staff.linkedin %}<a href="{{ staff.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>{% endif %}
+                    </div>
+                </div>
+            </aside>
+
+            <div class="lib-detail__body">
+                <h1 class="lib-detail__name">{{ staff.full_name }}</h1>
+                <div class="lib-detail__role">{{ staff.position }}</div>
+
+                {% if staff.short_description %}
+                    <p class="lib-detail__lead">{{ staff.short_description }}</p>
+                {% endif %}
+
+                {% if staff.specialization %}
+                    <div class="lib-detail__block">
+                        <h2 class="lib-detail__heading">
+                            {% if current_lang == "uz" %}Mutaxassislik
+                            {% elif current_lang == "ru" %}Специализация
+                            {% else %}Specialization{% endif %}
+                        </h2>
+                        <div class="lib-detail__rich">{{ staff.specialization|safe }}</div>
+                    </div>
+                {% endif %}
+
+                {% if staff.practice %}
+                    <div class="lib-detail__block">
+                        <h2 class="lib-detail__heading">
+                            {% if current_lang == "uz" %}Amaliyot
+                            {% elif current_lang == "ru" %}Практика
+                            {% else %}Practice{% endif %}
+                        </h2>
+                        <div class="lib-detail__rich">{{ staff.practice|safe }}</div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if other_staffs %}
+            <div class="lib-detail__related">
+                <h3>
+                    {% if current_lang == "uz" %}Boshqa jamoa a'zolari
+                    {% elif current_lang == "ru" %}Другие члены команды
+                    {% else %}Other team members{% endif %}
+                </h3>
+                <div class="lib-detail__related-grid">
+                    {% for other in other_staffs %}
+                        <div class="lib-related-card">
+                            <a href="{{ other.get_absolute_url }}" class="lib-related-card__img" style="display:block;">
+                                {% if other.image_url %}
+                                    <img src="{{ other.image_url }}" alt="{{ other.full_name }}">
+                                {% else %}
+                                    <img src="https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=400&name={{ other.full_name|urlencode }}" alt="{{ other.full_name }}">
+                                {% endif %}
+                            </a>
+                            <div class="lib-related-card__body">
+                                <h5><a href="{{ other.get_absolute_url }}">{{ other.full_name }}</a></h5>
+                                <span>{{ other.position }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

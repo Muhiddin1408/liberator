@@ -37,8 +37,37 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'ckeditor',
+    'ckeditor_uploader',
+    'app',
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "skin": "moono-lisa",
+        "toolbar": "Custom",
+        "toolbar_Custom": [
+            ["Bold", "Italic", "Underline", "Strike"],
+            ["NumberedList", "BulletedList", "-", "Outdent", "Indent"],
+            ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"],
+            ["Link", "Unlink", "Anchor"],
+            ["Format", "Styles", "FontSize", "TextColor"],
+            ["RemoveFormat", "Source"],
+            ["Maximize"],
+        ],
+        "height": 250,
+        "width": "100%",
+        "removePlugins": "stylesheetparser",
+        "extraPlugins": ",".join(["uploadimage", "autolink", "autoembed"]),
+        "tabSpaces": 4,
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,27 +1,80 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+from django.utils.text import slugify
+
+try:
+    from ckeditor.fields import RichTextField
+except ImportError:
+    RichTextField = models.TextField
 
 
 class Staff(models.Model):
-    ROLE_CHOICES = (
-        ("lawyer", "Lawyer"),
-        ("assistant", "Assistant"),
-        ("secretary", "Secretary"),
-        ("accountant", "Accountant"),
-        ("admin", "Administrator"),
+    full_name = models.CharField("F.I.O", max_length=200)
+    position = models.CharField("Lavozim", max_length=200)
+    short_description = models.CharField(
+        "Qisqa tavsif",
+        max_length=300,
+        blank=True,
+        help_text="Card ostida ko'rinadigan 1-2 qatorlik qisqa matn.",
+    )
+    specialization = RichTextField("Mutaxassislik", blank=True)
+    practice = RichTextField("Amaliyot", blank=True)
+
+    image = models.ImageField(
+        "Rasm",
+        upload_to="staff/%Y/%m/",
+        blank=True,
+        null=True,
+        help_text="Tavsiya: 600x700px, kvadratga yaqin format.",
     )
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="staff")
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
-    phone_number = models.CharField(max_length=20, blank=True, null=True)
-    hire_date = models.DateField(auto_now_add=True)
-    specialization = models.CharField(max_length=100, blank=True, null=True)
-    is_active = models.BooleanField(default=True)
-    notes = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to="staff/%Y/%m/%d", blank=True, null=True)
+    phone = models.CharField("Telefon", max_length=32, blank=True)
+    email = models.EmailField("Email", blank=True)
+    telegram = models.URLField("Telegram", blank=True)
+    linkedin = models.URLField("LinkedIn", blank=True)
+
+    slug = models.SlugField("Slug", max_length=220, unique=True, blank=True)
+    order = models.PositiveIntegerField("Tartib", default=0, db_index=True)
+    is_active = models.BooleanField("Faol", default=True, db_index=True)
+
+    created_at = models.DateTimeField("Yaratilgan", auto_now_add=True)
+    updated_at = models.DateTimeField("Yangilangan", auto_now=True)
+
+    class Meta:
+        verbose_name = "Jamoa a'zosi"
+        verbose_name_plural = "Jamoa"
+        ordering = ("order", "id")
+        indexes = [
+            models.Index(fields=("is_active", "order")),
+        ]
 
     def __str__(self):
-        return f"{self.user}"
+        return self.full_name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base = slugify(self.full_name, allow_unicode=False) or "staff"
+            slug = base
+            i = 2
+            qs = Staff.objects.exclude(pk=self.pk)
+            while qs.filter(slug=slug).exists():
+                slug = f"{base}-{i}"
+                i += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("team_detail", kwargs={"slug": self.slug})
+
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, "url"):
+            try:
+                return self.image.url
+            except ValueError:
+                pass
+        return None
 
 
 class ServiceCategory(models.Model):
@@ -59,9 +112,6 @@ class Service(models.Model):
     def __str__(self):
         return f"{self.title} ({self.category.name})"
 
-from django.db import models
-from django.contrib.auth.models import User
-
 
 class CaseStatistic(models.Model):
     CASE_TYPE_CHOICES = (
@@ -74,10 +124,10 @@ class CaseStatistic(models.Model):
     case_type = models.CharField(max_length=20, choices=CASE_TYPE_CHOICES)
     staff = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="cases")
     service = models.ForeignKey("Service", on_delete=models.SET_NULL, null=True, blank=True, related_name="cases")
-    client_name = models.CharField(max_length=200)              # mijoz kim
-    opened_at = models.DateField(auto_now_add=True)             # ish ochilgan sana
-    closed_at = models.DateField(blank=True, null=True)         # yopilgan sana (agar yopilgan bo‘lsa)
-    status = models.CharField(max_length=50, default="open")    # open / closed / pending
+    client_name = models.CharField(max_length=200)
+    opened_at = models.DateField(auto_now_add=True)
+    closed_at = models.DateField(blank=True, null=True)
+    status = models.CharField(max_length=50, default="open")
     notes = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -89,7 +139,7 @@ class CaseStatistic(models.Model):
 
 
 class Partner(models.Model):
-    name = models.CharField(max_length=200)  # Hamkor nomi
+    name = models.CharField(max_length=200)
     partner_type = models.CharField(
         max_length=50,
         choices=(

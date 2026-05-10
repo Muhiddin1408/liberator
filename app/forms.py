@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import Staff
 
 
@@ -6,17 +7,29 @@ class StaffForm(forms.ModelForm):
     class Meta:
         model = Staff
         fields = [
-            "user",
-            "role",
-            "phone_number",
+            "full_name",
+            "position",
+            "short_description",
             "specialization",
+            "practice",
+            "image",
+            "phone",
+            "email",
+            "telegram",
+            "linkedin",
+            "slug",
+            "order",
             "is_active",
-            "notes",
         ]
         widgets = {
-            "role": forms.Select(attrs={"class": "form-control"}),
-            "phone_number": forms.TextInput(attrs={"class": "form-control"}),
-            "specialization": forms.TextInput(attrs={"class": "form-control"}),
+            "full_name": forms.TextInput(attrs={"class": "form-control"}),
+            "position": forms.TextInput(attrs={"class": "form-control"}),
+            "short_description": forms.TextInput(attrs={"class": "form-control"}),
+            "phone": forms.TextInput(attrs={"class": "form-control"}),
+            "email": forms.EmailInput(attrs={"class": "form-control"}),
+            "telegram": forms.URLInput(attrs={"class": "form-control"}),
+            "linkedin": forms.URLInput(attrs={"class": "form-control"}),
+            "slug": forms.TextInput(attrs={"class": "form-control"}),
+            "order": forms.NumberInput(attrs={"class": "form-control"}),
             "is_active": forms.CheckboxInput(attrs={"class": "form-check-input"}),
-            "notes": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
         }
