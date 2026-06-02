@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.text import Truncator
-from modeltranslation.admin import TabbedTranslationAdmin
 
 from app.models import ServiceCategory, Staff, Service, Partner
 
@@ -18,7 +17,7 @@ class ServiceCategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Staff)
-class StaffAdmin(TabbedTranslationAdmin):
+class StaffAdmin(admin.ModelAdmin):
     list_display = (
         "thumb",
         "full_name",
@@ -30,7 +29,11 @@ class StaffAdmin(TabbedTranslationAdmin):
     list_display_links = ("thumb", "full_name")
     list_editable = ("order", "is_active")
     list_filter = ("is_active", "position")
-    search_fields = ("full_name", "position", "specialization", "practice", "email", "phone")
+    search_fields = (
+        "full_name", "full_name_ru", "full_name_en",
+        "position", "position_ru", "position_en",
+        "specialization", "practice", "email", "phone",
+    )
     prepopulated_fields = {"slug": ("full_name",)}
     readonly_fields = ("created_at", "updated_at", "image_preview")
     ordering = ("order", "id")
@@ -39,17 +42,20 @@ class StaffAdmin(TabbedTranslationAdmin):
     actions = ("make_active", "make_inactive")
 
     fieldsets = (
-        ("Asosiy ma'lumotlar", {
-            "fields": ("full_name", "position", "slug", "short_description", "image", "image_preview"),
+        ("O'zbekcha", {
+            "fields": ("full_name", "position", "short_description", "specialization", "practice"),
         }),
-        ("Professional ma'lumotlar", {
-            "fields": ("specialization", "practice"),
+        ("Русский", {
+            "fields": ("full_name_ru", "position_ru", "specialization_ru", "practice_ru"),
+        }),
+        ("English", {
+            "fields": ("full_name_en", "position_en", "specialization_en", "practice_en"),
+        }),
+        ("Rasm va asosiy sozlamalar", {
+            "fields": ("slug", "image", "image_preview", "order", "is_active"),
         }),
         ("Aloqa va ijtimoiy tarmoqlar", {
             "fields": ("phone", "email", "telegram", "linkedin"),
-        }),
-        ("Ko'rsatish sozlamalari", {
-            "fields": ("order", "is_active"),
         }),
         ("Tizim", {
             "classes": ("collapse",),

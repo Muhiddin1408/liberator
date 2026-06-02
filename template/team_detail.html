@@ -5,9 +5,9 @@
 <section class="page-header">
     <div class="page-header__bg"></div>
     <div class="container">
-        <h2 class="page-header__title">{{ staff.full_name }}</h2>
+        <h2 class="page-header__title">{{ staff.localized_full_name }}</h2>
         <p style="color:#c9a452; margin-top: 8px; font-weight: 600; letter-spacing: .4px;">
-            {{ staff.position }}
+            {{ staff.localized_position }}
         </p>
     </div>
 </section>
@@ -97,10 +97,10 @@
             <aside>
                 <div class="lib-detail__media">
                     {% if staff.image_url %}
-                        <img src="{{ staff.image_url }}" alt="{{ staff.full_name }} – {{ staff.position }}">
+                        <img src="{{ staff.image_url }}" alt="{{ staff.localized_full_name }} – {{ staff.localized_position }}">
                     {% else %}
-                        <img src="https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=800&name={{ staff.full_name|urlencode }}"
-                             alt="{{ staff.full_name }}">
+                        <img src="https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=800&name={{ staff.localized_full_name|urlencode }}"
+                             alt="{{ staff.localized_full_name }}">
                     {% endif %}
                 </div>
 
@@ -135,32 +135,32 @@
             </aside>
 
             <div class="lib-detail__body">
-                <h1 class="lib-detail__name">{{ staff.full_name }}</h1>
-                <div class="lib-detail__role">{{ staff.position }}</div>
+                <h1 class="lib-detail__name">{{ staff.localized_full_name }}</h1>
+                <div class="lib-detail__role">{{ staff.localized_position }}</div>
 
                 {% if staff.short_description %}
                     <p class="lib-detail__lead">{{ staff.short_description }}</p>
                 {% endif %}
 
-                {% if staff.specialization %}
+                {% if staff.localized_specialization %}
                     <div class="lib-detail__block">
                         <h2 class="lib-detail__heading">
                             {% if current_lang == "uz" %}Mutaxassislik
                             {% elif current_lang == "ru" %}Специализация
                             {% else %}Specialization{% endif %}
                         </h2>
-                        <div class="lib-detail__rich">{{ staff.specialization|safe }}</div>
+                        <div class="lib-detail__rich">{{ staff.localized_specialization|safe }}</div>
                     </div>
                 {% endif %}
 
-                {% if staff.practice %}
+                {% if staff.localized_practice %}
                     <div class="lib-detail__block">
                         <h2 class="lib-detail__heading">
                             {% if current_lang == "uz" %}Amaliyot
                             {% elif current_lang == "ru" %}Практика
                             {% else %}Practice{% endif %}
                         </h2>
-                        <div class="lib-detail__rich">{{ staff.practice|safe }}</div>
+                        <div class="lib-detail__rich">{{ staff.localized_practice|safe }}</div>
                     </div>
                 {% endif %}
             </div>
@@ -178,14 +178,14 @@
                         <div class="lib-related-card">
                             <a href="{{ other.get_absolute_url }}" class="lib-related-card__img" style="display:block;">
                                 {% if other.image_url %}
-                                    <img src="{{ other.image_url }}" alt="{{ other.full_name }}">
+                                    <img src="{{ other.image_url }}" alt="{{ other.localized_full_name }}">
                                 {% else %}
-                                    <img src="https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=400&name={{ other.full_name|urlencode }}" alt="{{ other.full_name }}">
+                                    <img src="https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=400&name={{ other.localized_full_name|urlencode }}" alt="{{ other.localized_full_name }}">
                                 {% endif %}
                             </a>
                             <div class="lib-related-card__body">
-                                <h5><a href="{{ other.get_absolute_url }}">{{ other.full_name }}</a></h5>
-                                <span>{{ other.position }}</span>
+                                <h5><a href="{{ other.get_absolute_url }}">{{ other.localized_full_name }}</a></h5>
+                                <span>{{ other.localized_position }}</span>
                             </div>
                         </div>
                     {% endfor %}

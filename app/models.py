@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.translation import get_language
 
 try:
     from ckeditor.fields import RichTextField
@@ -10,6 +11,8 @@ except ImportError:
 
 
 class Staff(models.Model):
+    # --- O'zbekcha (default / asosiy til) ---
+    # DIQQAT: quyidagi 4 ta maydon UZ qiymati bo'lib qoladi, o'zgartirilmaydi.
     full_name = models.CharField("F.I.O", max_length=200)
     position = models.CharField("Lavozim", max_length=200)
     short_description = models.CharField(
@@ -20,6 +23,18 @@ class Staff(models.Model):
     )
     specialization = RichTextField("Mutaxassislik", blank=True)
     practice = RichTextField("Amaliyot", blank=True)
+
+    # --- Русский (RU tarjimalari) ---
+    full_name_ru = models.CharField("F.I.O (RU)", max_length=200, blank=True)
+    position_ru = models.CharField("Lavozim (RU)", max_length=200, blank=True)
+    specialization_ru = RichTextField("Mutaxassislik (RU)", blank=True)
+    practice_ru = RichTextField("Amaliyot (RU)", blank=True)
+
+    # --- English (EN tarjimalari) ---
+    full_name_en = models.CharField("F.I.O (EN)", max_length=200, blank=True)
+    position_en = models.CharField("Lavozim (EN)", max_length=200, blank=True)
+    specialization_en = RichTextField("Mutaxassislik (EN)", blank=True)
+    practice_en = RichTextField("Amaliyot (EN)", blank=True)
 
     image = models.ImageField(
         "Rasm",
@@ -66,6 +81,36 @@ class Staff(models.Model):
 
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"slug": self.slug})
+
+    # --- Tilga moslangan (localized) qiymatlar ---
+    def _localized(self, field):
+        """Aktiv tilga mos maydon qiymatini qaytaradi.
+
+        ru/en -> `<field>_ru` / `<field>_en`. Agar qiymat bo'sh bo'lsa yoki
+        til uz bo'lsa -> asosiy (UZ) `<field>` qiymatiga qaytadi (fallback).
+        """
+        lang = (get_language() or "uz")[:2]
+        if lang in ("ru", "en"):
+            value = getattr(self, f"{field}_{lang}", "")
+            if value:
+                return value
+        return getattr(self, field)
+
+    @property
+    def localized_full_name(self):
+        return self._localized("full_name")
+
+    @property
+    def localized_position(self):
+        return self._localized("position")
+
+    @property
+    def localized_specialization(self):
+        return self._localized("specialization")
+
+    @property
+    def localized_practice(self):
+        return self._localized("practice")
 
     @property
     def image_url(self):

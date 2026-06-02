@@ -31,9 +31,6 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    # 'modeltranslation' admin integratsiyasi ishlashi uchun
-    # 'django.contrib.admin' dan OLDIN turishi shart.
-    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,14 +139,6 @@ LANGUAGES = [
     ('ru', _('Russian')),
     ('en', _('English')),
 ]
-
-# --- django-modeltranslation ---
-# Tarjima qilinadigan maydonlarning til variantlari (full_name_uz, full_name_ru, ...).
-# DEFAULT_LANGUAGE — boshqa tilda qiymat bo'lmaganda zaxira (fallback) sifatida ishlatiladi.
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
-MODELTRANSLATION_LANGUAGES = ('uz', 'ru', 'en')
-# Bo'sh tarjimada avtomatik DEFAULT_LANGUAGE qiymatiga qaytadi.
-MODELTRANSLATION_FALLBACK_LANGUAGES = ('uz', 'ru', 'en')
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),

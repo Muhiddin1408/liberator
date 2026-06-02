@@ -100,11 +100,11 @@
                 <article class="lib-team-card wow fadeInUp" data-wow-delay="{{ forloop.counter0|add:'0' }}00ms">
                     <div class="lib-team-card__image">
                         {% if staff.image_url %}
-                            <img src="{{ staff.image_url }}" alt="{{ staff.full_name }} – {{ staff.position }}" loading="lazy">
+                            <img src="{{ staff.image_url }}" alt="{{ staff.localized_full_name }} – {{ staff.localized_position }}" loading="lazy">
                         {% else %}
                             <img src="{% static 'index_files/default-avatar.svg' %}"
-                                 alt="{{ staff.full_name }}" loading="lazy"
-                                 onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=600&name={{ staff.full_name|urlencode }}';">
+                                 alt="{{ staff.localized_full_name }}" loading="lazy"
+                                 onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?background=1a1a1a&color=c9a452&size=600&name={{ staff.localized_full_name|urlencode }}';">
                         {% endif %}
 
                         <div class="lib-team-card__social">
@@ -125,16 +125,16 @@
 
                     <div class="lib-team-card__body">
                         <h3 class="lib-team-card__name">
-                            <a href="{{ staff.get_absolute_url }}">{{ staff.full_name }}</a>
+                            <a href="{{ staff.get_absolute_url }}">{{ staff.localized_full_name }}</a>
                         </h3>
-                        <div class="lib-team-card__role">{{ staff.position }}</div>
+                        <div class="lib-team-card__role">{{ staff.localized_position }}</div>
 
                         {% if staff.short_description %}
                             <p class="lib-team-card__desc">{{ staff.short_description }}</p>
                         {% endif %}
 
-                        {% if staff.specialization %}
-                            <div class="lib-team-card__spec">{{ staff.specialization|striptags|truncatewords:22 }}</div>
+                        {% if staff.localized_specialization %}
+                            <div class="lib-team-card__spec">{{ staff.localized_specialization|striptags|truncatewords:22 }}</div>
                         {% endif %}
 
                         <a href="{{ staff.get_absolute_url }}" class="lib-team-card__more">
