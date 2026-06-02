@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.text import Truncator
+from modeltranslation.admin import TabbedTranslationAdmin
 
 from app.models import ServiceCategory, Staff, Service, Partner
 
@@ -17,7 +18,7 @@ class ServiceCategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Staff)
-class StaffAdmin(admin.ModelAdmin):
+class StaffAdmin(TabbedTranslationAdmin):
     list_display = (
         "thumb",
         "full_name",
