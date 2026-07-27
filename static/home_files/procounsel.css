@@ -14596,7 +14596,7 @@ body.megamenu-popup-active .mobile-nav__content {
   font-size: 75px;
   line-height: 80px;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: none !important;
   display: inline-block;
   overflow: hidden;
   margin: 0 0 37px;

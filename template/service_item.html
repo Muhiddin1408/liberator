@@ -15,13 +15,13 @@
                                     {% for i in service_category%}
                                     <li class=""><a href="{% url 'service' i.pk%}">
                                         {% if current_lang == "uz" %}
-                                                {{i.name}}
+                                                {{i.name|lower|capfirst}}
                                             {% elif current_lang == "ru" %}
-                                                {{i.name_ru}}
+                                                {{i.name_ru|lower|capfirst}}
                                             {% elif current_lang == "en" %}
-                                                {{i.name_en}}
+                                                {{i.name_en|lower|capfirst}}
                                             {% else %}
-                                                {{i.name}}
+                                                {{i.name|lower|capfirst}}
                                             {% endif %}<i class="fa fa-arrow-right"></i></a></li>
                                     {%endfor%}
                                 </ul><!-- /.list-unstyled service-sidebar__nav -->
