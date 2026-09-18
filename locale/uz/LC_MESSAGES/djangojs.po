@@ -1,0 +1,75 @@
+# Admin panel (Django admin + Jazzmin) uchun o'zbekcha tarjimalar.
+# Django'ning o'z uz tarjimasi to'liq emas — bu fayl faqat yetishmayotgan matnlarni to'ldiradi.
+# LOCALE_PATHS dagi tarjima Django va paketlarnikidan ustun turadi.
+msgid ""
+msgstr ""
+"Project-Id-Version: liberator\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid ""
+"You have selected an action, but you haven’t saved your changes to "
+"individual fields yet. Please click OK to save. You’ll need to re-run the "
+"action."
+msgstr ""
+"Siz amal tanladingiz, lekin maydonlardagi o‘zgarishlar hali saqlanmagan. "
+"Saqlash uchun OK ni bosing, so‘ng amalni qayta bajaring."
+
+msgid ""
+"You have selected an action, and you haven’t made any changes on individual "
+"fields. You’re probably looking for the Go button rather than the Save "
+"button."
+msgstr ""
+"Siz amal tanladingiz va maydonlarni o‘zgartirmadingiz. Ehtimol, sizga "
+"“Saqlash” emas, “Bajarish” tugmasi kerak."
+
+msgctxt "abbrev. month January"
+msgid "Jan"
+msgstr "Yan"
+
+msgctxt "abbrev. month February"
+msgid "Feb"
+msgstr "Fev"
+
+msgctxt "abbrev. month March"
+msgid "Mar"
+msgstr "Mar"
+
+msgctxt "abbrev. month April"
+msgid "Apr"
+msgstr "Apr"
+
+msgctxt "abbrev. month May"
+msgid "May"
+msgstr "May"
+
+msgctxt "abbrev. month June"
+msgid "Jun"
+msgstr "Iyn"
+
+msgctxt "abbrev. month July"
+msgid "Jul"
+msgstr "Iyl"
+
+msgctxt "abbrev. month August"
+msgid "Aug"
+msgstr "Avg"
+
+msgctxt "abbrev. month September"
+msgid "Sep"
+msgstr "Sen"
+
+msgctxt "abbrev. month October"
+msgid "Oct"
+msgstr "Okt"
+
+msgctxt "abbrev. month November"
+msgid "Nov"
+msgstr "Noy"
+
+msgctxt "abbrev. month December"
+msgid "Dec"
+msgstr "Dek"

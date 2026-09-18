@@ -8,7 +8,7 @@ stored in the User-linked Staff table will be lost — re-enter them through
 the admin after running ``python manage.py migrate``.
 """
 from django.db import migrations, models
-import ckeditor.fields
+
 
 
 class Migration(migrations.Migration):
@@ -30,8 +30,8 @@ class Migration(migrations.Migration):
                     help_text="Card ostida ko'rinadigan 1-2 qatorlik qisqa matn.",
                     verbose_name="Qisqa tavsif",
                 )),
-                ("specialization", ckeditor.fields.RichTextField(blank=True, verbose_name="Mutaxassislik")),
-                ("practice", ckeditor.fields.RichTextField(blank=True, verbose_name="Amaliyot")),
+                ("specialization", models.TextField(blank=True, verbose_name="Mutaxassislik")),
+                ("practice", models.TextField(blank=True, verbose_name="Amaliyot")),
                 ("image", models.ImageField(
                     blank=True, null=True, upload_to="staff/%Y/%m/",
                     help_text="Tavsiya: 600x700px, kvadratga yaqin format.",

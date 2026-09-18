@@ -1,0 +1,9 @@
+{% load liberator %}
+<div class="stats">
+    {% for item in achievements %}
+    <div class="stat reveal">
+        <div class="stat__value">{{ item.value }}</div>
+        <div class="stat__label">{{ item|tr:'label' }}</div>
+    </div>
+    {% endfor %}
+</div>

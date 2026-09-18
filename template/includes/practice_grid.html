@@ -1,0 +1,11 @@
+{% load i18n liberator %}
+<div class="practice-grid">
+    {% for category in categories %}
+    <a class="practice reveal" href="{{ category.get_absolute_url }}">
+        <span class="practice__num">{% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}</span>
+        <h3>{{ category|tr:'name' }}</h3>
+        {% with desc=category|tr:'description' %}{% if desc %}<p>{{ desc|striptags|truncatewords:24 }}</p>{% endif %}{% endwith %}
+        <span class="link-arrow">{% translate "Batafsil" %} {% icon "arrow" %}</span>
+    </a>
+    {% endfor %}
+</div>

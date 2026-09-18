@@ -1,0 +1,9 @@
+{% load liberator %}
+<div class="faq">
+    {% for faq in faqs %}
+    <details>
+        <summary>{{ faq|tr:'question' }} {% icon "chevron" %}</summary>
+        <div class="faq__answer">{{ faq|tr:'answer'|linebreaks }}</div>
+    </details>
+    {% endfor %}
+</div>

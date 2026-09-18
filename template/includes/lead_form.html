@@ -1,0 +1,40 @@
+{% load i18n liberator %}
+<form method="post" action="{% url 'lead_submit' %}" class="form" data-lead-form novalidate>
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+    <div class="hp" aria-hidden="true">
+        <label for="{{ form.website.auto_id }}">Website</label>
+        <input type="text" name="website" id="{{ form.website.auto_id }}" tabindex="-1" autocomplete="off">
+    </div>
+    {% if form.non_field_errors %}
+    <div class="alerts">{% for error in form.non_field_errors %}<p class="alert">{{ error }}</p>{% endfor %}</div>
+    {% endif %}
+
+    {% if compact %}
+        {% include "includes/form_field.html" with field=form.full_name %}
+        {% include "includes/form_field.html" with field=form.phone %}
+    {% else %}
+        <div class="form__grid">
+            {% include "includes/form_field.html" with field=form.full_name %}
+            {% include "includes/form_field.html" with field=form.phone %}
+            {% include "includes/form_field.html" with field=form.email %}
+            {% include "includes/form_field.html" with field=form.service %}
+        </div>
+        {% include "includes/form_field.html" with field=form.message %}
+    {% endif %}
+
+    <div class="field--check">
+        {{ form.consent }}
+        <label for="{{ form.consent.auto_id }}">
+            {% translate "Shaxsiy ma’lumotlarimni qayta ishlashga roziman" %}
+            (<a href="{% url 'privacy' %}" target="_blank">{% translate "maxfiylik siyosati" %}</a>)
+        </label>
+    </div>
+    {% if form.consent.errors %}{{ form.consent.errors }}{% endif %}
+
+    <button type="submit" class="btn{% if compact %} btn--block{% endif %}">
+        {% if compact %}{% translate "Qo‘ng‘iroq qiling" %}{% else %}{% translate "Murojaat yuborish" %}{% endif %}
+        {% icon "arrow" "i--move" %}
+    </button>
+    <p class="form__note">{% icon "lock" %} {% translate "Ma’lumotlaringiz advokatlik siri sifatida himoyalanadi va uchinchi shaxslarga berilmaydi." %}</p>
+</form>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load i18n liberator %}
+
+{% block title %}{{ article|tr:'title' }} | Liberator{% endblock %}
+{% block meta_description %}{% with s=article|tr:'summary' %}{% if s %}{{ s|truncatechars:158 }}{% else %}{{ article|tr:'body'|striptags|truncatechars:158 }}{% endif %}{% endwith %}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ article|tr:'title' }}{% endblock %}
+{% block og_description %}{% with s=article|tr:'summary' %}{% if s %}{{ s|truncatechars:158 }}{% else %}{{ article|tr:'body'|striptags|truncatechars:158 }}{% endif %}{% endwith %}{% endblock %}
+{% block og_image %}{% if article.image %}{{ site_url }}{{ article.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block schema %}{% json_ld schema %}{% endblock %}
+
+{% block content %}
+{% translate "Maqolalar" as news_title %}{% url 'news_list' as news_url %}
+{% include "includes/page_hero.html" with title=article|tr:'title' parent_title=news_title parent_url=news_url lead=article|tr:'summary' %}
+
+<section class="section">
+    <div class="container with-sidebar">
+        <article>
+            <div class="post__meta" style="margin-bottom:28px">
+                <span>{% icon "calendar" %}<time datetime="{{ article.published_at|date:'c' }}">{{ article.published_at|date:"d.m.Y" }}</time></span>
+                {% if article.author %}<a href="{{ article.author.get_absolute_url }}">{% icon "users" %}{{ article.author.localized_full_name }}</a>{% endif %}
+            </div>
+            {% if article.image %}<img class="cover" src="{{ article.image.url }}" alt="{{ article|tr:'title' }}">{% endif %}
+            <div class="prose">{{ article|tr:'body'|safe }}</div>
+
+            <div class="card block" id="form">
+                <p class="eyebrow">{% translate "Bepul konsultatsiya" %}</p>
+                <h2>{% translate "Shunga o‘xshash masala bormi?" %}</h2>
+                <p class="card__lead">{% translate "Masalangizni qisqacha yozing — advokat ish vaqtida siz bilan bog‘lanadi." %}</p>
+                {% include "includes/lead_form.html" %}
+            </div>
+        </article>
+
+        <aside class="sidebar">
+            {% if article.author %}
+            <div class="card">
+                <h3 class="card__title">{% translate "Muallif" %}</h3>
+                <a class="link-arrow" href="{{ article.author.get_absolute_url }}">{{ article.author.localized_full_name }} {% icon "arrow" %}</a>
+                <p class="card__lead" style="margin:6px 0 0">{{ article.author.localized_position }}</p>
+            </div>
+            {% endif %}
+            {% if recent %}
+            <div class="card">
+                <h3 class="card__title">{% translate "Boshqa maqolalar" %}</h3>
+                <ul class="side-nav">{% for item in recent %}<li><a href="{{ item.get_absolute_url }}">{{ item|tr:'title' }} {% icon "arrow" %}</a></li>{% endfor %}</ul>
+            </div>
+            {% endif %}
+        </aside>
+    </div>
+</section>
+{% endblock %}

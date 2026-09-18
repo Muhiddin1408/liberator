@@ -1,3 +1,22 @@
+# Maxfiy sozlamalar
+.env
+
+# Ma'lumotlar va foydalanuvchi fayllari — serverda saqlanadi, git'da emas
 db.sqlite3
-venv
-/venv
+*.sqlite3
+media/
+backups/
+var/
+
+# collectstatic natijasi (manba: static_file/)
+static/
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/

@@ -1,0 +1,46 @@
+/* Liberator admin (Jazzmin 3 / AdminLTE 4) — firma ranglari: to'q fon + oltin urg'u */
+:root { --lib-gold: #c9a452; --lib-gold-dark: #a8873d; --lib-dark: #1a1a1a; }
+
+/* Yuqori panel */
+.app-header, #jazzy-navbar { background-color: var(--lib-dark) !important; }
+#jazzy-navbar .nav-link, #jazzy-navbar .navbar-nav .nav-link { color: rgba(255, 255, 255, .85) !important; }
+#jazzy-navbar .nav-link:hover { color: var(--lib-gold) !important; }
+#jazzy-navbar .form-control { background: #2a2a2a; border-color: #3a3a3a; color: #fff; }
+#jazzy-navbar .form-control::placeholder { color: #999; }
+#jazzy-navbar .btn { color: #ccc; border-color: #3a3a3a; }
+
+/* Chap menyu */
+.app-sidebar { background-color: #111 !important; }
+.sidebar-brand { background-color: var(--lib-dark) !important; border-bottom: 1px solid #2a2a2a !important; }
+.sidebar-brand .brand-link { background: transparent !important; }
+.brand-text { color: var(--lib-gold) !important; font-weight: 600 !important; letter-spacing: .5px; }
+.app-sidebar .nav-link, .app-sidebar .nav-header, .app-sidebar .user-panel a { color: rgba(255, 255, 255, .8) !important; }
+.app-sidebar .nav-link:hover { color: var(--lib-gold) !important; background: rgba(201, 164, 82, .08) !important; }
+.app-sidebar .nav-link.active {
+  background-color: var(--lib-gold) !important; color: #fff !important; box-shadow: none !important;
+}
+.app-sidebar .nav-link.active .nav-icon { color: #fff !important; }
+.app-sidebar .nav-icon { color: var(--lib-gold); }
+
+/* Tugmalar va havolalar */
+.btn-primary, .btn-primary:not(:disabled):not(.disabled):active {
+  background-color: var(--lib-gold) !important; border-color: var(--lib-gold) !important; color: #fff !important;
+}
+.btn-primary:hover { background-color: var(--lib-gold-dark) !important; border-color: var(--lib-gold-dark) !important; }
+.app-main a:not(.btn):not(.nav-link) { color: var(--lib-gold-dark); }
+.app-main a:not(.btn):not(.nav-link):hover { color: var(--lib-gold); }
+.nav-tabs .nav-link.active { border-top: 3px solid var(--lib-gold) !important; font-weight: 600; color: var(--lib-dark) !important; }
+.nav-tabs .nav-link { color: var(--lib-gold-dark); }
+.page-item.active .page-link { background-color: var(--lib-gold); border-color: var(--lib-gold); }
+.card-outline { border-top: 3px solid var(--lib-gold) !important; }
+
+/* Kirish sahifasi */
+.login-page { background: linear-gradient(135deg, #111 0%, #2a2a2a 100%) !important; }
+.login-logo img, .login-box img { max-height: 120px; width: auto; }
+
+/* CKEditor 5 tablar ichida to'liq kenglikda */
+.ck-editor { width: 100% !important; }
+.ck-editor__editable { min-height: 200px; }
+
+/* CKEditor so'z hisoblagichining o'zbekcha tarjimasi yo'q — kerak emas, yashiriladi */
+.word-count { display: none !important; }

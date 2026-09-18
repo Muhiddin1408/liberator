@@ -1,0 +1,6 @@
+{% load i18n %}
+<div class="lang" role="group" aria-label="{% translate 'Til' %}">
+    {% for alt in language_alternates %}
+    <a href="{{ alt.url }}" hreflang="{{ alt.code }}" lang="{{ alt.code }}"{% if alt.active %} aria-current="true"{% endif %}>{{ alt.code|upper }}</a>
+    {% endfor %}
+</div>

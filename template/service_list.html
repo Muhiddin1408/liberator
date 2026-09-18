@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% translate "Yuridik xizmatlar" %} | Liberator{% endblock %}
+{% block og_title %}{% translate "Yuridik xizmatlar" %} | Liberator{% endblock %}
+
+{% block content %}
+{% translate "Yuridik xizmatlar" as page_title %}{% translate "Amaliyot yo‘nalishlari" as page_eyebrow %}
+{% translate "Biznes va fuqarolar uchun to‘liq yuridik hamrohlik — maslahatdan sud himoyasigacha." as page_lead %}
+{% include "includes/page_hero.html" with title=page_title eyebrow=page_eyebrow lead=page_lead %}
+
+<section class="section">
+    <div class="container">
+        {% if categories %}
+            {% include "includes/practice_grid.html" %}
+        {% else %}
+            <div class="empty">{% translate "Xizmatlar tez orada qo‘shiladi." %}</div>
+        {% endif %}
+    </div>
+</section>
+
+{% include "includes/cta_band.html" %}
+{% endblock %}

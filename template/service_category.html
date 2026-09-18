@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load i18n liberator %}
+
+{% block title %}{{ category|tr:'name' }} — {% translate "advokat xizmatlari" %} | Liberator{% endblock %}
+{% block meta_description %}{% with desc=category|tr:'description' %}{% if desc %}{{ desc|striptags|truncatechars:158 }}{% else %}{{ block.super }}{% endif %}{% endwith %}{% endblock %}
+{% block og_title %}{{ category|tr:'name' }} | Liberator{% endblock %}
+{% block og_description %}{% with desc=category|tr:'description' %}{% if desc %}{{ desc|striptags|truncatechars:158 }}{% else %}{{ block.super }}{% endif %}{% endwith %}{% endblock %}
+{% block og_image %}{% if category.image %}{{ site_url }}{{ category.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block schema %}{% json_ld faq_schema %}{% endblock %}
+
+{% block content %}
+{% translate "Xizmatlar" as services_title %}{% url 'service_list' as services_url %}{% translate "Amaliyot yo‘nalishi" as page_eyebrow %}
+{% include "includes/page_hero.html" with title=category|tr:'name' parent_title=services_title parent_url=services_url eyebrow=page_eyebrow %}
+
+<section class="section">
+    <div class="container with-sidebar">
+        <div>
+            {% if category.image %}<img class="cover" src="{{ category.image.url }}" alt="{{ category|tr:'name' }}">{% endif %}
+
+            {% with desc=category|tr:'description' %}
+            {% if desc %}<div class="prose block">{{ desc|linebreaks }}</div>{% endif %}
+            {% endwith %}
+
+            {% if services %}
+            <div class="block">
+                <h2 class="block__title">{% translate "Ushbu yo‘nalishdagi xizmatlar" %}</h2>
+                <div class="service-list">
+                    {% for service in services %}
+                    <a class="service-item" href="{{ service.get_absolute_url }}">
+                        <div>
+                            <h3>{{ service|tr:'title' }}</h3>
+                            {% with desc=service|tr:'description' %}{% if desc %}<p>{{ desc|striptags|truncatewords:26 }}</p>{% endif %}{% endwith %}
+                        </div>
+                        {% icon "arrow-up-right" %}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if faqs %}
+            <div class="block">
+                <h2 class="block__title">{% translate "Ko‘p beriladigan savollar" %}</h2>
+                {% include "includes/faq.html" %}
+            </div>
+            {% endif %}
+
+            <div class="card block" id="form">
+                <p class="eyebrow">{% translate "Bepul konsultatsiya" %}</p>
+                <h2>{% translate "Shu masala bo‘yicha murojaat qiling" %}</h2>
+                <p class="card__lead">{% translate "Masalangizni qisqacha yozing — advokat ish vaqtida siz bilan bog‘lanadi." %}</p>
+                {% include "includes/lead_form.html" %}
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="card">
+                <h3 class="card__title">{% translate "Barcha xizmatlar" %}</h3>
+                <ul class="side-nav">
+                    {% for item in menu_categories %}
+                    <li><a href="{{ item.get_absolute_url }}"{% if item.pk == category.pk %} aria-current="page"{% endif %}>{{ item|tr:'name' }} {% icon "arrow" %}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="card card--ink">
+                <h3 class="card__title">{% translate "Tezkor maslahat" %}</h3>
+                <p class="card__lead">{% translate "Ish vaqtida qo‘ng‘iroq qiling yoki raqamingizni qoldiring." %}</p>
+                <a class="btn btn--block" href="tel:{{ site.phone_primary|tel }}">{% icon "phone" %} {{ site.phone_primary|phone_display }}</a>
+                <button type="button" class="btn btn--ghost btn--block" style="margin-top:10px" data-callback-open>{% translate "Qayta qo‘ng‘iroq" %}</button>
+            </div>
+        </aside>
+    </div>
+</section>
+{% endblock %}

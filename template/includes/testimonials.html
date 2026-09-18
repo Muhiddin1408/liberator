@@ -1,0 +1,13 @@
+{% load liberator %}
+<div class="grid grid--3">
+    {% for item in testimonials %}
+    <figure class="testimonial reveal">
+        {% icon "quote" %}
+        <blockquote>{{ item|tr:'text'|linebreaksbr }}</blockquote>
+        <figcaption>
+            {% if item.photo %}<img src="{{ item.photo.url }}" alt="" loading="lazy">{% endif %}
+            <div><strong>{{ item.author_name }}</strong>{% if item.author_position %}<span>{{ item|tr:'author_position' }}</span>{% endif %}</div>
+        </figcaption>
+    </figure>
+    {% endfor %}
+</div>

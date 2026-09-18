@@ -1,0 +1,16 @@
+{% load i18n liberator %}
+<article class="post reveal">
+    <a class="post__media" href="{{ article.get_absolute_url }}" tabindex="-1" aria-hidden="true">
+        {% if article.image %}<img src="{{ article.image.url }}" alt="" loading="lazy">
+        {% else %}<span class="post__placeholder">{% icon "scale" %}</span>{% endif %}
+    </a>
+    <div class="post__body">
+        <div class="post__meta">
+            <span>{% icon "calendar" %}<time datetime="{{ article.published_at|date:'c' }}">{{ article.published_at|date:"d.m.Y" }}</time></span>
+            {% if article.author %}<span>{% icon "users" %}{{ article.author.localized_full_name }}</span>{% endif %}
+        </div>
+        <h3><a href="{{ article.get_absolute_url }}">{{ article|tr:'title' }}</a></h3>
+        {% with summary=article|tr:'summary' %}{% if summary %}<p>{{ summary }}</p>{% endif %}{% endwith %}
+        <a class="link-arrow" href="{{ article.get_absolute_url }}">{% translate "O‘qish" %} {% icon "arrow" %}</a>
+    </div>
+</article>

@@ -1,0 +1,748 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: liberator\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: template/news_list.html
+#, python-format
+msgid "%(n)s-sahifa"
+msgstr "страница %(n)s"
+
+#: template/team_detail.html
+#, python-format
+msgid "%(name)sga yozish"
+msgstr "Написать: %(name)s"
+
+#: template/base.html
+msgid "15 daqiqada"
+msgstr "За 15 минут"
+
+#: template/thanks.html
+msgid ""
+"Advokatimiz ish vaqtida siz bilan tez orada bog‘lanadi. Shoshilinch masala "
+"bo‘lsa, qo‘ng‘iroq qiling:"
+msgstr ""
+"Наш адвокат свяжется с вами в рабочее время. Если вопрос срочный — "
+"позвоните:"
+
+#: template/news_list.html
+msgid ""
+"Advokatlarimizning amaliy maslahatlari va qonunchilikdagi muhim "
+"o‘zgarishlar."
+msgstr ""
+"Практические советы наших адвокатов и важные изменения в законодательстве."
+
+#: template/about.html
+msgid ""
+"Advokatlik firma “LIBERATOR” boshqaruvchi sherik Batirov Farrux Yusupovich "
+"tomonidan tadbirkorlik subyektlari va fuqarolarga malakali yuridik xizmatlar"
+" ko‘rsatish maqsadida tashkil etilgan."
+msgstr ""
+"Адвокатская фирма «LIBERATOR» была основана управляющим партнером Батировым "
+"Фаррухом Юсуповичем в целях оказания квалифицированных юридических услуг "
+"субъектам предпринимательства и гражданам."
+
+#: template/base.html
+msgid "Advokatlik firmasi"
+msgstr "Адвокатская фирма"
+
+#: template/about.html template/index.html
+msgid "Advokatlik siri qonun bilan himoyalangan — ma’lumotlaringiz xavfsiz."
+msgstr "Адвокатская тайна охраняется законом — ваши данные в безопасности."
+
+#: template/404.html template/base.html template/contact.html
+#: template/team_detail.html
+msgid "Aloqa"
+msgstr "Контакты"
+
+#: template/contact.html
+msgid "Aloqa — bepul konsultatsiya"
+msgstr "Контакты — бесплатная консультация"
+
+#: template/about.html template/team_detail.html
+msgid "Amaliyot"
+msgstr "Практика"
+
+#: template/service_category.html
+msgid "Amaliyot yo‘nalishi"
+msgstr "Направление практики"
+
+#: template/index.html template/service_list.html
+msgid "Amaliyot yo‘nalishlari"
+msgstr "Направления практики"
+
+#: template/index.html
+msgid "Aniq harakat rejasi, muddatlar va xarajatlarni kelishamiz."
+msgstr "Согласовываем чёткий план действий, сроки и стоимость."
+
+#: template/about.html template/index.html
+msgid "Asos solingan"
+msgstr "Год"
+
+#: template/base.html
+msgid "Asosiy mazmunga o‘tish"
+msgstr "Перейти к содержимому"
+
+#: template/base.html
+msgid "Asosiy menyu"
+msgstr "Главное меню"
+
+#: template/index.html
+msgid "Barcha maqolalar"
+msgstr "Все статьи"
+
+#: template/base.html template/index.html template/service_category.html
+msgid "Barcha xizmatlar"
+msgstr "Все услуги"
+
+#: template/base.html template/includes/practice_grid.html template/index.html
+msgid "Batafsil"
+msgstr "Подробнее"
+
+#: template/about.html template/index.html
+msgid "Batirov Farrux Yusupovich"
+msgstr "Батиров Фаррух Юсупович"
+
+#: template/about.html template/index.html
+msgid "Batirov Farrux Yusupovich — Liberator advokatlik firmasi rahbari"
+msgstr "Батиров Фаррух Юсупович — руководитель адвокатской фирмы Liberator"
+
+#: template/base.html template/contact.html template/includes/cta_band.html
+#: template/index.html template/news_detail.html
+#: template/service_category.html template/service_detail.html
+#: template/team_detail.html
+msgid "Bepul konsultatsiya"
+msgstr "Бесплатная консультация"
+
+#: template/about.html template/base.html
+msgid "Biz haqimizda"
+msgstr "О нас"
+
+#: template/about.html template/index.html
+msgid "Biz haqimizda nima deyishadi"
+msgstr "Что о нас говорят"
+
+#: template/about.html
+msgid ""
+"Biz korporativ huquq, qo‘shilish va sotib olish, fuqarolik, iqtisodiy, "
+"arbitraj va ma’muriy nizolarda manfaatlarni himoya qilish, jinoyat huquqi, "
+"yuridik audit (due diligence), xorijiy investitsiyalar, mehnat huquqi, "
+"bankrotlik, ko‘chmas mulk va soliq kabi sohalarda barcha turdagi yuridik "
+"xizmatlarni ko‘rsatamiz."
+msgstr ""
+"Мы оказываем весь спектр юридических услуг в таких сферах, как корпоративное"
+" право, слияния и поглощения, защита интересов в гражданских, экономических,"
+" третейских и административных спорах, уголовное право, юридический аудит "
+"(due diligence), иностранные инвестиции, трудовое право, банкротство, "
+"недвижимость и налоги."
+
+#: template/about.html
+msgid "Bizga ishonch bildirganlar"
+msgstr "Нам доверяют"
+
+#: template/about.html
+msgid "Biznes va fuqarolar uchun to‘liq yuridik hamrohlik"
+msgstr "Полное юридическое сопровождение бизнеса и граждан"
+
+#: template/index.html template/service_list.html
+msgid ""
+"Biznes va fuqarolar uchun to‘liq yuridik hamrohlik — maslahatdan sud "
+"himoyasigacha."
+msgstr ""
+"Полное юридическое сопровождение бизнеса и граждан — от консультации до "
+"защиты в суде."
+
+#: template/team.html template/team_detail.html
+msgid "Bizning jamoa"
+msgstr "Наша команда"
+
+#: template/about.html
+msgid ""
+"Bizning shiorimiz — yuqori sifatli xizmat, to‘liq maxfiylik va etik "
+"qoidalarga qat’iy rioya qilish."
+msgstr ""
+"Наш девиз — высокое качество услуг, полная конфиденциальность и строгое "
+"соблюдение этических норм."
+
+#: template/index.html
+msgid ""
+"Bizning tajribali advokatlar va yuristlar jamoamiz O‘zbekiston Respublikasi "
+"fuqarolari va xorijiy fuqarolarga, shuningdek mamlakatimiz rezident va "
+"norezident yuridik shaxslariga sifatli yuridik xizmatlar taklif etadi."
+msgstr ""
+"Наша команда опытных адвокатов и юристов предлагает гражданам Республики "
+"Узбекистан и иностранным гражданам, а также юридическим лицам — резидентам и"
+" нерезидентам нашей страны качественные юридические услуги."
+
+#: template/404.html template/base.html template/includes/page_hero.html
+msgid "Bosh sahifa"
+msgstr "Главная страница"
+
+#: template/thanks.html
+msgid "Bosh sahifaga qaytish"
+msgstr "Вернуться на главную"
+
+#: template/team_detail.html
+msgid "Boshqa jamoa a’zolari"
+msgstr "Другие члены команды"
+
+#: template/news_detail.html
+msgid "Boshqa maqolalar"
+msgstr "Другие статьи"
+
+#: template/about.html template/index.html
+msgid "Boshqaruvchi sherik"
+msgstr "Управляющий партнёр"
+
+#: template/index.html template/team_detail.html
+msgid "Butun jamoa"
+msgstr "Вся команда"
+
+#: app/forms.py
+msgid "Davom etish uchun roziligingiz kerak."
+msgstr "Для продолжения необходимо ваше согласие."
+
+#: app/forms.py
+msgid "Email (ixtiyoriy)"
+msgstr "Email (необязательно)"
+
+#: conf/settings.py
+msgid "English"
+msgstr "English"
+
+#: template/base.html
+msgid "Firma"
+msgstr "Фирма"
+
+#: template/about.html template/index.html
+msgid "Firma haqida"
+msgstr "О фирме"
+
+#: template/about.html
+msgid ""
+"Firmamizni turli sohalardagi mijozlar tanlaydi, jumladan neft-gaz sanoati, "
+"bank va moliya, chakana savdo, investitsiyalar, davlat va jamoat xizmatlari,"
+" farmatsevtika va sog‘liqni saqlash, transport xizmatlari, logistika va "
+"sun’iy intellekt."
+msgstr ""
+"Нашу фирму выбирают клиенты из различных отраслей, включая нефтегазовую "
+"промышленность, банки и финансы, розничную торговлю, инвестиции, "
+"государственные и общественные услуги, фармацевтику и здравоохранение, "
+"транспортные услуги, логистику и искусственный интеллект."
+
+#: template/index.html
+msgid ""
+"Formani to‘ldirasiz yoki qo‘ng‘iroq qilasiz — advokat siz bilan bog‘lanadi."
+msgstr "Вы заполняете форму или звоните — адвокат связывается с вами."
+
+#: template/base.html
+msgid "Foydalanish shartlari"
+msgstr "Условия использования"
+
+#: template/index.html
+msgid "Foydali huquqiy maqolalar"
+msgstr "Полезные юридические статьи"
+
+#: template/about.html template/index.html
+msgid "Har bir ishni alohida o‘rganamiz va aniq strategiya tuzamiz."
+msgstr "Изучаем каждое дело отдельно и выстраиваем чёткую стратегию."
+
+#: template/index.html
+msgid "Himoya"
+msgstr "Защита"
+
+#: template/team.html
+msgid "Hozircha xodimlar qo‘shilmagan."
+msgstr "Список сотрудников пока пуст."
+
+#: template/index.html
+msgid "Hujjatlar va vaziyatni o‘rganib, huquqiy baho beramiz."
+msgstr "Изучаем документы и ситуацию, даём правовую оценку."
+
+#: template/index.html
+msgid "Huquqiy audit (Due diligence)"
+msgstr "Правовой аудит (Due diligence)"
+
+#: template/news_list.html
+msgid "Huquqiy maqolalar va yangiliklar"
+msgstr "Юридические статьи и новости"
+
+#: template/base.html
+msgid "Huquqiy ma’lumot"
+msgstr "Правовая информация"
+
+#: template/includes/cta_band.html
+msgid "Huquqiy yordam kerakmi?"
+msgstr "Нужна юридическая помощь?"
+
+#: template/index.html
+msgid "Huquqlaringiz — <em>ishonchli himoyada</em>"
+msgstr "Ваши права — <em>под надёжной защитой</em>"
+
+#: template/about.html template/index.html
+msgid "Individual yondashuv"
+msgstr "Индивидуальный подход"
+
+#: template/index.html
+msgid "Ish tartibi"
+msgstr "Порядок работы"
+
+#: template/includes/contact_list.html
+msgid "Ish vaqti"
+msgstr "Часы работы"
+
+#: template/service_category.html
+msgid "Ish vaqtida qo‘ng‘iroq qiling yoki raqamingizni qoldiring."
+msgstr "Позвоните в рабочее время или оставьте номер."
+
+#: template/index.html
+msgid ""
+"Ishonch bildiruvchining manfaatlarini iqtisodiy, arbitraj (hakamlik), "
+"fuqarolik va ma’muriy nizolarda himoya qilish"
+msgstr ""
+"Защита интересов доверителя в экономических, третейских, гражданских и "
+"административных спорах"
+
+#: app/forms.py
+msgid "Ismingiz"
+msgstr "Ваше имя"
+
+#: template/base.html template/index.html template/team.html
+#: template/team_detail.html
+msgid "Jamoa"
+msgstr "Команда"
+
+#: template/index.html
+msgid "Jinoyat ishlari bo‘yicha advokat himoyasi"
+msgstr "Адвокатская защита по уголовным делам"
+
+#: app/views.py
+msgid ""
+"Juda ko‘p so‘rov yuborildi. Iltimos, keyinroq urinib ko‘ring yoki bizga "
+"qo‘ng‘iroq qiling."
+msgstr ""
+"Отправлено слишком много запросов. Попробуйте позже или позвоните нам."
+
+#: template/news_list.html
+msgid "Keyingi"
+msgstr "Следующая"
+
+#: template/base.html template/contact.html template/index.html
+#: template/service_detail.html
+msgid "Kontaktlar"
+msgstr "Контакты"
+
+#: template/contact.html template/service_category.html
+msgid "Ko‘p beriladigan savollar"
+msgstr "Часто задаваемые вопросы"
+
+#: template/index.html
+msgid ""
+"Liberator Advokatlik Firmasining tashkil etilishi – adolat tamoyillariga "
+"sodiq, malakali va zamonaviy yondashuvga ega yuridik xizmat ko‘rsatish "
+"tizimini yaratish maqsadidan kelib chiqqan. Bizning faoliyatimizda eng muhim"
+" tamoyil — insonning huquq va manfaatlari daxlsizligi, ularni qonuniy himoya"
+" qilish esa advokatning sharafli burchidir. Shu boisdan biz har bir ishga "
+"mas’uliyat bilan yondashamiz, puxta tahlil, aniq strategiya va "
+"professionallik orqali yuqori natijalarga erishishni maqsad qilamiz."
+msgstr ""
+"Основание адвокатской фирмы Liberator возникло из стремления создать систему"
+" юридических услуг, основанную на принципах справедливости, профессионализме"
+" и современном подходе. Наш главный принцип — неприкосновенность прав и "
+"интересов человека, а их законная защита — почётная обязанность адвоката. "
+"Поэтому мы подходим к каждому делу с ответственностью, тщательным анализом, "
+"чёткой стратегией и профессионализмом, добиваясь высоких результатов."
+
+#: template/index.html
+msgid "Liberator advokatlik firmasi rahbari"
+msgstr "Руководитель адвокатской фирмы Liberator"
+
+#: template/base.html
+msgid "Liberator — advokatlik firmasi, Toshkent"
+msgstr "Liberator — адвокатская фирма, Ташкент"
+
+#: template/includes/contact_list.html
+msgid "Manzil"
+msgstr "Адрес"
+
+#: template/base.html template/index.html template/news_detail.html
+#: template/news_list.html template/team_detail.html
+msgid "Maqolalar"
+msgstr "Статьи"
+
+#: template/news_list.html
+msgid "Maqolalar tez orada chop etiladi."
+msgstr "Статьи скоро появятся."
+
+#: app/forms.py
+msgid "Masalangizni qisqacha yozing"
+msgstr "Кратко опишите ваш вопрос"
+
+#: template/contact.html template/index.html template/news_detail.html
+#: template/service_category.html template/service_detail.html
+#: template/team_detail.html
+msgid ""
+"Masalangizni qisqacha yozing — advokat ish vaqtida siz bilan bog‘lanadi."
+msgstr "Кратко опишите ваш вопрос — адвокат свяжется с вами в рабочее время."
+
+#: app/forms.py
+msgid "Masalangizni qisqacha yozing."
+msgstr "Кратко опишите ваш вопрос."
+
+#: template/base.html
+msgid "Maxfiylik siyosati"
+msgstr "Политика конфиденциальности"
+
+#: template/includes/lead_form.html
+msgid ""
+"Ma’lumotlaringiz advokatlik siri sifatida himoyalanadi va uchinchi "
+"shaxslarga berilmaydi."
+msgstr ""
+"Ваши данные защищены адвокатской тайной и не передаются третьим лицам."
+
+#: template/base.html
+msgid "Menyu"
+msgstr "Меню"
+
+#: template/base.html
+msgid "Menyuni ochish"
+msgstr "Открыть меню"
+
+#: template/base.html
+msgid "Menyuni yopish"
+msgstr "Закрыть меню"
+
+#: template/about.html template/index.html
+msgid "Mijozlar fikri"
+msgstr "Отзывы клиентов"
+
+#: template/about.html
+msgid ""
+"Mijozlarimiz qatoriga O‘zbekistondagi eng yirik ishlab chiqarish, qurilish "
+"va xizmat ko‘rsatish korxonalari kiradi."
+msgstr ""
+"В число наших клиентов входят крупнейшие предприятия Узбекистана в сфере "
+"производства, строительства и оказания услуг."
+
+#: template/news_detail.html
+msgid "Muallif"
+msgstr "Автор"
+
+#: template/team_detail.html
+msgid "Muallif maqolalari"
+msgstr "Статьи автора"
+
+#: template/index.html
+msgid "Murojaat"
+msgstr "Обращение"
+
+#: template/includes/lead_form.html
+msgid "Murojaat yuborish"
+msgstr "Отправить заявку"
+
+#: template/index.html
+msgid "Murojaatdan natijagacha — har bosqichda siz bilan aloqadamiz."
+msgstr "От обращения до результата — мы на связи на каждом этапе."
+
+#: template/team_detail.html
+msgid "Mutaxassislik"
+msgstr "Специализация"
+
+#: template/index.html
+msgid ""
+"Muzokaralar, davlat organlari va sudda manfaatlaringizni himoya qilamiz."
+msgstr "Защищаем ваши интересы в переговорах, госорганах и суде."
+
+#: template/includes/page_hero.html
+msgid "Navigatsiya zanjiri"
+msgstr "Навигационная цепочка"
+
+#: conf/settings.py
+msgid "O'zbekcha"
+msgstr "O‘zbekcha"
+
+#: template/contact.html
+msgid "Ofis joylashuvi xaritada"
+msgstr "Расположение офиса на карте"
+
+#: template/contact.html template/index.html
+msgid "Ofisimizga keling yoki qulay usulda bog‘laning."
+msgstr "Приходите в наш офис или свяжитесь удобным способом."
+
+#: template/news_list.html
+msgid "Oldingi"
+msgstr "Предыдущая"
+
+#: template/legal_page.html
+msgid "Oxirgi yangilanish:"
+msgstr "Последнее обновление:"
+
+#: template/includes/post_card.html
+msgid "O‘qish"
+msgstr "Читать"
+
+#: template/about.html template/index.html
+msgid "O‘zbek, rus va ingliz tillarida maslahat beramiz."
+msgstr "Консультируем на узбекском, русском и английском языках."
+
+#: template/about.html template/index.html
+msgid "Professionallik, maxfiylik va natija"
+msgstr "Профессионализм, конфиденциальность и результат"
+
+#: template/about.html
+msgid ""
+"Professionallik, vazifalarni o‘z vaqtida bajarish va natijaga yo‘naltirilgan"
+" ish."
+msgstr ""
+"Профессионализм, своевременное выполнение задач и работа на результат."
+
+#: template/team_detail.html
+msgid "Profil"
+msgstr "Профиль"
+
+#: template/index.html
+msgid "Qanday ishlaymiz"
+msgstr "Как мы работаем"
+
+#: template/index.html
+msgid "Qaysi masalalarda yordam beramiz"
+msgstr "С какими вопросами мы помогаем"
+
+#: template/base.html template/service_category.html
+msgid "Qayta qo‘ng‘iroq"
+msgstr "Обратный звонок"
+
+#: template/includes/lead_form.html
+msgid "Qo‘ng‘iroq qiling"
+msgstr "Перезвоните мне"
+
+#: template/base.html
+msgid "Qo‘ng‘iroq qilish"
+msgstr "Позвонить"
+
+#: template/index.html
+msgid "Rahbar murojaati"
+msgstr "Обращение руководителя"
+
+#: template/thanks.html
+msgid "Rahmat! Murojaatingiz qabul qilindi"
+msgstr "Спасибо! Ваша заявка принята"
+
+#: template/base.html
+msgid ""
+"Raqamingizni qoldiring — ish vaqtida 15 daqiqa ichida qo‘ng‘iroq qilamiz."
+msgstr "Оставьте номер — в рабочее время перезвоним в течение 15 минут."
+
+#: app/forms.py
+msgid "Sahifa eskirgan. Iltimos, sahifani yangilab qayta yuboring."
+msgstr "Страница устарела. Обновите страницу и отправьте снова."
+
+#: template/404.html
+msgid "Sahifa topilmadi"
+msgstr "Страница не найдена"
+
+#: template/news_list.html
+msgid "Sahifalar"
+msgstr "Страницы"
+
+#: template/base.html
+msgid ""
+"Sayt qulay ishlashi va tashriflar statistikasi uchun cookie fayllardan "
+"foydalanadi."
+msgstr "Сайт использует cookie для удобной работы и статистики посещений."
+
+#: app/forms.py template/includes/lead_form.html
+msgid "Shaxsiy ma’lumotlarimni qayta ishlashga roziman"
+msgstr "Согласен(на) на обработку персональных данных"
+
+#: template/service_category.html template/service_detail.html
+msgid "Shu masala bo‘yicha murojaat qiling"
+msgstr "Обратитесь по этому вопросу"
+
+#: template/news_detail.html
+msgid "Shunga o‘xshash masala bormi?"
+msgstr "У вас похожий вопрос?"
+
+#: template/404.html
+msgid ""
+"Siz qidirgan sahifa o‘chirilgan yoki manzili o‘zgargan bo‘lishi mumkin."
+msgstr "Возможно, страница была удалена или её адрес изменился."
+
+#: template/index.html
+msgid "Sizni himoya qiladigan advokatlar"
+msgstr "Адвокаты, которые будут защищать вас"
+
+#: template/index.html
+msgid "Sizning huquqingiz — bizning himoyamiz ostida"
+msgstr "Ваши права — под нашей защитой"
+
+#: app/forms.py
+msgid "So‘rov rad etildi."
+msgstr "Запрос отклонён."
+
+#: template/index.html
+msgid "Strategiya"
+msgstr "Стратегия"
+
+#: template/index.html
+msgid "Tadbirkorlik faoliyatini to‘liq yuridik hamrohlik qilish"
+msgstr "Полное юридическое сопровождение предпринимательской деятельности"
+
+#: template/index.html
+msgid "Tahlil"
+msgstr "Анализ"
+
+#: template/about.html template/index.html
+msgid "Tajribali jamoa"
+msgstr "Опытная команда"
+
+#: template/includes/contact_list.html template/team_detail.html
+msgid "Telefon"
+msgstr "Телефон"
+
+#: app/forms.py
+msgid "Telefon raqamingiz"
+msgstr "Ваш номер телефона"
+
+#: app/forms.py
+msgid "Telefon raqamini to‘g‘ri kiriting, masalan: +998 90 123 45 67"
+msgstr "Введите корректный номер, например: +998 90 123 45 67"
+
+#: template/service_category.html
+msgid "Tezkor maslahat"
+msgstr "Быстрая консультация"
+
+#: template/includes/lang.html
+msgid "Til"
+msgstr "Язык"
+
+#: template/index.html
+msgid "Toshkentdagi advokatlik firmasi"
+msgstr "Адвокатская фирма в Ташкенте"
+
+#: template/about.html template/index.html
+msgid "To‘liq maxfiylik"
+msgstr "Полная конфиденциальность"
+
+#: template/about.html template/index.html
+msgid "Turli huquq sohalaridagi mutaxassislar bir jamoada ishlaydi."
+msgstr "Специалисты разных отраслей права работают в одной команде."
+
+#: template/team.html
+msgid ""
+"Turli huquq sohalaridagi tajribali advokatlar va yuristlar — ishingizga mos "
+"mutaxassisni tanlang."
+msgstr ""
+"Опытные адвокаты и юристы разных отраслей права — выберите специалиста под "
+"ваше дело."
+
+#: template/base.html
+msgid "Tushunarli"
+msgstr "Понятно"
+
+#: template/about.html template/index.html
+msgid "Uch tilda xizmat"
+msgstr "Работаем на трёх языках"
+
+#: template/service_category.html
+msgid "Ushbu yo‘nalishdagi xizmatlar"
+msgstr "Услуги по этому направлению"
+
+#: template/contact.html template/index.html
+msgid "Vaziyatingizni bizga yozing"
+msgstr "Опишите вашу ситуацию"
+
+#: template/contact.html template/includes/cta_band.html
+msgid ""
+"Vaziyatingizni tushuntiring — advokat ish vaqtida bog‘lanib, birinchi "
+"maslahatni bepul beradi."
+msgstr ""
+"Опишите ситуацию — адвокат свяжется в рабочее время и проведёт первую "
+"консультацию бесплатно."
+
+#: template/contact.html
+msgid "Xaritada ochish"
+msgstr "Открыть на карте"
+
+#: template/404.html template/base.html template/service_category.html
+msgid "Xizmatlar"
+msgstr "Услуги"
+
+#: template/service_list.html
+msgid "Xizmatlar tez orada qo‘shiladi."
+msgstr "Услуги скоро будут добавлены."
+
+#: template/index.html
+msgid "Xizmatlarimiz"
+msgstr "Наши услуги"
+
+#: template/base.html
+msgid "Yopish"
+msgstr "Закрыть"
+
+#: template/team_detail.html
+msgid "Yozish"
+msgstr "Написать"
+
+#: app/forms.py
+msgid "Yo‘nalish"
+msgstr "Направление"
+
+#: template/service_list.html
+msgid "Yuridik xizmatlar"
+msgstr "Юридические услуги"
+
+#: template/service_category.html
+msgid "advokat xizmatlari"
+msgstr "услуги адвоката"
+
+#: template/base.html
+msgid "advokatlik firmasi"
+msgstr "адвокатская фирма"
+
+#: template/base.html
+msgid "bosh sahifa"
+msgstr "главная страница"
+
+#: template/includes/lead_form.html
+msgid "maxfiylik siyosati"
+msgstr "политика конфиденциальности"
+
+#: template/about.html template/index.html
+msgid "yil"
+msgstr "основания"
+
+#: conf/settings.py
+msgid "Русский"
+msgstr "Русский"
+
+#: app/forms.py
+msgid "— Tanlang —"
+msgstr "— Выберите —"
+
+#: template/about.html template/index.html
+msgid ""
+"“LIBERATOR” AF – barcha turdagi yuridik xizmatlarni ko‘rsatadigan yetakchi "
+"advokatlik firmalaridan biri. Biz eng yuqori standartlarga muvofiq ishlaymiz"
+" va turli mamlakatlardan mijozlarga maslahat beramiz."
+msgstr ""
+"АФ «LIBERATOR» – одна из ведущих адвокатских фирм, оказывающая все виды "
+"юридических услуг. Мы работаем по самым высоким стандартам и консультируем "
+"клиентов из разных стран."
+
+#: template/base.html
+msgid ""
+"“LIBERATOR” AF – bu professionallik, vazifalarni o‘z vaqtida bajarish va "
+"natijaga yo‘naltirilgan ish."
+msgstr ""
+"АФ «LIBERATOR» — это профессионализм, своевременное выполнение задач и "
+"работа на результат."
+
+#: template/about.html
+msgid "“LIBERATOR” advokatlik firmasi"
+msgstr "Адвокатская фирма «LIBERATOR»"

@@ -1,0 +1,15 @@
+{% load i18n %}
+<section class="page-hero">
+    <div class="container">
+        <nav aria-label="{% translate 'Navigatsiya zanjiri' %}">
+            <ol class="breadcrumbs">
+                <li><a href="{% url 'index' %}">{% translate "Bosh sahifa" %}</a></li>
+                {% if parent_title %}<li><a href="{{ parent_url }}">{{ parent_title }}</a></li>{% endif %}
+                <li aria-current="page">{{ title }}</li>
+            </ol>
+        </nav>
+        {% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+        <h1>{{ title }}</h1>
+        {% if lead %}<p class="page-hero__lead">{{ lead }}</p>{% endif %}
+    </div>
+</section>

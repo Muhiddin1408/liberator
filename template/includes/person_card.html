@@ -1,0 +1,9 @@
+{% load static i18n liberator %}
+<article class="person reveal">
+    <a class="person__photo" href="{{ staff.get_absolute_url }}" tabindex="-1" aria-hidden="true">
+        <img src="{% if staff.image_url %}{{ staff.image_url }}{% else %}{% static 'site/img/default-avatar.svg' %}{% endif %}" alt="" loading="lazy">
+    </a>
+    <div class="person__role">{{ staff.localized_position }}</div>
+    <h3><a href="{{ staff.get_absolute_url }}">{{ staff.localized_full_name }}</a></h3>
+    {% if staff.localized_short_description %}<p>{{ staff.localized_short_description }}</p>{% endif %}
+</article>

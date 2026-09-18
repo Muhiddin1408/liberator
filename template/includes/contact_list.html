@@ -1,0 +1,19 @@
+{% load i18n liberator %}
+<ul class="contact-list">
+    <li>
+        <span class="contact-list__icon">{% icon "phone" %}</span>
+        <div><small>{% translate "Telefon" %}</small>{% for phone in site.phones %}<a href="tel:{{ phone|tel }}">{{ phone|phone_display }}</a>{% endfor %}</div>
+    </li>
+    <li>
+        <span class="contact-list__icon">{% icon "mail" %}</span>
+        <div><small>Email</small><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>
+    </li>
+    <li>
+        <span class="contact-list__icon">{% icon "pin" %}</span>
+        <div><small>{% translate "Manzil" %}</small><a href="{{ site.map_link }}" target="_blank" rel="noopener">{{ site|tr:'address' }}</a></div>
+    </li>
+    <li>
+        <span class="contact-list__icon">{% icon "clock" %}</span>
+        <div><small>{% translate "Ish vaqti" %}</small><span>{{ site|tr:'working_hours' }}</span></div>
+    </li>
+</ul>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n liberator %}
+
+{% block title %}{% translate "Rahmat! Murojaatingiz qabul qilindi" %} | Liberator{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container notice">
+        <div class="notice__icon">{% icon "check" %}</div>
+        <h1>{% translate "Rahmat! Murojaatingiz qabul qilindi" %}</h1>
+        <p>{% translate "Advokatimiz ish vaqtida siz bilan tez orada bog‘lanadi. Shoshilinch masala bo‘lsa, qo‘ng‘iroq qiling:" %}</p>
+        <div class="notice__actions">
+            <a class="btn" href="tel:{{ site.phone_primary|tel }}">{% icon "phone" %} {{ site.phone_primary|phone_display }}</a>
+            <a class="btn btn--outline" href="{% url 'index' %}">{% translate "Bosh sahifaga qaytish" %}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

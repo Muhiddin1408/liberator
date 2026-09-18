@@ -1,84 +1,54 @@
 {% extends 'base.html' %}
+{% load i18n liberator %}
+
+{% block title %}{% translate "Aloqa — bepul konsultatsiya" %} | Liberator{% endblock %}
+{% block og_title %}{% translate "Aloqa — bepul konsultatsiya" %} | Liberator{% endblock %}
+{% block schema %}{% json_ld faq_schema %}{% endblock %}
 
 {% block content %}
+{% translate "Aloqa" as page_title %}{% translate "Bepul konsultatsiya" as page_eyebrow %}
+{% translate "Vaziyatingizni tushuntiring — advokat ish vaqtida bog‘lanib, birinchi maslahatni bepul beradi." as page_lead %}
+{% include "includes/page_hero.html" with title=page_title eyebrow=page_eyebrow lead=page_lead %}
 
-<!-- PAGE HEADER -->
-<section class="page-header"> <div class="page-header__bg"></div> <!-- /.page-header__bg --> <!-- <div class="page-header__shape"></div> --> <!-- /.page-header__shape --> <div class="container"> <h2 class="page-header__title bw-split-in-right" style="perspective: 400px;"> {% if current_lang == "uz" %} <div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block;">Bog‘lanish</div> </div> {% elif current_lang == "ru" %} <div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block;">Контакты</div> </div> {% elif current_lang == "en" %} <div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block;">Contact</div> </div> {% else %} <div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block;">Contact</div> </div> {% endif %} </h2> <!-- /.thm-breadcrumb list-unstyled --> </div><!-- /.container --> </section>
-
-<!-- CONTACT SECTION -->
-<section class="contact-one" style="padding:60px 0;">
-    <div class="container">
-        <div class="row align-items-center">
-
-            <!-- LEFT SIDE (INFO) -->
-            <div class="col-lg-5 mb-4">
-                <div style="background:#fff; padding:30px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
-
-                    <ul class="list-unstyled m-0">
-
-                        <!-- PHONE -->
-                        <li style="margin-bottom:25px; display:flex; align-items:center;">
-                            <i class="fa fa-phone" style="font-size:20px; color:#007bff; margin-right:15px;"></i>
-                            <div>
-                                <a href="tel:+998555122992" style="display:block; text-decoration:none; color:#333;">
-                                    +998 (55) 512-29-92
-                                </a>
-                                <a href="tel:+998998088889" style="display:block; text-decoration:none; color:#333;">
-                                    +998 (99) 808-88-89
-                                </a>
-                            </div>
-                        </li>
-
-                        <!-- EMAIL -->
-                        <li style="margin-bottom:25px; display:flex; align-items:center;">
-                            <i class="fa fa-envelope" style="font-size:20px; color:#007bff; margin-right:15px;"></i>
-                            <div>
-                                <a href="mailto:Liberator.inbox@gmail.com" style="display:block; color:#333;">
-                                    Liberator.inbox@gmail.com
-                                </a>
-                                <a href="https://liberator.uz/" target="_blank" style="color:#007bff;">
-                                    liberator.uz
-                                </a>
-                            </div>
-                        </li>
-
-                        <!-- ADDRESS -->
-                        <li style="display:flex; align-items:flex-start;">
-                            <i class="fa fa-map-marker" style="font-size:20px; color:#007bff; margin-right:15px; margin-top:5px;"></i>
-                            <div>
-                                {% if current_lang == "uz" %}
-                                    Toshkent shahri, Yashnobod tumani,<br>
-                                    Sodiq Azimov ko‘chasi 68-uy
-                                {% elif current_lang == "ru" %}
-                                    г. Ташкент, Яшнабадский район,<br>
-                                    ул. Садыка Азимова, 68
-                                {% else %}
-                                    68 Sodiq Azimov Street,<br>
-                                    Yashnobod District, Tashkent
-                                {% endif %}
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </div>
+<section class="section section--paper">
+    <div class="container contact-layout">
+        <div class="card" id="form">
+            <h2>{% translate "Vaziyatingizni bizga yozing" %}</h2>
+            <p class="card__lead">{% translate "Masalangizni qisqacha yozing — advokat ish vaqtida siz bilan bog‘lanadi." %}</p>
+            {% if messages %}
+            <div class="alerts">{% for message in messages %}<p class="alert{% if message.tags == 'success' %} alert--success{% endif %}">{{ message }}</p>{% endfor %}</div>
+            {% endif %}
+            {% include "includes/lead_form.html" %}
+        </div>
+        <div class="card card--ink">
+            <h2>{% translate "Kontaktlar" %}</h2>
+            <p class="card__lead">{% translate "Ofisimizga keling yoki qulay usulda bog‘laning." %}</p>
+            {% include "includes/contact_list.html" %}
+            <a class="btn btn--ghost contact-map-link" href="{{ site.map_link }}" target="_blank" rel="noopener">{% icon "pin" %} {% translate "Xaritada ochish" %}</a>
+            {% if site.telegram_url or site.whatsapp_url %}
+            <div class="social">
+                {% if site.telegram_url %}<a href="{{ site.telegram_url }}" target="_blank" rel="noopener" aria-label="Telegram">{% icon "telegram" %}</a>{% endif %}
+                {% if site.whatsapp_url %}<a href="{{ site.whatsapp_url }}" target="_blank" rel="noopener" aria-label="WhatsApp">{% icon "whatsapp" %}</a>{% endif %}
             </div>
-
-            <!-- RIGHT SIDE (MAP) -->
-            <div class="col-lg-7">
-                <div style="border-radius:12px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
-                    <iframe
-                        src="https://yandex.uz/map-widget/v1/?ll=69.288944%2C41.303795&z=17&l=map&pt=69.288944,41.303795,pm2rdl"
-                        width="100%"
-                        height="400"
-                        frameborder="0"
-                        allowfullscreen="true">
-                    </iframe>
-                </div>
-            </div>
-
+            {% endif %}
         </div>
     </div>
 </section>
 
+<section class="section section--tight">
+    <div class="container">
+        <div class="map">
+            <iframe src="{{ site.map_embed_url }}" title="{% translate 'Ofis joylashuvi xaritada' %}" loading="lazy" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+{% if faqs %}
+<section class="section">
+    <div class="container container--narrow">
+        <div class="section-head section-head--center"><p class="eyebrow">FAQ</p><h2>{% translate "Ko‘p beriladigan savollar" %}</h2></div>
+        {% include "includes/faq.html" %}
+    </div>
+</section>
+{% endif %}
 {% endblock %}

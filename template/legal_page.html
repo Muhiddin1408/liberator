@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n liberator %}
+
+{% block title %}{{ page|tr:'title' }} | Liberator{% endblock %}
+{% block og_title %}{{ page|tr:'title' }} | Liberator{% endblock %}
+
+{% block content %}
+{% include "includes/page_hero.html" with title=page|tr:'title' %}
+<section class="section">
+    <div class="container container--narrow">
+        <div class="prose">{{ page|tr:'body'|safe }}</div>
+        <p class="post__meta" style="margin-top:40px">{% translate "Oxirgi yangilanish:" %} {{ page.updated_at|date:"d.m.Y" }}</p>
+    </div>
+</section>
+{% endblock %}

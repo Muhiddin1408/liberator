@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n liberator %}
+
+{% block title %}{% translate "Huquqiy maqolalar va yangiliklar" %}{% if page_obj.number > 1 %} — {% blocktranslate with n=page_obj.number %}{{ n }}-sahifa{% endblocktranslate %}{% endif %} | Liberator{% endblock %}
+{% block og_title %}{% translate "Huquqiy maqolalar va yangiliklar" %} | Liberator{% endblock %}
+
+{% block content %}
+{% translate "Huquqiy maqolalar va yangiliklar" as page_title %}{% translate "Maqolalar" as page_eyebrow %}
+{% translate "Advokatlarimizning amaliy maslahatlari va qonunchilikdagi muhim o‘zgarishlar." as page_lead %}
+{% include "includes/page_hero.html" with title=page_title eyebrow=page_eyebrow lead=page_lead %}
+
+<section class="section">
+    <div class="container">
+        {% if articles %}
+            <div class="grid grid--3">{% for article in articles %}{% include "includes/post_card.html" %}{% endfor %}</div>
+            {% if is_paginated %}
+            <nav class="pager" aria-label="{% translate 'Sahifalar' %}">
+                {% if page_obj.has_previous %}<a class="btn btn--outline btn--sm" href="?page={{ page_obj.previous_page_number }}" rel="prev">{% translate "Oldingi" %}</a>{% endif %}
+                <span>{{ page_obj.number }} / {{ paginator.num_pages }}</span>
+                {% if page_obj.has_next %}<a class="btn btn--outline btn--sm" href="?page={{ page_obj.next_page_number }}" rel="next">{% translate "Keyingi" %}</a>{% endif %}
+            </nav>
+            {% endif %}
+        {% else %}
+            <div class="empty">{% translate "Maqolalar tez orada chop etiladi." %}</div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

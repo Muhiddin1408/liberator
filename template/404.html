@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% translate "Sahifa topilmadi" %} | Liberator{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container notice">
+        <div class="notice__code">404</div>
+        <h1>{% translate "Sahifa topilmadi" %}</h1>
+        <p>{% translate "Siz qidirgan sahifa o‘chirilgan yoki manzili o‘zgargan bo‘lishi mumkin." %}</p>
+        <div class="notice__actions">
+            <a class="btn" href="{% url 'index' %}">{% translate "Bosh sahifa" %}</a>
+            <a class="btn btn--outline" href="{% url 'service_list' %}">{% translate "Xizmatlar" %}</a>
+            <a class="btn btn--outline" href="{% url 'contact' %}">{% translate "Aloqa" %}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

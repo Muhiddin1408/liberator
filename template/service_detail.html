@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n liberator %}
+
+{% block title %}{{ service|tr:'title' }} — {{ category|tr:'name' }} | Liberator{% endblock %}
+{% block meta_description %}{% with desc=service|tr:'description' %}{% if desc %}{{ desc|striptags|truncatechars:158 }}{% else %}{{ block.super }}{% endif %}{% endwith %}{% endblock %}
+{% block og_title %}{{ service|tr:'title' }} | Liberator{% endblock %}
+
+{% block content %}
+{% include "includes/page_hero.html" with title=service|tr:'title' parent_title=category|tr:'name' parent_url=category.get_absolute_url eyebrow=category|tr:'name' %}
+
+<section class="section">
+    <div class="container with-sidebar">
+        <div>
+            {% with desc=service|tr:'description' %}
+            {% if desc %}<div class="prose block">{{ desc|linebreaks }}</div>{% endif %}
+            {% endwith %}
+
+            <div class="card block" id="form">
+                <p class="eyebrow">{% translate "Bepul konsultatsiya" %}</p>
+                <h2>{% translate "Shu masala bo‘yicha murojaat qiling" %}</h2>
+                <p class="card__lead">{% translate "Masalangizni qisqacha yozing — advokat ish vaqtida siz bilan bog‘lanadi." %}</p>
+                {% include "includes/lead_form.html" %}
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            {% if siblings %}
+            <div class="card">
+                <h3 class="card__title">{{ category|tr:'name' }}</h3>
+                <ul class="side-nav">
+                    {% for item in siblings %}
+                    <li><a href="{{ item.get_absolute_url }}">{{ item|tr:'title' }} {% icon "arrow" %}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <div class="card card--ink">
+                <h3 class="card__title">{% translate "Kontaktlar" %}</h3>
+                {% include "includes/contact_list.html" %}
+            </div>
+        </aside>
+    </div>
+</section>
+{% endblock %}

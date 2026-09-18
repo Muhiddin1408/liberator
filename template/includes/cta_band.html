@@ -1,0 +1,15 @@
+{% load i18n liberator %}
+<section class="section section--tight">
+    <div class="container">
+        <div class="cta-band reveal">
+            <div>
+                <h2>{% translate "Huquqiy yordam kerakmi?" %}</h2>
+                <p>{% translate "Vaziyatingizni tushuntiring — advokat ish vaqtida bog‘lanib, birinchi maslahatni bepul beradi." %}</p>
+            </div>
+            <div class="cta-band__actions">
+                <a class="btn" href="{% url 'contact' %}#form">{% translate "Bepul konsultatsiya" %} {% icon "arrow" "i--move" %}</a>
+                <a class="btn btn--ghost" href="tel:{{ site.phone_primary|tel }}">{% icon "phone" %} {{ site.phone_primary|phone_display }}</a>
+            </div>
+        </div>
+    </div>
+</section>
