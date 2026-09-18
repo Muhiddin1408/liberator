@@ -28,6 +28,49 @@ class LocalizedMixin:
         return getattr(self, field) or ""
 
 
+class TranslatedSlugMixin:
+    """Har til uchun o'z URL'i: /uz/xizmatlar/korporativ-huquq/, /ru/uslugi/korporativnoe-pravo/.
+
+    `slug` — o'zbekcha, `slug_ru` / `slug_en` — tarjima nomidan avtomatik yasaladi.
+    `translation_required` dagi maydonlar shu tilda to'ldirilmagan bo'lsa, sahifa o'sha tilda
+    Google'ga ko'rsatilmaydi (sitemap/hreflang'dan chiqariladi, `noindex`).
+    """
+
+    slug_source = "name"
+    slug_fallback = "item"
+    translation_required = ("name",)
+
+    def fill_slugs(self):
+        max_length = self._meta.get_field("slug").max_length
+        if not self.slug:
+            self.slug = unique_slug(self, getattr(self, self.slug_source), fallback=self.slug_fallback,
+                                    max_length=max_length)
+        for lang in LANG_SUFFIXES:
+            field = f"slug_{lang}"
+            source = getattr(self, f"{self.slug_source}_{lang}", "")
+            if not getattr(self, field) and source:
+                setattr(self, field, unique_slug(self, source, field=field, fallback=self.slug_fallback,
+                                                 max_length=max_length))
+            elif not getattr(self, field):
+                setattr(self, field, None)  # unique=True bilan bir nechta bo'sh qiymat bo'lishi uchun NULL
+
+    def localized_slug(self, lang=None):
+        lang = (lang or get_language() or "uz")[:2]
+        if lang in LANG_SUFFIXES:
+            return getattr(self, f"slug_{lang}") or self.slug
+        return self.slug
+
+    def has_language(self, lang):
+        lang = (lang or "uz")[:2]
+        if lang not in LANG_SUFFIXES:
+            return True
+        return all(getattr(self, f"{field}_{lang}", None) for field in self.translation_required)
+
+    @classmethod
+    def slug_fields(cls):
+        return ["slug"] + [f"slug_{lang}" for lang in LANG_SUFFIXES]
+
+
 # --- Sayt sozlamalari --------------------------------------------------------
 
 class SiteSettings(LocalizedMixin, models.Model):
@@ -191,6 +234,10 @@ class Staff(OptimizedImagesMixin, LocalizedMixin, models.Model):
     def get_absolute_url(self):
         return reverse("team_detail", kwargs={"slug": self.slug})
 
+    def has_language(self, lang):
+        lang = (lang or "uz")[:2]
+        return lang not in LANG_SUFFIXES or bool(getattr(self, f"position_{lang}"))
+
     @property
     def localized_full_name(self):
         return self.tr("full_name")
@@ -228,8 +275,10 @@ class ActiveQuerySet(models.QuerySet):
         return self.filter(is_active=True)
 
 
-class ServiceCategory(OptimizedImagesMixin, LocalizedMixin, models.Model):
+class ServiceCategory(OptimizedImagesMixin, TranslatedSlugMixin, LocalizedMixin, models.Model):
     image_fields = {"image": 1600}
+    slug_fallback = "xizmat"
+    translation_required = ("name", "description")
 
     name = models.CharField("Nomi", max_length=100, unique=True)
     name_ru = models.CharField("Nomi (RU)", max_length=100, unique=True, blank=True, null=True)
@@ -241,6 +290,10 @@ class ServiceCategory(OptimizedImagesMixin, LocalizedMixin, models.Model):
                               validators=[validate_image_size])
     slug = models.SlugField("Slug", max_length=120, unique=True, blank=True,
                             help_text="URL uchun: /uz/xizmatlar/<slug>/. Bo'sh qoldirilsa nomdan yasaladi.")
+    slug_ru = models.SlugField("Slug (RU)", max_length=120, unique=True, blank=True, null=True,
+                               help_text="Bo'sh qoldirilsa ruscha nomdan yasaladi.")
+    slug_en = models.SlugField("Slug (EN)", max_length=120, unique=True, blank=True, null=True,
+                               help_text="Bo'sh qoldirilsa inglizcha nomdan yasaladi.")
     order = models.PositiveIntegerField("Tartib", default=0, db_index=True)
     is_active = models.BooleanField("Faol", default=True)
 
@@ -255,15 +308,18 @@ class ServiceCategory(OptimizedImagesMixin, LocalizedMixin, models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = unique_slug(self, self.name, fallback="xizmat", max_length=120)
+        self.fill_slugs()
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("service_category", kwargs={"slug": self.slug})
+        return reverse("service_category", kwargs={"slug": self.localized_slug()})
 
 
-class Service(LocalizedMixin, models.Model):
+class Service(TranslatedSlugMixin, LocalizedMixin, models.Model):
+    slug_source = "title"
+    slug_fallback = "xizmat"
+    translation_required = ("title",)
+
     category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, related_name="services",
                                  verbose_name="Yo'nalish")
     title = models.CharField("Nomi", max_length=200)
@@ -273,6 +329,8 @@ class Service(LocalizedMixin, models.Model):
     description_ru = models.TextField("Tavsif (RU)", blank=True, null=True)
     description_en = models.TextField("Tavsif (EN)", blank=True, null=True)
     slug = models.SlugField("Slug", max_length=220, unique=True, blank=True)
+    slug_ru = models.SlugField("Slug (RU)", max_length=220, unique=True, blank=True, null=True)
+    slug_en = models.SlugField("Slug (EN)", max_length=220, unique=True, blank=True, null=True)
     order = models.PositiveIntegerField("Tartib", default=0, db_index=True)
     is_active = models.BooleanField("Faol", default=True)
 
@@ -287,12 +345,13 @@ class Service(LocalizedMixin, models.Model):
         return f"{self.title} ({self.category.name})"
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = unique_slug(self, self.title, fallback="xizmat", max_length=220)
+        self.fill_slugs()
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("service_detail", kwargs={"category_slug": self.category.slug, "slug": self.slug})
+        return reverse("service_detail", kwargs={
+            "category_slug": self.category.localized_slug(), "slug": self.localized_slug(),
+        })
 
 
 # --- Murojaatlar (lead) --------------------------------------------------------
@@ -353,8 +412,11 @@ class PublishedQuerySet(models.QuerySet):
         return self.filter(is_published=True, published_at__lte=timezone.now())
 
 
-class News(OptimizedImagesMixin, LocalizedMixin, models.Model):
+class News(OptimizedImagesMixin, TranslatedSlugMixin, LocalizedMixin, models.Model):
     image_fields = {"image": 1600}
+    slug_source = "title"
+    slug_fallback = "maqola"
+    translation_required = ("title", "body")
 
     title = models.CharField("Sarlavha", max_length=220)
     title_ru = models.CharField("Sarlavha (RU)", max_length=220, blank=True)
@@ -371,6 +433,8 @@ class News(OptimizedImagesMixin, LocalizedMixin, models.Model):
     author = models.ForeignKey(Staff, null=True, blank=True, on_delete=models.SET_NULL,
                                related_name="articles", verbose_name="Muallif")
     slug = models.SlugField("Slug", max_length=240, unique=True, blank=True)
+    slug_ru = models.SlugField("Slug (RU)", max_length=240, unique=True, blank=True, null=True)
+    slug_en = models.SlugField("Slug (EN)", max_length=240, unique=True, blank=True, null=True)
     is_published = models.BooleanField("E'lon qilingan", default=False, db_index=True)
     published_at = models.DateTimeField("E'lon qilingan sana", default=timezone.now, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -387,12 +451,11 @@ class News(OptimizedImagesMixin, LocalizedMixin, models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = unique_slug(self, self.title, fallback="maqola", max_length=240)
+        self.fill_slugs()
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("news_detail", kwargs={"slug": self.slug})
+        return reverse("news_detail", kwargs={"slug": self.localized_slug()})
 
 
 class Testimonial(OptimizedImagesMixin, LocalizedMixin, models.Model):

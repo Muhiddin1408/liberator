@@ -11,8 +11,17 @@ class BaseSitemap(Sitemap):
     # Har bir sahifa uch tilda: /uz/, /ru/, /en/ + hreflang alternates.
     i18n = True
     alternates = True
-    x_default = True
+    # Django x-default'ni prefiksiz manzil (/aloqa/) qilib beradi — tarjima qilingan URL'larda u
+    # boshqa tildagi foydalanuvchiga 404 berishi mumkin. x-default sahifalarning <link> tegida bor.
+    x_default = False
     protocol = urlparse(settings.SITE_URL).scheme or "https"
+
+    def get_languages_for_item(self, item):
+        # Tarjima qilinmagan til versiyasi Google'ga berilmaydi (sahifada noindex bor).
+        languages = super().get_languages_for_item(item)
+        if hasattr(item, "has_language"):
+            return [code for code in languages if item.has_language(code)]
+        return languages
 
 
 class StaticSitemap(BaseSitemap):

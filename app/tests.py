@@ -4,6 +4,7 @@ import time
 from io import BytesIO
 from unittest import mock
 
+from django.conf import settings
 from django.core import mail, signing
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -37,7 +38,9 @@ def lead_data(**extra):
 class PagesTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.category = ServiceCategory.objects.create(name="Korporativ huquq", name_ru="Корпоративное право")
+        cls.category = ServiceCategory.objects.create(
+            name="Korporativ huquq", name_ru="Корпоративное право", description="Tavsif", description_ru="Описание",
+        )
         cls.service = Service.objects.create(category=cls.category, title="Due diligence")
         cls.staff = Staff.objects.create(full_name="Ali Valiyev", position="Advokat", position_ru="Адвокат")
         cls.news = News.objects.create(title="Mehnat shartnomasi", body="<p>Matn</p>", is_published=True,
@@ -60,12 +63,12 @@ class PagesTests(TestCase):
         self.assertRedirects(self.client.get("/"), "/uz/", fetch_redirect_response=False)
 
     def test_russian_page_is_translated(self):
-        response = self.client.get("/ru/aloqa/")
+        response = self.client.get("/ru/kontakty/")
         self.assertContains(response, "Бесплатная консультация")
         self.assertContains(response, '<html lang="ru">')
 
     def test_seo_tags(self):
-        response = self.client.get("/ru/biz-haqimizda/")
+        response = self.client.get("/ru/o-nas/")
         self.assertContains(response, 'rel="canonical"')
         for code in ("uz", "ru", "en", "x-default"):
             self.assertContains(response, f'hreflang="{code}"')
@@ -98,7 +101,7 @@ class PagesTests(TestCase):
     def test_sitemap_and_robots(self):
         sitemap = self.client.get("/sitemap.xml")
         self.assertEqual(sitemap.status_code, 200)
-        self.assertContains(sitemap, "/ru/xizmatlar/korporativ-huquq/")
+        self.assertContains(sitemap, "/ru/uslugi/korporativnoe-pravo/")
         self.assertContains(sitemap, 'hreflang="en"')
         robots = self.client.get("/robots.txt")
         self.assertContains(robots, "Sitemap:")
@@ -107,6 +110,51 @@ class PagesTests(TestCase):
         other = ServiceCategory.objects.create(name="Korporativ huquq!")
         self.assertEqual(self.category.slug, "korporativ-huquq")
         self.assertEqual(other.slug, "korporativ-huquq-2")
+
+
+class MultilingualSeoTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.full = ServiceCategory.objects.create(
+            name="Soliq huquqi", name_ru="Налоговое право", name_en="Tax law",
+            description="Tavsif", description_ru="Описание", description_en="Description",
+        )
+        cls.partial = ServiceCategory.objects.create(name="Mehnat huquqi", description="Tavsif")
+
+    def test_each_language_has_own_url_and_slug(self):
+        self.assertEqual(self.full.slug_ru, "nalogovoe-pravo")
+        with translation.override("ru"):
+            self.assertEqual(self.full.get_absolute_url(), "/ru/uslugi/nalogovoe-pravo/")
+        with translation.override("en"):
+            self.assertEqual(self.full.get_absolute_url(), "/en/services/tax-law/")
+        self.assertEqual(self.client.get("/en/services/tax-law/").status_code, 200)
+
+    def test_wrong_language_slug_redirects_permanently(self):
+        response = self.client.get("/ru/uslugi/soliq-huquqi/")
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response["Location"], "/ru/uslugi/nalogovoe-pravo/")
+
+    def test_hreflang_lists_all_translated_versions(self):
+        html = self.client.get("/uz/xizmatlar/soliq-huquqi/").content.decode()
+        self.assertIn('hreflang="ru" href="http://127.0.0.1:8000/ru/uslugi/nalogovoe-pravo/"', html.replace(
+            settings.SITE_URL, "http://127.0.0.1:8000"))
+        self.assertIn('hreflang="x-default"', html)
+        self.assertNotIn("noindex", html)
+
+    def test_untranslated_page_is_noindex_and_not_in_sitemap(self):
+        response = self.client.get("/ru/uslugi/mehnat-huquqi/")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '<meta name="robots" content="noindex, follow">')
+        self.assertNotContains(response, 'rel="alternate" hreflang=')
+        sitemap = self.client.get("/sitemap.xml").content.decode()
+        self.assertIn("/uz/xizmatlar/mehnat-huquqi/", sitemap)
+        self.assertNotIn("/ru/uslugi/mehnat-huquqi/", sitemap)
+
+    def test_translated_static_urls(self):
+        for url in ("/ru/o-nas/", "/ru/komanda/", "/ru/stati/", "/ru/kontakty/", "/en/about/", "/en/contact/",
+                    "/en/privacy-policy/", "/ru/politika-konfidentsialnosti/"):
+            with self.subTest(url=url):
+                self.assertEqual(self.client.get(url).status_code, 200)
 
 
 @override_settings(LEAD_NOTIFY_EMAILS=["office@example.com"], TELEGRAM_BOT_TOKEN="", LEAD_RATE_LIMIT_PER_HOUR=3)
@@ -204,26 +252,51 @@ class AdminLanguageTests(TestCase):
         self.assertContains(response, "Parol")
 
     def test_site_still_follows_url_language(self):
-        response = self.client.get("/ru/aloqa/", HTTP_ACCEPT_LANGUAGE="en")
+        response = self.client.get("/ru/kontakty/", HTTP_ACCEPT_LANGUAGE="en")
         self.assertContains(response, "Бесплатная консультация")
 
 
-class DemoDataCommandTests(TestCase):
-    def test_load_is_idempotent_and_clear_removes_only_demo(self):
+class ContentCommandTests(TestCase):
+    def call(self, *args):
         from django.core.management import call_command
 
-        real = ServiceCategory.objects.create(name="Haqiqiy yo'nalish")
-        with self.settings(DEBUG=True, MEDIA_ROOT=tempfile.mkdtemp()):
-            call_command("demo_data", stdout=open("/dev/null", "w"))
-            call_command("demo_data", stdout=open("/dev/null", "w"))
-            self.assertEqual(ServiceCategory.objects.count(), 7)
-            self.assertEqual(self.client.get("/uz/").status_code, 200)
-            call_command("demo_data", "--clear", stdout=open("/dev/null", "w"))
-        self.assertEqual(list(ServiceCategory.objects.all()), [real])
-        self.assertFalse(News.objects.exists())
+        call_command(*args, stdout=open("/dev/null", "w"))
 
-    def test_refuses_in_production(self):
-        from django.core.management import CommandError, call_command
+    def test_seed_content_is_hidden_by_default(self):
+        self.call("seed_content")
+        self.assertEqual(ServiceCategory.objects.count(), 6)
+        self.assertFalse(ServiceCategory.objects.filter(is_active=True).exists())
+        self.assertFalse(News.objects.filter(is_published=True).exists())
+        self.assertTrue(all(c.has_language("ru") and c.has_language("en") for c in ServiceCategory.objects.all()))
+
+    def test_seed_content_never_overwrites_admin_text(self):
+        category = ServiceCategory.objects.create(name="Korporativ huquq", description="Firma matni", is_active=True)
+        self.call("seed_content")
+        category.refresh_from_db()
+        self.assertEqual(category.description, "Firma matni")  # o'zgarmadi
+        self.assertTrue(category.description_ru)  # bo'sh tarjima to'ldirildi
+        self.assertTrue(category.is_active)
+
+    def test_seed_content_twice_creates_no_duplicates(self):
+        self.call("seed_content", "--publish")
+        self.call("seed_content", "--publish")
+        self.assertEqual(ServiceCategory.objects.count(), 6)
+        self.assertEqual(News.objects.count(), 4)
+        response = self.client.get("/ru/stati/")
+        self.assertContains(response, "Вызвали к следователю")
+
+    def test_demo_data_clear_removes_only_fake_people(self):
+        with self.settings(DEBUG=True, MEDIA_ROOT=tempfile.mkdtemp()):
+            self.call("demo_data")
+            self.assertEqual(Staff.objects.count(), 4)
+            self.assertEqual(self.client.get("/uz/").status_code, 200)
+            self.call("demo_data", "--clear")
+        self.assertFalse(Staff.objects.exists())
+        self.assertFalse(Testimonial.objects.exists())
+        self.assertEqual(ServiceCategory.objects.count(), 6)  # haqiqiy kontent qoladi
+
+    def test_demo_data_refuses_in_production(self):
+        from django.core.management import CommandError
 
         with self.settings(DEBUG=False), self.assertRaises(CommandError):
-            call_command("demo_data")
+            self.call("demo_data")

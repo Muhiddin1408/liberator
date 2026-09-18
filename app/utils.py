@@ -8,9 +8,32 @@ from django.utils.text import slugify
 from PIL import Image, ImageOps
 
 
+_CYRILLIC = {
+    "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ё": "yo", "ж": "zh", "з": "z", "и": "i",
+    "й": "y", "к": "k", "л": "l", "м": "m", "н": "n", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t",
+    "у": "u", "ф": "f", "х": "kh", "ц": "ts", "ч": "ch", "ш": "sh", "щ": "shch", "ъ": "", "ы": "y", "ь": "",
+    "э": "e", "ю": "yu", "я": "ya",
+    # o'zbek kirill harflari
+    "ў": "o", "қ": "q", "ғ": "g", "ҳ": "h",
+}
+
+
+def transliterate(value):
+    """Kirill matnni URL uchun lotinga o'giradi: "Корпоративное право" -> "Korporativnoe pravo"."""
+    out = []
+    for ch in value or "":
+        low = ch.lower()
+        if low in _CYRILLIC:
+            latin = _CYRILLIC[low]
+            out.append(latin.capitalize() if ch != low else latin)
+        else:
+            out.append(ch)
+    return "".join(out)
+
+
 def unique_slug(instance, value, field="slug", fallback="item", max_length=200):
     """`value` dan slug yasaydi va shu model ichida takrorlanmasligini ta'minlaydi."""
-    base = (slugify(value) or fallback)[: max_length - 5].strip("-") or fallback
+    base = (slugify(transliterate(value)) or fallback)[: max_length - 5].strip("-") or fallback
     model = type(instance)
     qs = model._default_manager.exclude(pk=instance.pk)
     slug, i = base, 2

@@ -40,10 +40,10 @@ def extract_templates():
             var = node.filter_expression.var
             literal = getattr(var, "literal", None)
             if isinstance(literal, str):
-                found.setdefault(literal.replace("%", "%%"), set()).add(str(rel))
+                found.setdefault((None, literal.replace("%", "%%")), set()).add(str(rel))
         for node in template.nodelist.get_nodes_by_type(BlockTranslateNode):
             msgid, _ = node.render_token_list(node.singular)
-            found.setdefault(msgid, set()).add(str(rel))
+            found.setdefault((None, msgid), set()).add(str(rel))
     return found
 
 
@@ -58,10 +58,16 @@ def extract_python():
                 if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
                         and node.func.id in GETTEXT_NAMES and node.args):
                     continue
-                # pgettext(context, message) — xabar ikkinchi argument.
-                arg = node.args[-1] if node.func.id.startswith("p") else node.args[0]
-                if isinstance(arg, ast.Constant) and isinstance(arg.value, str):
-                    found.setdefault(arg.value, set()).add(str(path.relative_to(BASE_DIR)))
+                # pgettext(context, message) — birinchi argument kontekst.
+                if node.func.id.startswith("p"):
+                    if len(node.args) < 2 or not all(isinstance(a, ast.Constant) for a in node.args[:2]):
+                        continue
+                    key = (node.args[0].value, node.args[1].value)
+                elif isinstance(node.args[0], ast.Constant) and isinstance(node.args[0].value, str):
+                    key = (None, node.args[0].value)
+                else:
+                    continue
+                found.setdefault(key, set()).add(str(path.relative_to(BASE_DIR)))
     return found
 
 
@@ -71,8 +77,8 @@ def po_path(lang):
 
 def update_catalogs():
     messages = extract_templates()
-    for msgid, refs in extract_python().items():
-        messages.setdefault(msgid, set()).update(refs)
+    for key, refs in extract_python().items():
+        messages.setdefault(key, set()).update(refs)
 
     for lang in LANGS:
         path = po_path(lang)
@@ -86,12 +92,13 @@ def update_catalogs():
             "Plural-Forms": ("nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && "
                              "(n%100<10 || n%100>=20) ? 1 : 2);") if lang == "ru" else "nplurals=2; plural=(n != 1);",
         }
-        existing = {entry.msgid: entry for entry in po}
+        existing = {(entry.msgctxt, entry.msgid): entry for entry in po}
         new = polib.POFile()
         new.metadata = po.metadata
-        for msgid in sorted(messages):
-            entry = existing.get(msgid) or polib.POEntry(msgid=msgid, msgstr="")
-            entry.occurrences = [(ref, "") for ref in sorted(messages[msgid])]
+        for key in sorted(messages, key=lambda k: (k[0] or "", k[1])):
+            ctx, msgid = key
+            entry = existing.get(key) or polib.POEntry(msgctxt=ctx, msgid=msgid, msgstr="")
+            entry.occurrences = [(ref, "") for ref in sorted(messages[key])]
             if "%(" in msgid and "python-format" not in entry.flags:
                 entry.flags.append("python-format")
             new.append(entry)

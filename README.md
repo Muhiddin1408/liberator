@@ -71,6 +71,40 @@ Statik fayllarni WhiteNoise o'zi siqib, keshlab beradi.
 
 Zaxira (cron): `0 3 * * * /srv/liberator/scripts/backup.sh`
 
+## Uch til va SEO qanday ishlaydi
+
+- Har til o'z manzilida, URL bo'laklari va slug'lar ham tarjima qilingan:
+  `/uz/xizmatlar/korporativ-huquq/` · `/ru/uslugi/korporativnoe-pravo/` · `/en/services/corporate-law/`.
+- Boshqa tildagi slug bilan kelinsa (`/ru/uslugi/korporativ-huquq/`) — 301 bilan to'g'ri manzilga.
+- Har sahifada `hreflang` (uz, ru, en, x-default) va `canonical`. `sitemap.xml` da ham hreflang bor.
+- Tarjimasi to'ldirilmagan sahifa (masalan, maqolaning ruscha matni yo'q) o'zbekcha matn bilan ochiladi,
+  lekin `noindex` oladi va sitemap/hreflang'dan chiqariladi — Google uni dublikat deb hisoblamaydi.
+  Tarjima admin'da to'ldirilishi bilan avtomatik indekslanadigan bo'ladi.
+- Til faqat bosh sahifada (`/`) brauzer tiliga qarab tanlanadi; ichki sahifalarda hech qachon avtomatik yo'naltirilmaydi.
+
+## Kontent
+
+`python manage.py seed_content` — 6 ta amaliyot yo'nalishi, xizmatlar, savol-javoblar va 4 ta maqola
+(uch tilda, matnlar `app/content/` da). Serverda yangi yozuvlar **yashirin** qo'shiladi: yurist ko'rib
+chiqib, admin'da "Faol" / "E'lon qilingan" qiladi. Mavjud (admin'da kiritilgan) matnlar o'zgartirilmaydi.
+
+Lokal ko'rish uchun: `python manage.py demo_data` (+ o'ylab topilgan jamoa va sharhlar; `--clear` bilan o'chadi).
+
+## Google Search Console va Yandex Webmaster
+
+Buni faqat domen egasi qila oladi (Google/Yandex hisobi kerak), taxminan 15 daqiqa:
+
+1. **Google:** https://search.google.com/search-console → "Add property" → **URL prefix** → `https://liberator.uz/`.
+2. Tasdiqlash usuli **HTML tag** → `content="..."` ichidagi kodni nusxalang →
+   serverdagi `.env` ga `GOOGLE_SITE_VERIFICATION=<kod>` yozing → gunicorn'ni qayta ishga tushiring → "Verify".
+3. Chap menyu **Sitemaps** → `sitemap.xml` → Submit.
+4. **URL Inspection** da bosh sahifa va 2–3 ta xizmat sahifasini "Request indexing" qiling.
+5. **Yandex:** https://webmaster.yandex.com → sayt qo'shish → **Meta tag** →
+   `.env` ga `YANDEX_VERIFICATION=<kod>` → tasdiqlash → "Indexing → Sitemap files" → `https://liberator.uz/sitemap.xml`.
+6. 1–2 haftadan keyin tekshiring: **Pages** (indekslangan sahifalar), **International targeting / hreflang** xatolari yo'qligi.
+
+`.env` da `SITE_URL=https://liberator.uz` bo'lishi shart — sitemap, canonical va hreflang manzillari shundan olinadi.
+
 ## Birinchi joylashdan keyin
 
 1. Google Search Console va Yandex Webmaster'ga sayt qo'shing, `https://domen/sitemap.xml` ni yuboring.

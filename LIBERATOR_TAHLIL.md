@@ -12,7 +12,7 @@
 > | B2 Analitika | ✅ / ⏳ | Metrika + GA4 `.env` dagi ID bilan ulanadi; maqsadlar: forma, telefon, Telegram, WhatsApp. **ID'larni olish kerak** |
 > | B3 Blog | ✅ | `News` modeli, `/yangiliklar/`, bosh sahifada oxirgi 3 ta, muallif — `Staff` |
 > | B4 Konversiya | ✅ | "Bepul konsultatsiya" CTA, qayta qo'ng'iroq oynasi, `tel:` havolalar, suzuvchi Telegram/WhatsApp tugmasi |
-> | C1 `i18n_patterns` + hreflang | ✅ | `/uz/`, `/ru/`, `/en/`; eski URL'lar 301 bilan yo'naltiriladi |
+> | C1 `i18n_patterns` + hreflang | ✅ | `/uz/`, `/ru/`, `/en/`; URL bo'laklari va slug'lar ham tarjima qilingan (`/ru/uslugi/korporativnoe-pravo/`); tarjimasiz sahifa `noindex` + sitemap'dan chiqariladi; eski URL'lar 301 |
 > | C2 Meta, OG | ✅ | title, description, canonical, Open Graph (rasm bilan) har sahifada |
 > | C3 sitemap, robots | ✅ / ⏳ | `/sitemap.xml` (hreflang bilan), `/robots.txt`. **Search Console / Yandex Webmaster'ga qo'shish kerak** |
 > | C4 Schema.org | ✅ | `LegalService`, `Person`, `Article`, `FAQPage` |
@@ -25,7 +25,7 @@
 > | D7 Himoya sozlamalari | ✅ | HTTPS, HSTS, secure cookie, nosniff; `check --deploy` toza |
 > | D8 Admin | ✅ | `django-axes` (5 urinish), admin manzili `.env` dan (`ADMIN_URL`) |
 > | E1–E2 Demo kontent, mega menyu | ✅ | O'chirildi |
-> | E3 Kontent rejasi | ⏳ firma | Struktura tayyor: xizmat tavsifi, FAQ, sharh, maqola — admin'dan to'ldiriladi |
+> | E3 Kontent rejasi | ✅ / ⏳ | `seed_content`: 6 yo'nalish (to'liq tavsif), 15 xizmat, 8 FAQ, 4 maqola — 3 tilda. **Serverda yashirin qo'shiladi — yurist ko'rib chiqib yoqadi.** Advokatlar tajribasi, rasmlar, haqiqiy sharhlar — firmadan |
 > | E4 Raqamlar | ✅ / ⏳ | `Achievement` modeli; eski 20+/1500+/1000+ **nofaol** holda kiritildi — firma tasdiqlasa yoqadi |
 > | F1 Tarjima | ✅ | `{% translate %}` + `locale/ru`, `locale/en`; modellar uchun `LocalizedMixin` va `{{ obj\|tr:"name" }}` |
 > | F2 Takroriy so'rov | ✅ | Context processor + kesh, `SiteSettings` singleton |
@@ -36,7 +36,7 @@
 > | G2 Frontend | ✅ | 22 ta skriptdan 10 tasi qoldi, WhiteNoise + siqish + hash'li kesh |
 > | G3 404/500, alt, a11y | ✅ | O'z 404/500 sahifalari, `alt`, skip-link, fokus uslubi |
 >
-> Testlar: `python manage.py test app` — 24 ta test.
+> Testlar: `python manage.py test app` — 34 ta test.
 
 > ## ⏳ Qolgan ishlar (kod bilan hal bo'lmaydi — siz yoki firma)
 >
@@ -50,7 +50,7 @@
 > | 6 | Yandex Metrika va GA4 ID'larini olish, maqsadlarni sozlash | Dasturchi | B2 |
 > | 7 | Google Search Console va Yandex Webmaster'ga sayt + `sitemap.xml` | Dasturchi | C3 |
 > | 8 | "20+ / 1500+ / 1000+" raqamlarini tasdiqlash va yoqish ("2010 yildan beri" bilan ziddiyat) | Firma | E4 |
-> | 9 | Kontent: xizmat tavsiflari (300–500 so'z), advokatlar tajribasi, FAQ, maqolalar, haqiqiy sharhlar | Firma | E3 |
+> | 9 | Serverda `seed_content` → yurist matnlarni tekshirib yoqadi; advokatlar tajribasi va rasmlari, haqiqiy sharhlar | Firma | E3 |
 > | 10 | Admin → Sayt sozlamalari: Telegram, WhatsApp, Instagram havolalari | Firma | B4 |
 > | 11 | (ixtiyoriy) `Slider`, `AboutSection` modellari — bosh sahifa matnini admin'dan tahrirlash uchun | Dasturchi | 7.2–7.5 |
 

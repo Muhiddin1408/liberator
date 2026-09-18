@@ -160,7 +160,7 @@ class ServiceInline(admin.StackedInline):
     model = Service
     extra = 0
     fields = (("title", "title_ru", "title_en"), ("description", "description_ru", "description_en"),
-              ("slug", "order", "is_active"))
+              ("slug", "slug_ru", "slug_en"), ("order", "is_active"))
 
 
 class FAQInline(admin.StackedInline):
@@ -178,7 +178,12 @@ class ServiceCategoryAdmin(admin.ModelAdmin):
     list_filter = ("is_active",)
     prepopulated_fields = {"slug": ("name",)}
     fieldsets = (
-        (None, {"fields": ("name", "name_ru", "name_en", "slug", "image", "order", "is_active")}),
+        (None, {"fields": ("name", "name_ru", "name_en", "image", "order", "is_active")}),
+        ("URL (har til uchun)", {
+            "classes": ("collapse",),
+            "description": "Bo'sh qoldirilsa nomdan avtomatik yasaladi. Sayt ishga tushgandan keyin o'zgartirmang.",
+            "fields": ("slug", "slug_ru", "slug_en"),
+        }),
         ("Tavsif (300–500 so'z tavsiya etiladi — SEO uchun)", {
             "fields": ("description", "description_ru", "description_en"),
         }),
@@ -210,7 +215,8 @@ class NewsAdmin(admin.ModelAdmin):
         ("O'zbekcha", {"fields": ("title", "summary", "body")}),
         ("Русский", {"classes": ("collapse",), "fields": ("title_ru", "summary_ru", "body_ru")}),
         ("English", {"classes": ("collapse",), "fields": ("title_en", "summary_en", "body_en")}),
-        ("Nashr", {"fields": ("slug", "image", "author", "is_published", "published_at")}),
+        ("Nashr", {"fields": ("image", "author", "is_published", "published_at")}),
+        ("URL (har til uchun)", {"classes": ("collapse",), "fields": ("slug", "slug_ru", "slug_en")}),
     )
 
 

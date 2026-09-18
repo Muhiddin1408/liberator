@@ -3,9 +3,11 @@ import logging
 from django.conf import settings
 from django.contrib import messages
 from django.core.cache import cache
+from django.db.models import Q
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.utils.translation import get_language
 from django.utils.translation import gettext as _
 from django.views.decorators.cache import cache_control
 from django.views.decorators.http import require_GET, require_POST
@@ -29,6 +31,27 @@ def published_testimonials():
 def consultation_form(request, **initial):
     initial.setdefault("source_page", request.path)
     return ConsultationForm(initial=initial)
+
+
+def get_translated(queryset, slug):
+    """Obyektni joriy til slug'i bo'yicha topadi.
+
+    Boshqa tildagi slug bilan kelinsa (masalan /ru/uslugi/korporativ-huquq/), obyekt baribir topiladi —
+    view uni to'g'ri manzilga 301 bilan yo'naltiradi.
+    """
+    lang = (get_language() or "uz")[:2]
+    field = "slug" if lang == "uz" else f"slug_{lang}"
+    obj = queryset.filter(**{field: slug}).first()
+    if obj is None:
+        obj = queryset.filter(Q(slug=slug) | Q(slug_ru=slug) | Q(slug_en=slug)).first()
+    if obj is None:
+        raise Http404
+    return obj
+
+
+def mark_translated_page(request, obj):
+    """Context processor shu obyekt bo'yicha hreflang va noindex'ni hisoblaydi."""
+    request.i18n_object = obj
 
 
 # --- Sahifalar ------------------------------------------------------------------
@@ -68,6 +91,7 @@ class TeamDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
+        mark_translated_page(self.request, self.object)
         ctx["other_staffs"] = (
             Staff.objects.filter(is_active=True).exclude(pk=self.object.pk).order_by("order", "id")[:3]
         )
@@ -84,7 +108,10 @@ def service_list(request):
 
 
 def service_category(request, slug):
-    category = get_object_or_404(ServiceCategory.objects.active(), slug=slug)
+    category = get_translated(ServiceCategory.objects.active(), slug)
+    if category.get_absolute_url() != request.path:
+        return redirect(category.get_absolute_url(), permanent=True)
+    mark_translated_page(request, category)
     faqs = list(category.faqs.active())
     return render(request, "service_category.html", {
         "category": category,
@@ -96,10 +123,12 @@ def service_category(request, slug):
 
 
 def service_detail(request, category_slug, slug):
-    service = get_object_or_404(
-        Service.objects.active().select_related("category"),
-        slug=slug, category__slug=category_slug, category__is_active=True,
+    service = get_translated(
+        Service.objects.active().select_related("category").filter(category__is_active=True), slug,
     )
+    if service.get_absolute_url() != request.path:
+        return redirect(service.get_absolute_url(), permanent=True)
+    mark_translated_page(request, service)
     return render(request, "service_detail.html", {
         "service": service,
         "category": service.category,
@@ -117,19 +146,17 @@ class NewsListView(ListView):
         return News.objects.published().select_related("author")
 
 
-class NewsDetailView(DetailView):
-    template_name = "news_detail.html"
-    context_object_name = "article"
-
-    def get_queryset(self):
-        return News.objects.published().select_related("author")
-
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        ctx["recent"] = News.objects.published().exclude(pk=self.object.pk)[:3]
-        ctx["schema"] = seo.article(self.object)
-        ctx["form"] = consultation_form(self.request)
-        return ctx
+def news_detail(request, slug):
+    article = get_translated(News.objects.published().select_related("author"), slug)
+    if article.get_absolute_url() != request.path:
+        return redirect(article.get_absolute_url(), permanent=True)
+    mark_translated_page(request, article)
+    return render(request, "news_detail.html", {
+        "article": article,
+        "recent": News.objects.published().exclude(pk=article.pk)[:3],
+        "schema": seo.article(article),
+        "form": consultation_form(request),
+    })
 
 
 def contact(request):

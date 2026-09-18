@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% translate "Liberator — advokatlik firmasi, Toshkent" %}{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}{{ site|tr:'meta_description' }}{% endblock %}">
-    {% block robots %}{% endblock %}
+    {% block robots %}{% if noindex %}<meta name="robots" content="noindex, follow">{% endif %}{% endblock %}
 
     <link rel="canonical" href="{{ canonical_url }}">
-    {% for alt in language_alternates %}
+    {% if not noindex %}
+    {% for alt in hreflang_versions %}
     <link rel="alternate" hreflang="{{ alt.code }}" href="{{ site_url }}{{ alt.url }}">
     {% endfor %}
     <link rel="alternate" hreflang="x-default" href="{{ x_default_url }}">
+    {% endif %}
 
     <meta property="og:site_name" content="Liberator">
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
@@ -19,7 +21,8 @@
     <meta property="og:description" content="{% block og_description %}{{ site|tr:'meta_description' }}{% endblock %}">
     <meta property="og:url" content="{{ canonical_url }}">
     <meta property="og:image" content="{% block og_image %}{{ site_url }}{% static 'site/img/og-image.jpg' %}{% endblock %}">
-    <meta property="og:locale" content="{% if current_lang == 'ru' %}ru_RU{% elif current_lang == 'en' %}en_US{% else %}uz_UZ{% endif %}">
+    {% for alt in hreflang_versions %}<meta property="{% if alt.active %}og:locale{% else %}og:locale:alternate{% endif %}" content="{% if alt.code == 'ru' %}ru_RU{% elif alt.code == 'en' %}en_US{% else %}uz_UZ{% endif %}">
+    {% endfor %}
     <meta name="twitter:card" content="summary_large_image">
     {% if GOOGLE_SITE_VERIFICATION %}<meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}">{% endif %}
     {% if YANDEX_VERIFICATION %}<meta name="yandex-verification" content="{{ YANDEX_VERIFICATION }}">{% endif %}

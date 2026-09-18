@@ -746,3 +746,38 @@ msgstr ""
 #: template/about.html
 msgid "“LIBERATOR” advokatlik firmasi"
 msgstr "Адвокатская фирма «LIBERATOR»"
+
+#: app/urls.py
+msgctxt "URL"
+msgid "aloqa/"
+msgstr "kontakty/"
+
+#: app/urls.py
+msgctxt "URL"
+msgid "biz-haqimizda/"
+msgstr "o-nas/"
+
+#: app/urls.py
+msgctxt "URL"
+msgid "foydalanish-shartlari/"
+msgstr "usloviya-ispolzovaniya/"
+
+#: app/urls.py
+msgctxt "URL"
+msgid "jamoa/"
+msgstr "komanda/"
+
+#: app/urls.py
+msgctxt "URL"
+msgid "maqolalar/"
+msgstr "stati/"
+
+#: app/urls.py
+msgctxt "URL"
+msgid "maxfiylik-siyosati/"
+msgstr "politika-konfidentsialnosti/"
+
+#: app/urls.py
+msgctxt "URL"
+msgid "xizmatlar/"
+msgstr "uslugi/"
