@@ -1,7 +1,7 @@
 import shutil
 import tempfile
 import time
-from io import BytesIO
+from io import BytesIO, StringIO
 from unittest import mock
 
 from django.conf import settings
@@ -260,7 +260,7 @@ class ContentCommandTests(TestCase):
     def call(self, *args):
         from django.core.management import call_command
 
-        call_command(*args, stdout=open("/dev/null", "w"))
+        call_command(*args, stdout=StringIO())
 
     def test_seed_content_is_hidden_by_default(self):
         self.call("seed_content")
