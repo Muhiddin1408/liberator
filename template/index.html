@@ -20,15 +20,11 @@
         <div class="hero__media">
             <div class="hero__frame" aria-hidden="true"></div>
             <div class="hero__photo">
-                <img src="{% static 'site/img/about-main.jpg' %}" alt="{% translate 'Batirov Farrux Yusupovich — Liberator advokatlik firmasi rahbari' %}" width="830" height="1245" fetchpriority="high">
+                <img src="{% static 'site/img/home-index.jpg' %}" alt="{% translate 'Batirov Farrux Yusupovich — Liberator advokatlik firmasi rahbari' %}" width="830" height="1245" fetchpriority="high">
             </div>
             <div class="hero__caption">
                 <span>{% translate "Boshqaruvchi sherik" %}</span>
                 <strong>{% translate "Batirov Farrux Yusupovich" %}</strong>
-            </div>
-            <div class="hero__badge">
-                <span class="hero__badge-year">{{ site.founded_year }}</span>
-                <span class="hero__badge-text">{% translate "Asos solingan" %}<br>{% translate "yil" %}</span>
             </div>
         </div>
     </div>
@@ -87,10 +83,6 @@
         <div class="reveal" data-delay="1">
             <p class="eyebrow">{% translate "Firma haqida" %}</p>
             <h2>{% translate "Professionallik, maxfiylik va natija" %}</h2>
-            <div class="since">
-                <span class="since__year">{{ site.founded_year }}</span>
-                <span class="since__text">{% translate "Asos solingan" %}<br>{% translate "yil" %}</span>
-            </div>
             <p>{% blocktranslate trimmed %}
                 “LIBERATOR” AF – barcha turdagi yuridik xizmatlarni ko‘rsatadigan yetakchi advokatlik firmalaridan biri. Biz eng yuqori standartlarga muvofiq ishlaymiz va turli mamlakatlardan mijozlarga maslahat beramiz.
             {% endblocktranslate %}</p>

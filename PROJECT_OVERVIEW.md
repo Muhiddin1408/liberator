@@ -96,7 +96,7 @@ Ishlatilmaydigan shablonlar: `home.html`, `service.html`, `statistic.html` (+ `t
 **Ha, deyarli hammasini bazadan olib keladigan qilsa bo‘ladi.** Tavsiya etilgan yangi modellar:
 
 ### 7.1 `SiteSettings` (bitta yozuvli — singleton)
-Butun sayt uchun umumiy ma’lumot: `logo`, `logo_light`, `favicon`, `phone_1`, `phone_2`, `email`, `address` (uz/ru/en), `map_lat`, `map_lng`, `facebook`, `telegram`, `instagram`, `youtube`, `footer_text` (uz/ru/en), `founded_year`.
+Butun sayt uchun umumiy ma’lumot: `logo`, `logo_light`, `favicon`, `phone_1`, `phone_2`, `email`, `address` (uz/ru/en), `map_lat`, `map_lng`, `facebook`, `telegram`, `instagram`, `youtube`, `footer_text` (uz/ru/en).
 → `base.html` header/footer va `contact.html` shu yerdan oladi. Barcha sahifalarga **context processor** orqali uzatiladi (har bir view'da qayta yozmaslik uchun).
 
 ### 7.2 `Slider` / `HeroBanner`

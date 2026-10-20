@@ -111,7 +111,6 @@ class SiteSettings(LocalizedMixin, models.Model):
     youtube_url = models.URLField("YouTube", blank=True)
     linkedin_url = models.URLField("LinkedIn", blank=True)
 
-    founded_year = models.PositiveIntegerField("Asos solingan yil", default=2010)
     meta_description = models.CharField(
         "SEO tavsif", max_length=160, blank=True,
         default="Liberator advokatlik firmasi — korporativ, fuqarolik, iqtisodiy va jinoyat ishlari "

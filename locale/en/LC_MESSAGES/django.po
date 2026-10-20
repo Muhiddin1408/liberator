@@ -78,10 +78,6 @@ msgstr "Practice areas"
 msgid "Aniq harakat rejasi, muddatlar va xarajatlarni kelishamiz."
 msgstr "We agree on a clear action plan, timeline and costs."
 
-#: template/about.html template/index.html
-msgid "Asos solingan"
-msgstr "Founded in"
-
 #: template/base.html
 msgid "Asosiy mazmunga o‘tish"
 msgstr "Skip to content"
@@ -712,10 +708,6 @@ msgstr "home page"
 #: template/includes/lead_form.html
 msgid "maxfiylik siyosati"
 msgstr "privacy policy"
-
-#: template/about.html template/index.html
-msgid "yil"
-msgstr "the year"
 
 #: conf/settings.py
 msgid "Русский"

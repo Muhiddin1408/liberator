@@ -66,7 +66,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         ("Messenjer va ijtimoiy tarmoqlar", {"fields": (
             "telegram_url", "whatsapp_phone", "instagram_url", "facebook_url", "youtube_url", "linkedin_url",
         )}),
-        ("SEO", {"fields": ("founded_year", "meta_description", "meta_description_ru", "meta_description_en")}),
+        ("SEO", {"fields": ("meta_description", "meta_description_ru", "meta_description_en")}),
     )
 
     def has_add_permission(self, request):

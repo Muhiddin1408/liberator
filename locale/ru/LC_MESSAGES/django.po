@@ -80,10 +80,6 @@ msgstr "Направления практики"
 msgid "Aniq harakat rejasi, muddatlar va xarajatlarni kelishamiz."
 msgstr "Согласовываем чёткий план действий, сроки и стоимость."
 
-#: template/about.html template/index.html
-msgid "Asos solingan"
-msgstr "Год"
-
 #: template/base.html
 msgid "Asosiy mazmunga o‘tish"
 msgstr "Перейти к содержимому"
@@ -712,10 +708,6 @@ msgstr "главная страница"
 #: template/includes/lead_form.html
 msgid "maxfiylik siyosati"
 msgstr "политика конфиденциальности"
-
-#: template/about.html template/index.html
-msgid "yil"
-msgstr "основания"
 
 #: conf/settings.py
 msgid "Русский"

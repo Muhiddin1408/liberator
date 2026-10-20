@@ -23,7 +23,6 @@ def legal_service(site, url):
         "description": site.tr("meta_description"),
         "telephone": site.phone_primary,
         "email": site.email,
-        "foundingDate": str(site.founded_year),
         "areaServed": {"@type": "Country", "name": "Uzbekistan"},
         "address": {
             "@type": "PostalAddress",
