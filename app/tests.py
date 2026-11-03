@@ -245,6 +245,53 @@ class ModelTests(TestCase):
 
 
 
+class AdminIndexTests(TestCase):
+    """Production (manifest) static storage bilan admin ichki sahifalari ochilishi kerak.
+
+    Jazzmin `{% static 'vendor/bootswatch' %}` deb papkaga murojaat qiladi; qattiq manifest
+    rejimida bu ValueError beradi va admin index 500 bo'ladi (login sahifasi esa ochiladi).
+    """
+
+    LENIENT = "conf.storage.LenientManifestStaticFilesStorage"
+    STRICT = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+    def setUp(self):
+        self.static_root = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.static_root, ignore_errors=True)
+
+    def prod_settings(self, backend):
+        return dict(
+            STATIC_ROOT=self.static_root,
+            STORAGES={
+                "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+                "staticfiles": {"BACKEND": backend},
+            },
+            # Testda siqish shart emas — collectstatic tez o'tsin.
+            WHITENOISE_SKIP_COMPRESS_EXTENSIONS=["css", "js", "png", "jpg", "svg", "woff2", "ico", "json", "map"],
+        )
+
+    def test_admin_index_opens_with_manifest_storage(self):
+        from django.contrib.auth.models import User
+
+        user = User.objects.create_superuser("boss", "boss@example.com", "juda-maxfiy-parol-123")
+        self.client.force_login(user)
+        with self.settings(**self.prod_settings(self.LENIENT)):
+            call_command("collectstatic", interactive=False, verbosity=0)
+            response = self.client.get("/admin/")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Boshqaruv paneli")
+
+    def test_directory_static_path_is_tolerated(self):
+        from django.contrib.staticfiles.storage import staticfiles_storage
+
+        with self.settings(**self.prod_settings(self.STRICT)):
+            call_command("collectstatic", interactive=False, verbosity=0)
+            with self.assertRaises(ValueError):
+                staticfiles_storage.url("vendor/bootswatch")
+        with self.settings(**self.prod_settings(self.LENIENT)):
+            self.assertEqual(staticfiles_storage.url("vendor/bootswatch"), "/static/vendor/bootswatch")
+
+
 class AdminLanguageTests(TestCase):
     def test_admin_is_uzbek_regardless_of_browser_language(self):
         response = self.client.get("/admin/login/", HTTP_ACCEPT_LANGUAGE="en-US,en;q=0.9")

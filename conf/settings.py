@@ -184,7 +184,8 @@ STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {
         # gzip/brotli + fayl nomida hash => uzoq muddatli kesh.
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
+        # manifest_strict=False: Jazzmin papkaga ({% static 'vendor/bootswatch' %}) murojaat qiladi.
+        "BACKEND": "conf.storage.LenientManifestStaticFilesStorage"
         if not DEBUG
         else "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
