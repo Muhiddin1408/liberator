@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.text import Truncator
@@ -66,8 +67,17 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         ("Messenjer va ijtimoiy tarmoqlar", {"fields": (
             "telegram_url", "whatsapp_phone", "instagram_url", "facebook_url", "youtube_url", "linkedin_url",
         )}),
+        ("Telegram xabarnomasi (yangi murojaatlar)", {"fields": ("telegram_bot_token", "telegram_chat_ids")}),
         ("SEO", {"fields": ("meta_description", "meta_description_ru", "meta_description_en")}),
     )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name == "telegram_bot_token":
+            # new-password: brauzer admin parolini bu maydonga avtomatik yozib qo'ymasin.
+            kwargs["widget"] = forms.PasswordInput(render_value=True, attrs={
+                "autocomplete": "new-password", "class": "vTextField",
+            })
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     def has_add_permission(self, request):
         return not SiteSettings.objects.exists()

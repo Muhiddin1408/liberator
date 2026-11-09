@@ -1,5 +1,8 @@
+import re
+
 from django.contrib.auth.models import User
 from django.core.cache import cache
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
@@ -73,6 +76,22 @@ class TranslatedSlugMixin:
 
 # --- Sayt sozlamalari --------------------------------------------------------
 
+telegram_token_validator = RegexValidator(
+    regex=r"^\d+:[\w-]+$",
+    message="Token noto'g'ri. @BotFather bergan tokenni to'liq kiriting, masalan: 123456789:AAExample.",
+)
+
+
+def split_chat_ids(value):
+    return [chat_id for chat_id in re.split(r"[\s,;]+", value or "") if chat_id]
+
+
+def validate_telegram_chat_ids(value):
+    for chat_id in split_chat_ids(value):
+        if not re.fullmatch(r"-?\d+|@\w+", chat_id):
+            raise ValidationError(f"Noto'g'ri chat ID: {chat_id}. Masalan: 123456789 yoki -1001234567890.")
+
+
 class SiteSettings(LocalizedMixin, models.Model):
     """Kontaktlar, manzil va ijtimoiy tarmoqlar — yagona yozuv, admin'dan tahrirlanadi."""
 
@@ -110,6 +129,17 @@ class SiteSettings(LocalizedMixin, models.Model):
     facebook_url = models.URLField("Facebook", blank=True)
     youtube_url = models.URLField("YouTube", blank=True)
     linkedin_url = models.URLField("LinkedIn", blank=True)
+
+    telegram_bot_token = models.CharField(
+        "Telegram bot tokeni", max_length=100, blank=True, validators=[telegram_token_validator],
+        help_text="@BotFather bergan token, masalan: 123456789:AAExample.",
+    )
+    telegram_chat_ids = models.TextField(
+        "Telegram chat/guruh ID'lari", blank=True, validators=[validate_telegram_chat_ids],
+        help_text="Murojaatlar shu chatlarga boradi. Bir nechta bo'lsa vergul bilan yoki yangi qatordan yozing. "
+                  "Shaxsiy chat: 123456789 (avval botga /start bosilgan bo'lishi kerak). "
+                  "Guruh: -1001234567890 (bot guruhga qo'shilgan bo'lishi kerak).",
+    )
 
     meta_description = models.CharField(
         "SEO tavsif", max_length=160, blank=True,

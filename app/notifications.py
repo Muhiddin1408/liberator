@@ -7,6 +7,8 @@ from html import escape
 from django.conf import settings
 from django.core.mail import send_mail
 
+from app.models import SiteSettings, split_chat_ids
+
 logger = logging.getLogger(__name__)
 
 
@@ -42,25 +44,37 @@ def notify_email(lead):
         logger.exception("Murojaat #%s uchun email yuborilmadi", lead.pk)
 
 
+def telegram_config():
+    """Admin'dagi qiymatlar ustun, bo'sh bo'lsa .env ishlatiladi.
+
+    Keshsiz o'qiladi: admin'da o'zgartirilgan token darhol barcha worker'larda kuchga kirsin.
+    """
+    site = SiteSettings.objects.filter(pk=1).first()
+    token = (site.telegram_bot_token if site else "") or settings.TELEGRAM_BOT_TOKEN
+    chat_ids = split_chat_ids(site.telegram_chat_ids if site else "") or split_chat_ids(settings.TELEGRAM_CHAT_ID)
+    return token, chat_ids
+
+
 def notify_telegram(lead):
-    token, chat_id = settings.TELEGRAM_BOT_TOKEN, settings.TELEGRAM_CHAT_ID
-    if not (token and chat_id):
+    token, chat_ids = telegram_config()
+    if not (token and chat_ids):
         return
-    text = "🔔 <b>Saytdan yangi murojaat</b>\n\n" + "\n".join(
+    text ="🔔 <b>Saytdan yangi murojaat</b>\n\n" + "\n".join(
         f"<b>{escape(label)}:</b> {escape(str(value))}" for label, value in _lead_lines(lead)
     )
     if lead.message:
         text += f"\n\n{escape(lead.message[:3000])}"
-    payload = json.dumps({"chat_id": chat_id, "text": text, "parse_mode": "HTML"}).encode()
-    request = urllib.request.Request(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        data=payload,
-        headers={"Content-Type": "application/json"},
-    )
-    try:
-        urllib.request.urlopen(request, timeout=5).close()
-    except Exception:  # noqa: BLE001
-        logger.exception("Murojaat #%s uchun Telegram xabari yuborilmadi", lead.pk)
+    for chat_id in chat_ids:
+        payload = json.dumps({"chat_id": chat_id, "text": text, "parse_mode": "HTML"}).encode()
+        request = urllib.request.Request(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+        )
+        try:
+            urllib.request.urlopen(request, timeout=5).close()
+        except Exception:  # noqa: BLE001 — bitta chat xatosi qolganlariga to'sqinlik qilmasin
+            logger.exception("Murojaat #%s uchun Telegram xabari %s ga yuborilmadi", lead.pk, chat_id)
 
 
 def notify_new_lead(lead):

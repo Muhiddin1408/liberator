@@ -1,3 +1,4 @@
+import json
 import shutil
 import tempfile
 import time
@@ -7,14 +8,18 @@ from unittest import mock
 from django.conf import settings
 from django.core import mail, signing
 from django.core.cache import cache
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.management import call_command
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import translation
 from PIL import Image
 
 from app.forms import _signer
-from app.models import ConsultationRequest, News, Service, ServiceCategory, SiteSettings, Staff, Testimonial
+from app.models import (
+    ConsultationRequest, News, Service, ServiceCategory, SiteSettings, Staff, Testimonial, validate_telegram_chat_ids,
+)
 
 
 def old_token(seconds_ago=10):
@@ -211,6 +216,22 @@ class LeadFormTests(TestCase):
             response = self.client.post(self.url, lead_data())
         self.assertRedirects(response, "/uz/rahmat/")
         self.assertEqual(ConsultationRequest.objects.count(), 1)
+
+    def test_telegram_sends_to_every_admin_chat_despite_failure(self):
+        site = SiteSettings.load()
+        site.telegram_bot_token = "999:admin"
+        site.telegram_chat_ids = "111, -1002222\n@kanal"
+        site.save()
+        with mock.patch("app.notifications.urllib.request.urlopen",
+                        side_effect=[OSError("down"), mock.MagicMock(), mock.MagicMock()]) as urlopen:
+            self.client.post(self.url, lead_data())
+        requests = [call.args[0] for call in urlopen.call_args_list]
+        self.assertEqual([json.loads(r.data)["chat_id"] for r in requests], ["111", "-1002222", "@kanal"])
+        self.assertIn("bot999:admin/", requests[0].full_url)
+
+    def test_invalid_telegram_chat_id_rejected(self):
+        with self.assertRaises(ValidationError):
+            validate_telegram_chat_ids("123, abc")
 
     def test_get_not_allowed(self):
         self.assertEqual(self.client.get(self.url).status_code, 405)
