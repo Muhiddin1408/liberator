@@ -192,6 +192,26 @@
 </section>
 {% endif %}
 
+<section class="section">
+    <div class="container container--narrow">
+        <div class="section-head section-head--center reveal">
+            <p class="eyebrow">{% translate "Advokatura" %}</p>
+            <h2>{% translate "Advokatura Toshkentda — Liberator advokatlik firmasi" %}</h2>
+            <p class="lead">{% blocktranslate trimmed %}
+                Liberator — O‘zbekiston advokaturasi tizimida faoliyat yuritadigan advokatlik firmasi. Litsenziyali advokatlarimiz fuqarolar va biznesni sudda, tergovda va davlat organlarida himoya qiladi.
+            {% endblocktranslate %}</p>
+        </div>
+        <div class="faq reveal">
+            {% for question, answer in advokatura_faq %}
+            <details{% if forloop.first %} open{% endif %}>
+                <summary>{{ question }} {% icon "chevron" %}</summary>
+                <div class="faq__answer"><p>{{ answer }}</p></div>
+            </details>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 <section class="section section--paper" id="consultation">
     <div class="container contact-layout">
         <div class="card reveal">

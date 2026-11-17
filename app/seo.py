@@ -9,7 +9,17 @@ from django.utils.text import Truncator
 from django.utils.translation import get_language
 
 BRAND = "Liberator"
-TITLE_LIMIT = 60  # Google natijalarida sarlavha taxminan shu uzunlikda kesiladi
+TITLE_LIMIT = 60
+ALTERNATE_NAMES = [
+    "Liberator advokatlik firmasi", "Liberator advokatura",
+    "Адвокатская фирма Liberator", "Адвокатура Liberator",
+    "Liberator Law Firm",
+]
+KEYWORDS = (
+    "advokat, advokatura, advokatlik firmasi, yurist, "
+    "адвокат, адвокатура, адвокатская фирма, юрист, "
+    "law firm, lawyer, attorney, advocate, advokatura"
+)  # Google natijalarida sarlavha taxminan shu uzunlikda kesiladi
 DESCRIPTION_LIMIT = 158
 
 
@@ -63,11 +73,12 @@ def legal_service(site, url):
         "@type": "LegalService",
         "@id": settings.SITE_URL + "/#organization",
         "name": "Liberator",
-        "alternateName": ["Liberator advokatlik firmasi", "Адвокатская фирма Liberator", "Liberator Law Firm"],
+        "alternateName": ALTERNATE_NAMES,
         "url": url,
         "logo": absolute(static("site/img/logo.png")),
         "image": absolute(static("site/img/og-image.jpg")),
         "description": site.tr("meta_description"),
+        "keywords": KEYWORDS,
         "telephone": site.phone_primary,
         "email": site.email,
         "hasMap": site.map_link,
@@ -108,7 +119,7 @@ def website():
         "@type": "WebSite",
         "@id": settings.SITE_URL + "/#website",
         "name": BRAND,
-        "alternateName": ["Liberator advokatlik firmasi", "Адвокатская фирма Liberator", "Liberator Law Firm"],
+        "alternateName": ALTERNATE_NAMES,
         "url": settings.SITE_URL + "/",
         "inLanguage": [code for code, _name in settings.LANGUAGES],
         "publisher": organization_ref(),
@@ -177,14 +188,19 @@ def article(news):
 
 
 def faq_page(faqs):
+    return faq_pairs([(faq.tr("question"), faq.tr("answer")) for faq in faqs])
+
+
+def faq_pairs(pairs):
+    """FAQPage sxemasi: pairs — (savol, javob) juftliklari."""
     return {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [{
             "@type": "Question",
-            "name": faq.tr("question"),
-            "acceptedAnswer": {"@type": "Answer", "text": faq.tr("answer")},
-        } for faq in faqs],
+            "name": str(question),
+            "acceptedAnswer": {"@type": "Answer", "text": str(answer)},
+        } for question, answer in pairs],
     }
 
 

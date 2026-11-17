@@ -33,12 +33,28 @@ msgid "15 daqiqada"
 msgstr "Within 15 minutes"
 
 #: app/views.py
-msgid "Advokat Toshkentda — Liberator advokatlik firmasi"
+msgid "Advokat bilan bog‘lanish — bepul konsultatsiya | Liberator"
+msgstr "Contact a lawyer — free consultation | Liberator"
+
+#: app/views.py
+msgid "Advokat va advokatura Toshkentda — Liberator"
 msgstr "Law firm in Tashkent, Uzbekistan — Liberator"
 
 #: app/views.py
-msgid "Advokat bilan bog‘lanish — bepul konsultatsiya | Liberator"
-msgstr "Contact a lawyer — free consultation | Liberator"
+msgid "Advokat va yuristning farqi nima?"
+msgstr "What is the difference between an advocate and a lawyer?"
+
+#: app/views.py
+msgid ""
+"Advokat — malaka imtihonini topshirgan, litsenziya olgan va Advokatlar "
+"palatasiga a’zo bo‘lgan yurist. Jinoyat ishida himoyachi sifatida faqat "
+"advokat qatnashadi, mijoz bilan muloqoti esa advokatlik siri sifatida qonun "
+"bilan himoyalanadi."
+msgstr ""
+"An advocate (attorney) is a lawyer who has passed the qualification exam, "
+"holds a licence and is a member of the Chamber of Advocates. Only an "
+"advocate may act as defence counsel in a criminal case, and communication "
+"with the client is protected by law as attorney–client privilege."
 
 #: template/thanks.html
 msgid ""
@@ -78,6 +94,32 @@ msgstr "Law firm"
 #: template/about.html template/index.html
 msgid "Advokatlik siri qonun bilan himoyalangan — ma’lumotlaringiz xavfsiz."
 msgstr "Attorney-client privilege is protected by law — your data is safe."
+
+#: template/index.html
+msgid "Advokatura"
+msgstr "The Bar · Advokatura"
+
+#: template/index.html
+msgid "Advokatura Toshkentda — Liberator advokatlik firmasi"
+msgstr "Advokatura in Tashkent — Liberator law firm"
+
+#: app/views.py
+msgid "Advokatura nima?"
+msgstr "What is advokatura?"
+
+#: app/views.py
+msgid ""
+"Advokatura — advokatlik faoliyati bilan shug‘ullanadigan shaxslarning "
+"mustaqil kasbiy birlashmalarini o‘z ichiga olgan huquqiy institut. Uning "
+"vazifasi — jismoniy va yuridik shaxslarga malakali yuridik yordam "
+"ko‘rsatish. O‘zbekistonda advokatlar advokatlik byurosi, advokatlik firmasi "
+"yoki advokatlar hay’atida ishlaydi; Liberator — advokatlik firmasi."
+msgstr ""
+"Advokatura is the Uzbek and Russian word for the Bar: the legal institution "
+"made up of independent professional associations of advocates. Its purpose "
+"is to provide qualified legal assistance to individuals and organisations. "
+"In Uzbekistan advocates practise in a law office, a law firm or a collegium "
+"of advocates; Liberator is a law firm."
 
 #: app/views.py template/404.html template/base.html template/contact.html
 #: template/team_detail.html
@@ -415,6 +457,20 @@ msgstr ""
 "and administrative cases. Choose the right lawyer for your matter."
 
 #: app/views.py
+msgid "Liberator advokaturasiga qanday murojaat qilish mumkin?"
+msgstr "How do I contact Liberator law firm?"
+
+#: template/index.html
+msgid ""
+"Liberator — O‘zbekiston advokaturasi tizimida faoliyat yuritadigan "
+"advokatlik firmasi. Litsenziyali advokatlarimiz fuqarolar va biznesni sudda,"
+" tergovda va davlat organlarida himoya qiladi."
+msgstr ""
+"Liberator is a law firm practising within the Bar (advokatura) of "
+"Uzbekistan. Our licensed advocates represent individuals and businesses in "
+"court, during investigations and before state authorities."
+
+#: app/views.py
 msgid ""
 "Liberator — Toshkentdagi advokatlik firmasi: biznes va fuqarolarga yuridik "
 "hamrohlik, sudda vakillik va jinoyat ishlari bo‘yicha himoya."
@@ -615,6 +671,16 @@ msgid ""
 "Sayt qulay ishlashi va tashriflar statistikasi uchun cookie fayllardan "
 "foydalanadi."
 msgstr "This website uses cookies for convenience and visit statistics."
+
+#: app/views.py
+msgid ""
+"Saytdagi formani to‘ldiring, qo‘ng‘iroq qiling yoki Toshkentdagi ofisimizga "
+"keling. Birinchi konsultatsiya bepul: advokat vaziyatingizni o‘rganib, "
+"keyingi qadamlarni tushuntiradi. O‘zbek, rus va ingliz tillarida ishlaymiz."
+msgstr ""
+"Fill in the form on this site, call us or visit our office in Tashkent. The "
+"first consultation is free: an advocate will review your situation and "
+"explain the next steps. We work in Uzbek, Russian and English."
 
 #: app/forms.py template/includes/lead_form.html
 msgid "Shaxsiy ma’lumotlarimni qayta ishlashga roziman"

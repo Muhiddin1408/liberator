@@ -208,7 +208,7 @@ class SeoMetaTests(TestCase):
         self.assertEqual(len(descriptions), 18)
 
     def test_russian_title_is_translated(self):
-        self.assertIn("<title>Адвокат в Ташкенте — адвокатская фирма Liberator</title>", self.head("/ru/"))
+        self.assertIn("<title>Адвокат и адвокатура в Ташкенте — Liberator</title>", self.head("/ru/"))
         self.assertIn("<title>Уголовные дела — услуги адвоката в Ташкенте | Liberator</title>",
                       self.head("/ru/uslugi/ugolovnye-dela/"))
 

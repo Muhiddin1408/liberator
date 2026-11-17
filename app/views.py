@@ -65,10 +65,35 @@ def firm_suffix():
 
 # --- Sahifalar ------------------------------------------------------------------
 
+def advokatura_faq():
+    """Bosh sahifadagi "Advokatura" bloki: ko'rinadigan matn va FAQPage sxemasi bir manbadan."""
+    return [
+        (_("Advokatura nima?"), _(
+            "Advokatura — advokatlik faoliyati bilan shug‘ullanadigan shaxslarning mustaqil kasbiy birlashmalarini "
+            "o‘z ichiga olgan huquqiy institut. Uning vazifasi — jismoniy va yuridik shaxslarga malakali yuridik "
+            "yordam ko‘rsatish. O‘zbekistonda advokatlar advokatlik byurosi, advokatlik firmasi yoki advokatlar "
+            "hay’atida ishlaydi; Liberator — advokatlik firmasi."
+        )),
+        (_("Advokat va yuristning farqi nima?"), _(
+            "Advokat — malaka imtihonini topshirgan, litsenziya olgan va Advokatlar palatasiga a’zo bo‘lgan yurist. "
+            "Jinoyat ishida himoyachi sifatida faqat advokat qatnashadi, mijoz bilan muloqoti esa advokatlik siri "
+            "sifatida qonun bilan himoyalanadi."
+        )),
+        (_("Liberator advokaturasiga qanday murojaat qilish mumkin?"), _(
+            "Saytdagi formani to‘ldiring, qo‘ng‘iroq qiling yoki Toshkentdagi ofisimizga keling. Birinchi "
+            "konsultatsiya bepul: advokat vaziyatingizni o‘rganib, keyingi qadamlarni tushuntiradi. O‘zbek, rus va "
+            "ingliz tillarida ishlaymiz."
+        )),
+    ]
+
+
 def index(request):
+    faq = advokatura_faq()
     return render(request, "index.html", {
-        "meta_title": _("Advokat Toshkentda — Liberator advokatlik firmasi"),
+        "meta_title": _("Advokat va advokatura Toshkentda — Liberator"),
         "schema": seo.website(),
+        "advokatura_faq": faq,
+        "faq_schema": seo.faq_pairs(faq),
         "achievements": Achievement.objects.active(),
         "testimonials": published_testimonials(),
         "latest_news": News.objects.published().select_related("author")[:3],
