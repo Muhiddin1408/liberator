@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n liberator %}
 
-{% block title %}{{ page|tr:'title' }} | Liberator{% endblock %}
-{% block og_title %}{{ page|tr:'title' }} | Liberator{% endblock %}
 
 {% block content %}
 {% include "includes/page_hero.html" with title=page|tr:'title' %}

@@ -8,19 +8,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: template/news_list.html
+#: app/views.py
 #, python-format
-msgid "%(n)s-sahifa"
-msgstr "страница %(n)s"
+msgid "%(headline)s, Liberator advokatlik firmasi (Toshkent). %(about)s"
+msgstr "%(headline)s, адвокатская фирма Liberator (Ташкент). %(about)s"
+
+#: app/views.py
+#, python-format
+msgid "%(name)s — advokat xizmatlari Toshkentda"
+msgstr "%(name)s — услуги адвоката в Ташкенте"
 
 #: template/team_detail.html
 #, python-format
 msgid "%(name)sga yozish"
 msgstr "Написать: %(name)s"
 
+#: app/views.py
+#, python-format
+msgid "%(title)s — %(number)s-sahifa"
+msgstr "%(title)s — страница %(number)s"
+
 #: template/base.html
 msgid "15 daqiqada"
 msgstr "За 15 минут"
+
+#: app/views.py
+msgid "Advokat Toshkentda — Liberator advokatlik firmasi"
+msgstr "Адвокат в Ташкенте — адвокатская фирма Liberator"
+
+#: app/views.py
+msgid "Advokat bilan bog‘lanish — bepul konsultatsiya | Liberator"
+msgstr "Связаться с адвокатом — бесплатная консультация | Liberator"
 
 #: template/thanks.html
 msgid ""
@@ -29,6 +47,10 @@ msgid ""
 msgstr ""
 "Наш адвокат свяжется с вами в рабочее время. Если вопрос срочный — "
 "позвоните:"
+
+#: app/views.py
+msgid "Advokatlar jamoasi — Liberator, Toshkent"
+msgstr "Адвокаты и юристы — команда Liberator, Ташкент"
 
 #: template/news_list.html
 msgid ""
@@ -55,14 +77,10 @@ msgstr "Адвокатская фирма"
 msgid "Advokatlik siri qonun bilan himoyalangan — ma’lumotlaringiz xavfsiz."
 msgstr "Адвокатская тайна охраняется законом — ваши данные в безопасности."
 
-#: template/404.html template/base.html template/contact.html
+#: app/views.py template/404.html template/base.html template/contact.html
 #: template/team_detail.html
 msgid "Aloqa"
 msgstr "Контакты"
-
-#: template/contact.html
-msgid "Aloqa — bepul konsultatsiya"
-msgstr "Контакты — бесплатная консультация"
 
 #: template/about.html template/team_detail.html
 msgid "Amaliyot"
@@ -115,7 +133,7 @@ msgstr "Батиров Фаррух Юсупович — руководител�
 msgid "Bepul konsultatsiya"
 msgstr "Бесплатная консультация"
 
-#: template/about.html template/base.html
+#: app/views.py template/about.html template/base.html
 msgid "Biz haqimizda"
 msgstr "О нас"
 
@@ -153,7 +171,7 @@ msgstr ""
 "Полное юридическое сопровождение бизнеса и граждан — от консультации до "
 "защиты в суде."
 
-#: template/team.html template/team_detail.html
+#: app/views.py template/team.html template/team_detail.html
 msgid "Bizning jamoa"
 msgstr "Наша команда"
 
@@ -175,7 +193,8 @@ msgstr ""
 "Узбекистан и иностранным гражданам, а также юридическим лицам — резидентам и"
 " нерезидентам нашей страны качественные юридические услуги."
 
-#: template/404.html template/base.html template/includes/page_hero.html
+#: app/views.py template/404.html template/base.html
+#: template/includes/page_hero.html
 msgid "Bosh sahifa"
 msgstr "Главная страница"
 
@@ -264,7 +283,7 @@ msgstr "Изучаем документы и ситуацию, даём прав
 msgid "Huquqiy audit (Due diligence)"
 msgstr "Правовой аудит (Due diligence)"
 
-#: template/news_list.html
+#: app/views.py template/news_list.html
 msgid "Huquqiy maqolalar va yangiliklar"
 msgstr "Юридические статьи и новости"
 
@@ -354,9 +373,51 @@ msgstr ""
 "Поэтому мы подходим к каждому делу с ответственностью, тщательным анализом, "
 "чёткой стратегией и профессионализмом, добиваясь высоких результатов."
 
+#: app/views.py
+msgid ""
+"Liberator advokatlarining amaliy maslahatlari: biznes, mehnat, soliq, oila "
+"va jinoyat huquqi bo‘yicha maqolalar hamda qonunchilikdagi muhim "
+"o‘zgarishlar."
+msgstr ""
+"Практические советы адвокатов Liberator: статьи о бизнесе, трудовом, "
+"налоговом, семейном и уголовном праве и важные изменения в законодательстве "
+"Узбекистана."
+
+#: app/views.py
+msgid ""
+"Liberator advokatlik firmasi bilan bog‘laning: telefon, Telegram yoki onlayn"
+" ariza. Ofisimiz Toshkentda. Birinchi konsultatsiya bepul."
+msgstr ""
+"Свяжитесь с адвокатской фирмой Liberator: телефон, Telegram или онлайн-"
+"заявка. Офис в Ташкенте. Первая консультация бесплатно."
+
+#: app/views.py
+msgid "Liberator advokatlik firmasi haqida — Toshkent"
+msgstr "О фирме — адвокатская фирма Liberator, Ташкент"
+
 #: template/index.html
 msgid "Liberator advokatlik firmasi rahbari"
 msgstr "Руководитель адвокатской фирмы Liberator"
+
+#: app/views.py
+msgid "Liberator advokatlik firmasi, Toshkent. Bepul konsultatsiya."
+msgstr "Адвокатская фирма Liberator, Ташкент. Бесплатная консультация."
+
+#: app/views.py
+msgid ""
+"Liberator advokatlik firmasining advokat va yuristlari: jinoyat, fuqarolik, "
+"iqtisodiy va ma’muriy ishlar bo‘yicha mutaxassislar. Mos advokatni tanlang."
+msgstr ""
+"Адвокаты и юристы фирмы Liberator: специалисты по уголовным, гражданским, "
+"экономическим и административным делам. Выберите адвоката под вашу задачу."
+
+#: app/views.py
+msgid ""
+"Liberator — Toshkentdagi advokatlik firmasi: biznes va fuqarolarga yuridik "
+"hamrohlik, sudda vakillik va jinoyat ishlari bo‘yicha himoya."
+msgstr ""
+"Liberator — адвокатская фирма в Ташкенте: юридическое сопровождение бизнеса "
+"и граждан, представительство в суде и защита по уголовным делам."
 
 #: template/base.html
 msgid "Liberator — advokatlik firmasi, Toshkent"
@@ -366,8 +427,8 @@ msgstr "Liberator — адвокатская фирма, Ташкент"
 msgid "Manzil"
 msgstr "Адрес"
 
-#: template/base.html template/index.html template/news_detail.html
-#: template/news_list.html template/team_detail.html
+#: app/views.py template/base.html template/index.html
+#: template/news_detail.html template/news_list.html template/team_detail.html
 msgid "Maqolalar"
 msgstr "Статьи"
 
@@ -617,6 +678,15 @@ msgstr "Быстрая консультация"
 msgid "Til"
 msgstr "Язык"
 
+#: app/views.py
+msgid ""
+"Toshkentda advokat xizmatlari: jinoyat, fuqarolik, iqtisodiy va ma’muriy "
+"ishlar, biznesni yuridik hamrohlik qilish. Birinchi konsultatsiya bepul."
+msgstr ""
+"Услуги адвоката в Ташкенте: уголовные, гражданские, экономические и "
+"административные дела, юридическое сопровождение бизнеса. Первая "
+"консультация бесплатно."
+
 #: template/index.html
 msgid "Toshkentdagi advokatlik firmasi"
 msgstr "Адвокатская фирма в Ташкенте"
@@ -665,7 +735,8 @@ msgstr ""
 msgid "Xaritada ochish"
 msgstr "Открыть на карте"
 
-#: template/404.html template/base.html template/service_category.html
+#: app/views.py template/404.html template/base.html
+#: template/service_category.html
 msgid "Xizmatlar"
 msgstr "Услуги"
 
@@ -693,9 +764,9 @@ msgstr "Направление"
 msgid "Yuridik xizmatlar"
 msgstr "Юридические услуги"
 
-#: template/service_category.html
-msgid "advokat xizmatlari"
-msgstr "услуги адвоката"
+#: app/views.py
+msgid "Yuridik xizmatlar va advokat yordami Toshkentda | Liberator"
+msgstr "Юридические услуги и помощь адвоката в Ташкенте | Liberator"
 
 #: template/base.html
 msgid "advokatlik firmasi"

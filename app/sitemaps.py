@@ -1,3 +1,4 @@
+from types import SimpleNamespace
 from urllib.parse import urlparse
 
 from django.conf import settings
@@ -14,7 +15,12 @@ class BaseSitemap(Sitemap):
     # Django x-default'ni prefiksiz manzil (/aloqa/) qilib beradi — tarjima qilingan URL'larda u
     # boshqa tildagi foydalanuvchiga 404 berishi mumkin. x-default sahifalarning <link> tegida bor.
     x_default = False
-    protocol = urlparse(settings.SITE_URL).scheme or "https"
+
+    def get_urls(self, page=1, site=None, protocol=None):
+        # Manzillar doim asosiy domen (SITE_URL) bilan chiqadi — sayt www yoki IP orqali ochilgan bo'lsa ham.
+        canonical = urlparse(settings.SITE_URL)
+        site = SimpleNamespace(domain=canonical.netloc)
+        return super().get_urls(page=page, site=site, protocol=canonical.scheme or "https")
 
     def get_languages_for_item(self, item):
         # Tarjima qilinmagan til versiyasi Google'ga berilmaydi (sahifada noindex bor).

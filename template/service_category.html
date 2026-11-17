@@ -1,12 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n liberator %}
 
-{% block title %}{{ category|tr:'name' }} — {% translate "advokat xizmatlari" %} | Liberator{% endblock %}
-{% block meta_description %}{% with desc=category|tr:'description' %}{% if desc %}{{ desc|striptags|truncatechars:158 }}{% else %}{{ block.super }}{% endif %}{% endwith %}{% endblock %}
-{% block og_title %}{{ category|tr:'name' }} | Liberator{% endblock %}
-{% block og_description %}{% with desc=category|tr:'description' %}{% if desc %}{{ desc|striptags|truncatechars:158 }}{% else %}{{ block.super }}{% endif %}{% endwith %}{% endblock %}
-{% block og_image %}{% if category.image %}{{ site_url }}{{ category.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
-{% block schema %}{% json_ld faq_schema %}{% endblock %}
 
 {% block content %}
 {% translate "Xizmatlar" as services_title %}{% url 'service_list' as services_url %}{% translate "Amaliyot yo‘nalishi" as page_eyebrow %}

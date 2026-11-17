@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n liberator %}
 
-{% block title %}{{ article|tr:'title' }} | Liberator{% endblock %}
-{% block meta_description %}{% with s=article|tr:'summary' %}{% if s %}{{ s|truncatechars:158 }}{% else %}{{ article|tr:'body'|striptags|truncatechars:158 }}{% endif %}{% endwith %}{% endblock %}
 {% block og_type %}article{% endblock %}
-{% block og_title %}{{ article|tr:'title' }}{% endblock %}
-{% block og_description %}{% with s=article|tr:'summary' %}{% if s %}{{ s|truncatechars:158 }}{% else %}{{ article|tr:'body'|striptags|truncatechars:158 }}{% endif %}{% endwith %}{% endblock %}
-{% block og_image %}{% if article.image %}{{ site_url }}{{ article.image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
-{% block schema %}{% json_ld schema %}{% endblock %}
+{% block og_extra %}<meta property="article:published_time" content="{{ article.published_at|date:'c' }}">
+    <meta property="article:modified_time" content="{{ article.updated_at|date:'c' }}">{% endblock %}
 
 {% block content %}
 {% translate "Maqolalar" as news_title %}{% url 'news_list' as news_url %}

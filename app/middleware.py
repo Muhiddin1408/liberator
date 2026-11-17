@@ -1,5 +1,25 @@
+from urllib.parse import urlparse
+
 from django.conf import settings
+from django.http import HttpResponsePermanentRedirect
 from django.utils import translation
+
+
+class CanonicalHostMiddleware:
+    """www.liberator.uz -> liberator.uz (301): Google bitta saytni ikki domenda ko'rmasligi uchun.
+
+    Asosiy domen SITE_URL dan olinadi. Faqat uning www'li (yoki www'siz) juftligi yo'naltiriladi.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+        host = urlparse(settings.SITE_URL).netloc
+        self.alias = host[4:] if host.startswith("www.") else "www." + host
+
+    def __call__(self, request):
+        if request.method in ("GET", "HEAD") and request.META.get("HTTP_HOST", "").lower() == self.alias:
+            return HttpResponsePermanentRedirect(settings.SITE_URL + request.get_full_path())
+        return self.get_response(request)
 
 
 class AdminUzbekMiddleware:

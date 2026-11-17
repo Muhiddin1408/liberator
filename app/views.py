@@ -54,10 +54,21 @@ def mark_translated_page(request, obj):
     request.i18n_object = obj
 
 
+def crumbs(*items):
+    """BreadcrumbList sxemasi: Bosh sahifa > ... > joriy sahifa. items: (nom, url)."""
+    return seo.breadcrumbs([(_("Bosh sahifa"), reverse("index")), *items])
+
+
+def firm_suffix():
+    return _("Liberator advokatlik firmasi, Toshkent. Bepul konsultatsiya.")
+
+
 # --- Sahifalar ------------------------------------------------------------------
 
 def index(request):
     return render(request, "index.html", {
+        "meta_title": _("Advokat Toshkentda — Liberator advokatlik firmasi"),
+        "schema": seo.website(),
         "achievements": Achievement.objects.active(),
         "testimonials": published_testimonials(),
         "latest_news": News.objects.published().select_related("author")[:3],
@@ -68,6 +79,12 @@ def index(request):
 
 def about(request):
     return render(request, "about.html", {
+        "meta_title": _("Liberator advokatlik firmasi haqida — Toshkent"),
+        "meta_description": _(
+            "Liberator — Toshkentdagi advokatlik firmasi: biznes va fuqarolarga yuridik hamrohlik, sudda vakillik "
+            "va jinoyat ishlari bo‘yicha himoya."
+        ),
+        "breadcrumb_schema": crumbs((_("Biz haqimizda"), reverse("about"))),
         "partners": Partner.objects.active(),
         "achievements": Achievement.objects.active(),
         "testimonials": published_testimonials(),
@@ -80,6 +97,16 @@ class TeamListView(ListView):
 
     def get_queryset(self):
         return Staff.objects.filter(is_active=True).order_by("order", "id")
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx["meta_title"] = _("Advokatlar jamoasi — Liberator, Toshkent")
+        ctx["meta_description"] = _(
+            "Liberator advokatlik firmasining advokat va yuristlari: jinoyat, fuqarolik, iqtisodiy va ma’muriy "
+            "ishlar bo‘yicha mutaxassislar. Mos advokatni tanlang."
+        )
+        ctx["breadcrumb_schema"] = crumbs((_("Bizning jamoa"), reverse("team")))
+        return ctx
 
 
 class TeamDetailView(DetailView):
@@ -97,12 +124,32 @@ class TeamDetailView(DetailView):
         )
         ctx["articles"] = self.object.articles.published()[:3]
         ctx["form"] = consultation_form(self.request, staff=self.object.pk)
-        ctx["schema"] = seo.person(self.object)
+        staff = self.object
+        ctx["schema"] = seo.person(staff)
+        ctx["breadcrumb_schema"] = crumbs(
+            (_("Bizning jamoa"), reverse("team")), (staff.localized_full_name, staff.get_absolute_url()),
+        )
+        headline = f"{staff.localized_full_name} — {staff.localized_position}"
+        ctx["meta_title"] = seo.page_title(headline, staff.localized_full_name)
+        ctx["meta_description"] = seo.page_description(
+            _("%(headline)s, Liberator advokatlik firmasi (Toshkent). %(about)s") % {
+                "headline": headline,
+                "about": seo.plain_text(staff.localized_short_description or staff.localized_specialization),
+            },
+        )
+        if staff.image_url:
+            ctx["og_image"] = seo.absolute(staff.image_url)
         return ctx
 
 
 def service_list(request):
     return render(request, "service_list.html", {
+        "meta_title": _("Yuridik xizmatlar va advokat yordami Toshkentda | Liberator"),
+        "meta_description": _(
+            "Toshkentda advokat xizmatlari: jinoyat, fuqarolik, iqtisodiy va ma’muriy ishlar, biznesni yuridik "
+            "hamrohlik qilish. Birinchi konsultatsiya bepul."
+        ),
+        "breadcrumb_schema": crumbs((_("Xizmatlar"), reverse("service_list"))),
         "categories": ServiceCategory.objects.active(),
     })
 
@@ -113,7 +160,15 @@ def service_category(request, slug):
         return redirect(category.get_absolute_url(), permanent=True)
     mark_translated_page(request, category)
     faqs = list(category.faqs.active())
+    name, description = category.tr("name"), category.tr("description")
     return render(request, "service_category.html", {
+        "meta_title": seo.page_title(_("%(name)s — advokat xizmatlari Toshkentda") % {"name": name}, name),
+        "meta_description": seo.page_description(description, suffix=firm_suffix()),
+        "og_image": seo.absolute(category.image.url) if category.image else "",
+        "schema": seo.service(name, description, category.get_absolute_url()),
+        "breadcrumb_schema": crumbs(
+            (_("Xizmatlar"), reverse("service_list")), (name, category.get_absolute_url()),
+        ),
         "category": category,
         "services": category.services.active(),
         "faqs": faqs,
@@ -129,7 +184,17 @@ def service_detail(request, category_slug, slug):
     if service.get_absolute_url() != request.path:
         return redirect(service.get_absolute_url(), permanent=True)
     mark_translated_page(request, service)
+    category = service.category
+    title, category_name, description = service.tr("title"), category.tr("name"), service.tr("description")
     return render(request, "service_detail.html", {
+        "meta_title": seo.page_title(f"{title} — {category_name}", title),
+        "meta_description": seo.page_description(description, suffix=firm_suffix()),
+        "schema": seo.service(title, description, service.get_absolute_url(), service_type=category_name),
+        "breadcrumb_schema": crumbs(
+            (_("Xizmatlar"), reverse("service_list")),
+            (category_name, category.get_absolute_url()),
+            (title, service.get_absolute_url()),
+        ),
         "service": service,
         "category": service.category,
         "siblings": service.category.services.active().exclude(pk=service.pk),
@@ -145,6 +210,22 @@ class NewsListView(ListView):
     def get_queryset(self):
         return News.objects.published().select_related("author")
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        title = _("Huquqiy maqolalar va yangiliklar")
+        number = ctx["page_obj"].number
+        if number > 1:
+            # Har bir sahifa o'zini canonical qiladi (1-sahifaga emas) — Google keyingi sahifalarni ham ko'radi.
+            self.request.canonical_query = f"?page={number}"
+            title = _("%(title)s — %(number)s-sahifa") % {"title": title, "number": number}
+        ctx["meta_title"] = seo.page_title(title)
+        ctx["meta_description"] = _(
+            "Liberator advokatlarining amaliy maslahatlari: biznes, mehnat, soliq, oila va jinoyat huquqi "
+            "bo‘yicha maqolalar hamda qonunchilikdagi muhim o‘zgarishlar."
+        )
+        ctx["breadcrumb_schema"] = crumbs((_("Maqolalar"), reverse("news_list")))
+        return ctx
+
 
 def news_detail(request, slug):
     article = get_translated(News.objects.published().select_related("author"), slug)
@@ -152,6 +233,12 @@ def news_detail(request, slug):
         return redirect(article.get_absolute_url(), permanent=True)
     mark_translated_page(request, article)
     return render(request, "news_detail.html", {
+        "meta_title": seo.page_title(article.tr("title")),
+        "meta_description": seo.page_description(article.tr("summary"), article.tr("body")),
+        "og_image": seo.absolute(article.image.url) if article.image else "",
+        "breadcrumb_schema": crumbs(
+            (_("Maqolalar"), reverse("news_list")), (article.tr("title"), article.get_absolute_url()),
+        ),
         "article": article,
         "recent": News.objects.published().exclude(pk=article.pk)[:3],
         "schema": seo.article(article),
@@ -162,6 +249,12 @@ def news_detail(request, slug):
 def contact(request):
     faqs = list(FAQ.objects.active().filter(category__isnull=True))
     return render(request, "contact.html", {
+        "meta_title": _("Advokat bilan bog‘lanish — bepul konsultatsiya | Liberator"),
+        "meta_description": _(
+            "Liberator advokatlik firmasi bilan bog‘laning: telefon, Telegram yoki onlayn ariza. "
+            "Ofisimiz Toshkentda. Birinchi konsultatsiya bepul."
+        ),
+        "breadcrumb_schema": crumbs((_("Aloqa"), reverse("contact"))),
         "form": consultation_form(request),
         "faqs": faqs,
         "faq_schema": seo.faq_page(faqs) if faqs else None,
@@ -172,7 +265,7 @@ def legal_page(request, kind):
     page = LegalPage.objects.filter(kind=kind).first()
     if page is None:
         raise Http404
-    return render(request, "legal_page.html", {"page": page})
+    return render(request, "legal_page.html", {"page": page, "meta_title": seo.page_title(page.tr("title"))})
 
 
 def thanks(request):

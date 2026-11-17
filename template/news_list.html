@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n liberator %}
 
-{% block title %}{% translate "Huquqiy maqolalar va yangiliklar" %}{% if page_obj.number > 1 %} — {% blocktranslate with n=page_obj.number %}{{ n }}-sahifa{% endblocktranslate %}{% endif %} | Liberator{% endblock %}
-{% block og_title %}{% translate "Huquqiy maqolalar va yangiliklar" %} | Liberator{% endblock %}
 
 {% block content %}
 {% translate "Huquqiy maqolalar va yangiliklar" as page_title %}{% translate "Maqolalar" as page_eyebrow %}

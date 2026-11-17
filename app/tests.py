@@ -162,6 +162,130 @@ class MultilingualSeoTests(TestCase):
                 self.assertEqual(self.client.get(url).status_code, 200)
 
 
+class SeoMetaTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.category = ServiceCategory.objects.create(
+            name="Jinoyat ishlari", name_ru="Уголовные дела",
+            description="Tergov va sudda advokat himoyasi.", description_ru="Защита адвоката на следствии и в суде.",
+        )
+        cls.service = Service.objects.create(
+            category=cls.category, title="Tergovda qatnashish", description="Advokat so‘roqlarda ishtirok etadi.",
+        )
+        cls.staff = Staff.objects.create(full_name="Ali Valiyev", position="Advokat",
+                                         short_description="Jinoyat ishlari bo‘yicha himoya.")
+        for i in range(11):
+            News.objects.create(title=f"Maqola {i}", body="<p>Matn&nbsp;bor</p>", is_published=True)
+
+    def head(self, url):
+        html = self.client.get(url).content.decode()
+        return html[:html.index("</head>")]
+
+    def schemas(self, url):
+        head, found = self.head(url), {}
+        for block in head.split('<script type="application/ld+json">')[1:]:
+            data = json.loads(block.split("</script>")[0])
+            found[data["@type"]] = data
+        return found
+
+    def test_static_pages_have_unique_title_and_description(self):
+        titles, descriptions = set(), set()
+        names = ("index", "about", "team", "service_list", "news_list", "contact")
+        for lang in ("uz", "ru", "en"):
+            with translation.override(lang):
+                urls = [reverse(name) for name in names]
+            for url in urls:
+                head = self.head(url)
+                title = head.split("<title>")[1].split("</title>")[0]
+                description = head.split('<meta name="description" content="')[1].split('">')[0]
+                with self.subTest(url=url):
+                    self.assertLessEqual(len(title), 60, title)
+                    self.assertLessEqual(len(description), 160, description)
+                    self.assertGreaterEqual(len(description), 70, description)
+                titles.add(title)
+                descriptions.add(description)
+        self.assertEqual(len(titles), 18)
+        self.assertEqual(len(descriptions), 18)
+
+    def test_russian_title_is_translated(self):
+        self.assertIn("<title>Адвокат в Ташкенте — адвокатская фирма Liberator</title>", self.head("/ru/"))
+        self.assertIn("<title>Уголовные дела — услуги адвоката в Ташкенте | Liberator</title>",
+                      self.head("/ru/uslugi/ugolovnye-dela/"))
+
+    def test_page_title_drops_parts_that_do_not_fit(self):
+        from app import seo
+        self.assertEqual(seo.page_title("Xizmat — Yo‘nalish", "Xizmat"), "Xizmat — Yo‘nalish | Liberator")
+        long = "Xorijiy kapitalli korxona ochish — Xorijiy investitsiyalar"
+        self.assertEqual(seo.page_title(long, "Xorijiy kapitalli korxona ochish"),
+                         "Xorijiy kapitalli korxona ochish | Liberator")
+        self.assertLessEqual(len(seo.page_title("A" * 55)), 60)
+
+    def test_description_is_plain_text_with_firm_suffix(self):
+        head = self.head(self.service.get_absolute_url())
+        self.assertIn('content="Advokat so‘roqlarda ishtirok etadi. Liberator advokatlik firmasi, Toshkent. '
+                      'Bepul konsultatsiya."', head)
+        self.assertNotIn("&amp;nbsp;", self.head(News.objects.first().get_absolute_url()))
+
+    def test_schemas(self):
+        self.assertIn("WebSite", self.schemas("/uz/"))
+        self.assertNotIn("BreadcrumbList", self.schemas("/uz/"))
+
+        category = self.schemas(self.category.get_absolute_url())
+        self.assertEqual(category["Service"]["provider"]["@id"], settings.SITE_URL + "/#organization")
+        self.assertEqual(len(category["BreadcrumbList"]["itemListElement"]), 3)
+
+        service = self.schemas(self.service.get_absolute_url())
+        self.assertEqual(service["Service"]["serviceType"], "Jinoyat ishlari")
+        crumbs = service["BreadcrumbList"]["itemListElement"]
+        self.assertEqual([c["position"] for c in crumbs], [1, 2, 3, 4])
+        self.assertEqual(crumbs[-1]["item"], settings.SITE_URL + self.service.get_absolute_url())
+
+        self.assertIn("Person", self.schemas(self.staff.get_absolute_url()))
+        article = self.schemas(News.objects.first().get_absolute_url())["Article"]
+        self.assertTrue(article["image"].startswith(settings.SITE_URL))
+        self.assertIn("author", article)
+
+    def test_paginated_list_is_self_canonical(self):
+        first, second = self.head("/uz/maqolalar/"), self.head("/uz/maqolalar/?page=2")
+        self.assertIn(f'<link rel="canonical" href="{settings.SITE_URL}/uz/maqolalar/">', first)
+        self.assertIn(f'<link rel="canonical" href="{settings.SITE_URL}/uz/maqolalar/?page=2">', second)
+        self.assertIn(f'hreflang="ru" href="{settings.SITE_URL}/ru/stati/?page=2"', second)
+        self.assertIn("2-sahifa", second)
+        # Begona parametrlar (utm va h.k.) canonical'ga tushmaydi.
+        self.assertIn(f'<link rel="canonical" href="{settings.SITE_URL}/uz/?utm_source=x">'.replace("?utm_source=x", ""),
+                      self.head("/uz/?utm_source=x&page=3"))
+
+    @override_settings(SITE_URL="https://liberator.uz", ALLOWED_HOSTS=["liberator.uz", "www.liberator.uz"])
+    def test_sitemap_always_uses_canonical_domain(self):
+        sitemap = self.client.get("/sitemap.xml", HTTP_HOST="www.liberator.uz", follow=False)
+        # www so'rovi asosiy domenga yo'naltiriladi...
+        self.assertEqual(sitemap.status_code, 301)
+        # ...asosiy domenda esa barcha manzillar SITE_URL bilan chiqadi.
+        content = self.client.get("/sitemap.xml", HTTP_HOST="liberator.uz").content.decode()
+        self.assertIn("<loc>https://liberator.uz/uz/</loc>", content)
+        self.assertNotIn("www.liberator.uz", content)
+
+
+class CanonicalHostTests(TestCase):
+    def run_middleware(self, method="get", host="www.liberator.uz", path="/uz/aloqa/?a=1"):
+        from django.http import HttpResponse
+        from django.test import RequestFactory
+
+        from app.middleware import CanonicalHostMiddleware
+        with override_settings(SITE_URL="https://liberator.uz"):
+            middleware = CanonicalHostMiddleware(lambda request: HttpResponse("ok"))
+            return middleware(getattr(RequestFactory(), method)(path, HTTP_HOST=host))
+
+    def test_www_redirects_to_canonical_host(self):
+        response = self.run_middleware()
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response["Location"], "https://liberator.uz/uz/aloqa/?a=1")
+
+    def test_canonical_host_and_posts_pass_through(self):
+        self.assertEqual(self.run_middleware(host="liberator.uz").status_code, 200)
+        self.assertEqual(self.run_middleware(method="post").status_code, 200)
+
+
 @override_settings(LEAD_NOTIFY_EMAILS=["office@example.com"], TELEGRAM_BOT_TOKEN="", LEAD_RATE_LIMIT_PER_HOUR=3)
 class LeadFormTests(TestCase):
     url = "/uz/murojaat/"

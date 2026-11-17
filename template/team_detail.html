@@ -1,13 +1,7 @@
 {% extends 'base.html' %}
 {% load static i18n liberator %}
 
-{% block title %}{{ staff.localized_full_name }} — {{ staff.localized_position }} | Liberator{% endblock %}
-{% block meta_description %}{% firstof staff.localized_short_description staff.localized_specialization|striptags|truncatechars:158 staff.localized_position %}{% endblock %}
-{% block og_title %}{{ staff.localized_full_name }} — {{ staff.localized_position }}{% endblock %}
-{% block og_description %}{% firstof staff.localized_short_description staff.localized_position %}{% endblock %}
 {% block og_type %}profile{% endblock %}
-{% block og_image %}{% if staff.image_url %}{{ site_url }}{{ staff.image_url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
-{% block schema %}{% json_ld schema %}{% endblock %}
 
 {% block content %}
 {% translate "Bizning jamoa" as team_title %}{% url 'team' as team_url %}

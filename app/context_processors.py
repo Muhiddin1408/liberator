@@ -41,9 +41,12 @@ def site_context(request):
     """Har bir sahifada kerak bo'ladigan umumiy ma'lumotlar (menyu, kontaktlar, SEO)."""
     path = request.path
     current = (get_language() or settings.LANGUAGE_CODE)[:2]
+    # Sahifalangan ro'yxatning 2+ sahifasi o'z canonical'iga ega (view belgilaydi): "?page=2".
+    query = getattr(request, "canonical_query", "")
     versions = language_versions(request)
     for version in versions:
         version["active"] = version["code"] == current
+        version["url"] += query
     default = next(v for v in versions if v["code"] == settings.LANGUAGE_CODE)
     current_version = next((v for v in versions if v["active"]), None)
     site = SiteSettings.load()
@@ -58,7 +61,7 @@ def site_context(request):
         # Tarjimasi yo'q sahifa o'zbekcha matnni ko'rsatadi — Google uni dublikat deb hisoblamasligi uchun.
         "noindex": bool(current_version and not current_version["available"]),
         "site_url": settings.SITE_URL,
-        "canonical_url": settings.SITE_URL + path,
+        "canonical_url": settings.SITE_URL + path + query,
         "x_default_url": settings.SITE_URL + default["url"],
         "callback_form": CallbackForm(initial={"source_page": path}, auto_id="cb_%s"),
         "YANDEX_METRIKA_ID": settings.YANDEX_METRIKA_ID,

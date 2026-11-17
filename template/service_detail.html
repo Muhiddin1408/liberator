@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n liberator %}
 
-{% block title %}{{ service|tr:'title' }} — {{ category|tr:'name' }} | Liberator{% endblock %}
-{% block meta_description %}{% with desc=service|tr:'description' %}{% if desc %}{{ desc|striptags|truncatechars:158 }}{% else %}{{ block.super }}{% endif %}{% endwith %}{% endblock %}
-{% block og_title %}{{ service|tr:'title' }} | Liberator{% endblock %}
 
 {% block content %}
 {% include "includes/page_hero.html" with title=service|tr:'title' parent_title=category|tr:'name' parent_url=category.get_absolute_url eyebrow=category|tr:'name' %}
