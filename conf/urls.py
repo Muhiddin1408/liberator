@@ -20,6 +20,7 @@ urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
     path("robots.txt", views.robots_txt, name="robots_txt"),
     re_path(r"^mailru-domain(?P<code>[A-Za-z0-9]+)\.html$", views.mailru_verification),
+    re_path(r"^yandex_(?P<code>[a-f0-9]+)\.html$", views.yandex_verification),
     path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "site/img/favicon.ico", permanent=True)),
 
     # Eski manzillar (tilsiz, pk bilan) — Google'dagi havolalar yo'qolmasin.

@@ -361,6 +361,18 @@ def mailru_verification(request, code):
     return HttpResponse(f"mailru-domain: {code}", content_type="text/html")
 
 
+@require_GET
+def yandex_verification(request, code):
+    """Yandex Webmaster "HTML file" usuli: bosh manzil (/) tilga yo'naltirgani uchun meta teg usuli ishlamaydi."""
+    if not settings.YANDEX_VERIFICATION or code != settings.YANDEX_VERIFICATION:
+        raise Http404
+    return HttpResponse(
+        '<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>'
+        f"<body>Verification: {code}</body></html>",
+        content_type="text/html; charset=UTF-8",
+    )
+
+
 def legacy_service_redirect(request, pk):
     category = get_object_or_404(ServiceCategory, pk=pk)
     return redirect(category.get_absolute_url(), permanent=True)

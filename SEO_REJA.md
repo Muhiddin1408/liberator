@@ -125,7 +125,7 @@ Avval bitta "etalon" yozuv tayyorlang va hamma joyda **harfma-harf bir xil** ish
 
 ### Yandex Biznes
 
-1. https://business.yandex.com → tashkilot qo'shing
+1. https://business.yandex.ru/sprav/ → tashkilot qo'shing
 2. Kategoriya: "Адвокаты", "Юридические услуги". Tavsifda "адвокатура" so'zi bo'lsin.
 3. Qolgani Google'dagi bilan bir xil. Telefon orqali tasdiqlanadi.
 

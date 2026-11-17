@@ -492,3 +492,15 @@ class ContentCommandTests(TestCase):
 
         with self.settings(DEBUG=False), self.assertRaises(CommandError):
             self.call("demo_data")
+
+
+class YandexVerificationTests(TestCase):
+    @override_settings(YANDEX_VERIFICATION="cdccfc85cd26a660")
+    def test_verification_file(self):
+        response = self.client.get("/yandex_cdccfc85cd26a660.html")
+        self.assertContains(response, "Verification: cdccfc85cd26a660")
+        self.assertEqual(self.client.get("/yandex_0000000000000000.html").status_code, 404)
+
+    @override_settings(YANDEX_VERIFICATION="")
+    def test_no_code_no_file(self):
+        self.assertEqual(self.client.get("/yandex_cdccfc85cd26a660.html").status_code, 404)
