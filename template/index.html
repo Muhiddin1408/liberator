@@ -5,8 +5,9 @@
 <section class="hero">
     <div class="container">
         <div>
-            <p class="eyebrow">{% translate "Toshkentdagi advokatlik firmasi" %}</p>
-            <h1>{% blocktranslate trimmed %}Huquqlaringiz — <em>ishonchli himoyada</em>{% endblocktranslate %}</h1>
+            {# Kalit so'z ("advokatlik firmasi" / "law firm") H1 ichida — ko'rinishi avvalgidek. #}
+            <h1><span class="eyebrow">{% translate "Toshkentdagi advokatlik firmasi" %}</span>
+                {% blocktranslate trimmed %}Huquqlaringiz — <em>ishonchli himoyada</em>{% endblocktranslate %}</h1>
             <p class="hero__lead">
                 {% blocktranslate trimmed %}
                 Bizning tajribali advokatlar va yuristlar jamoamiz O‘zbekiston Respublikasi fuqarolari va xorijiy fuqarolarga, shuningdek mamlakatimiz rezident va norezident yuridik shaxslariga sifatli yuridik xizmatlar taklif etadi.
@@ -61,7 +62,7 @@
         <div class="section-head section-head--split">
             <div>
                 <p class="eyebrow">{% translate "Amaliyot yo‘nalishlari" %}</p>
-                <h2>{% translate "Qaysi masalalarda yordam beramiz" %}</h2>
+                <h2>{% translate "Advokatlik firmamiz qaysi masalalarda yordam beradi" %}</h2>
                 <p class="lead">{% translate "Biznes va fuqarolar uchun to‘liq yuridik hamrohlik — maslahatdan sud himoyasigacha." %}</p>
             </div>
             <a class="link-arrow" href="{% url 'service_list' %}">{% translate "Barcha xizmatlar" %} {% icon "arrow" %}</a>

@@ -69,6 +69,10 @@ msgstr ""
 "Фаррухом Юсуповичем в целях оказания квалифицированных юридических услуг "
 "субъектам предпринимательства и гражданам."
 
+#: template/index.html
+msgid "Advokatlik firmamiz qaysi masalalarda yordam beradi"
+msgstr "С какими вопросами помогает наша адвокатская фирма"
+
 #: template/base.html
 msgid "Advokatlik firmasi"
 msgstr "Адвокатская фирма"
@@ -133,7 +137,7 @@ msgstr "Батиров Фаррух Юсупович — руководител�
 msgid "Bepul konsultatsiya"
 msgstr "Бесплатная консультация"
 
-#: app/views.py template/about.html template/base.html
+#: app/views.py template/base.html
 msgid "Biz haqimizda"
 msgstr "О нас"
 
@@ -391,6 +395,10 @@ msgstr ""
 "Свяжитесь с адвокатской фирмой Liberator: телефон, Telegram или онлайн-"
 "заявка. Офис в Ташкенте. Первая консультация бесплатно."
 
+#: template/about.html
+msgid "Liberator advokatlik firmasi haqida"
+msgstr "Об адвокатской фирме Liberator"
+
 #: app/views.py
 msgid "Liberator advokatlik firmasi haqida — Toshkent"
 msgstr "О фирме — адвокатская фирма Liberator, Ташкент"
@@ -565,10 +573,6 @@ msgstr "Профиль"
 #: template/index.html
 msgid "Qanday ishlaymiz"
 msgstr "Как мы работаем"
-
-#: template/index.html
-msgid "Qaysi masalalarda yordam beramiz"
-msgstr "С какими вопросами мы помогаем"
 
 #: template/base.html template/service_category.html
 msgid "Qayta qo‘ng‘iroq"

@@ -67,6 +67,10 @@ msgstr ""
 "The law firm “LIBERATOR” was founded by managing partner Farrukh Batirov to "
 "provide qualified legal services to businesses and individuals."
 
+#: template/index.html
+msgid "Advokatlik firmamiz qaysi masalalarda yordam beradi"
+msgstr "How our law firm can help"
+
 #: template/base.html
 msgid "Advokatlik firmasi"
 msgstr "Law firm"
@@ -131,7 +135,7 @@ msgstr "Farrukh Batirov — Head of Liberator Law Firm"
 msgid "Bepul konsultatsiya"
 msgstr "Free consultation"
 
-#: app/views.py template/about.html template/base.html
+#: app/views.py template/base.html
 msgid "Biz haqimizda"
 msgstr "About us"
 
@@ -386,6 +390,10 @@ msgstr ""
 "Get in touch with Liberator law firm by phone, Telegram or online form. Our "
 "office is in Tashkent. The first consultation is free."
 
+#: template/about.html
+msgid "Liberator advokatlik firmasi haqida"
+msgstr "About Liberator law firm"
+
 #: app/views.py
 msgid "Liberator advokatlik firmasi haqida — Toshkent"
 msgstr "About Liberator — law firm in Tashkent"
@@ -563,10 +571,6 @@ msgstr "Profile"
 #: template/index.html
 msgid "Qanday ishlaymiz"
 msgstr "How we work"
-
-#: template/index.html
-msgid "Qaysi masalalarda yordam beramiz"
-msgstr "How we can help"
 
 #: template/base.html template/service_category.html
 msgid "Qayta qo‘ng‘iroq"

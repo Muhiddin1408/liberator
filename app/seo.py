@@ -63,7 +63,7 @@ def legal_service(site, url):
         "@type": "LegalService",
         "@id": settings.SITE_URL + "/#organization",
         "name": "Liberator",
-        "alternateName": "“LIBERATOR” advokatlik firmasi",
+        "alternateName": ["Liberator advokatlik firmasi", "Адвокатская фирма Liberator", "Liberator Law Firm"],
         "url": url,
         "logo": absolute(static("site/img/logo.png")),
         "image": absolute(static("site/img/og-image.jpg")),
@@ -79,7 +79,7 @@ def legal_service(site, url):
             "areaServed": "UZ",
             "availableLanguage": ["Uzbek", "Russian", "English"],
         } for phone in site.phones],
-        "areaServed": {"@type": "Country", "name": "Uzbekistan"},
+        "areaServed": [{"@type": "City", "name": "Tashkent"}, {"@type": "Country", "name": "Uzbekistan"}],
         "address": {
             "@type": "PostalAddress",
             "streetAddress": site.tr("address"),

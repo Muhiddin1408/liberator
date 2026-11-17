@@ -140,7 +140,7 @@
         <div class="container">
             <div class="footer__grid">
                 <div>
-                    <a class="footer__logo" href="{% url 'index' %}"><img src="{% static 'site/img/logo.png' %}" alt="Liberator" width="170" height="102" loading="lazy"></a>
+                    <a class="footer__logo" href="{% url 'index' %}"><img src="{% static 'site/img/logo.png' %}" alt="Liberator — {% translate 'advokatlik firmasi' %}" width="170" height="102" loading="lazy"></a>
                     <p>{% translate "“LIBERATOR” AF – bu professionallik, vazifalarni o‘z vaqtida bajarish va natijaga yo‘naltirilgan ish." %}</p>
                     <div class="social">
                         {% if site.telegram_url %}<a href="{{ site.telegram_url }}" target="_blank" rel="noopener" aria-label="Telegram">{% icon "telegram" %}</a>{% endif %}
