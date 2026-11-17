@@ -33,7 +33,7 @@ git push origin main
 Serverda:
 
 ```bash
-cd /srv/liberator
+cd /home/backend/liberator
 git pull
 source venv/bin/activate
 python manage.py collectstatic --noinput
